@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/lumen-logo.jpg" alt="CreceWeb Lumen Theme" width="160">
+  <img src="assets/lumen-theme.webp" alt="CreceWeb Lumen Theme" width="160">
 </p>
 
 # CreceWeb Lumen Theme
