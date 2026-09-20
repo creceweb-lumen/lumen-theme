@@ -1,0 +1,940 @@
+/**
+ * Conditional Hero/template contracts.
+ *
+ * Loaded only when the current request uses a Lumen Hero-aware template or
+ * begins a standard/full-width page with a Lumen Hero block.
+ */
+
+/* Hero ancho completo: the leading hero occupies the viewport; only the content
+ * below enters the normal sidebar grid. */
+.cw-template-main--hero { padding-block: 0; overflow-x: clip; }
+/* This template lets its hero and optional editorial content define the page
+ * height instead of inheriting the viewport filler used by conventional pages.
+ * That prevents an empty visual region before the footer on hero-only pages. */
+body.cw-template--hero-full-width .cw-site-shell { min-height: 0; }
+.cw-entry--hero { padding-inline: 0; }
+/* A direct class is added before the header for Gutenberg hero-only pages.
+ * It makes the hero consume the actual remaining viewport height, so no empty
+ * panel can sit between the hero and the footer. */
+body.cw-template--hero-only { min-height: 100dvh; display: flex; flex-direction: column; }
+body.cw-template--hero-only .cw-site-shell { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
+body.cw-template--hero-only .cw-template-main--hero { display: flex; flex: 1 1 auto; flex-direction: column; }
+body.cw-template--hero-only .cw-entry--hero-only { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero { display: flex; flex: 1 1 auto; min-height: 0; }
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero > :only-child { flex: 1 1 auto; min-height: 100%; }
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero > .wp-block-cover { min-height: 100% !important; }
+body.cw-template--hero-only .cw-site-footer { margin-top: 0; }
+
+
+/*
+ * Structural fallback for a real hero-only page. The normal detection writes
+ * cw-template--hero-only before the header, but this selector is deliberately
+ * based on the rendered structure as well: a hero entry with no posterior
+ * layout and no comments is always a hero-only page. This prevents a generic
+ * viewport-height shell from leaving a white panel under the Cover if an
+ * external integration changes body classes or keeps stale body markup.
+ */
+@supports selector(body:has(.cw-entry--hero)) {
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) {
+		min-height: 100dvh;
+		display: flex;
+		flex-direction: column;
+	}
+
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-site-shell {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		min-height: 0 !important;
+	}
+
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-template-main--hero,
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-entry--hero,
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-hero-template__hero {
+		display: flex;
+		flex: 1 1 auto;
+		flex-direction: column;
+		min-height: 0;
+	}
+
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-hero-template__hero > :only-child {
+		flex: 1 1 auto;
+		width: 100%;
+		min-height: 100%;
+	}
+
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-hero-template__hero > .wp-block-cover {
+		min-height: 100% !important;
+		aspect-ratio: auto !important;
+	}
+
+	body:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) .cw-site-footer {
+		margin-top: 0;
+	}
+
+	/* WordPress offsets the document below its administration bar. Keep the
+	 * copyright band at the visible bottom instead of extending a short page
+	 * by that offset. */
+	@media (min-width: 783px) {
+		body.admin-bar:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) {
+			min-height: calc(100dvh - 32px);
+		}
+	}
+
+	@media (max-width: 782px) {
+		body.admin-bar:has(#cw-main-content.cw-template-main--hero .cw-entry--hero > .cw-hero-template__hero):not(:has(#cw-main-content.cw-template-main--hero .cw-hero-template__layout)):not(:has(#cw-main-content.cw-template-main--hero .cw-comments)) {
+			min-height: calc(100dvh - 46px);
+		}
+	}
+}
+.cw-hero-template__hero { width: 100%; max-width: none; margin: 0; }
+.cw-hero-template__hero > :first-child { margin-top: 0; }
+.cw-hero-template__hero > :last-child { margin-bottom: 0; }
+.cw-hero-template__hero > :is(.alignfull, .elementor) { width: 100%; max-width: none; margin-inline: 0; }
+/* WordPress can add global horizontal padding to the root. Only the hero
+ * cancels that padding; content and sidebar below keep normal gutters. */
+.has-global-padding .cw-template-main--hero .cw-hero-template__hero {
+	width: calc(100% + var(--wp--style--root--padding-left, 0px) + var(--wp--style--root--padding-right, 0px));
+	margin-left: calc(var(--wp--style--root--padding-left, 0px) * -1);
+	margin-right: calc(var(--wp--style--root--padding-right, 0px) * -1);
+}
+.cw-hero-template__layout { width: min(calc(100% - 2rem), var(--cw-layout-wide,1120px)); margin: var(--cw-template-space, clamp(3rem, 7vw, 6rem)) auto; }
+.cw-hero-template__layout--none { width: min(calc(100% - 2rem), var(--cw-layout-content,760px)); display: block; }
+.cw-hero-template__content {
+	grid-area: content;
+	min-width: 0;
+	max-width: 100%;
+}
+/* Elementor sections inside the post-hero column must remain constrained by
+ * the grid cell. The hero itself is rendered separately above the grid. */
+.cw-hero-template__content > .elementor { min-width: 0; max-width: 100%; }
+.cw-hero-template__content > :first-child { margin-top: 0; }
+
+/* Elementor path: PHP separates the hero from the remaining sections before
+ * this markup reaches the sidebar grid. Each fragment retains Elementor's root
+ * class, so generated Elementor styles continue to apply normally. */
+.cw-hero-template__hero--elementor > .elementor { width: 100%; max-width: none; margin: 0; }
+.cw-hero-template__hero--elementor > .elementor > :first-child { margin-top: 0; }
+.cw-hero-template__content > .elementor { width: 100%; max-width: 100%; min-width: 0; margin-inline: 0; }
+.cw-hero-template__content > .elementor > :first-child { margin-top: 0; }
+
+/* Elementor can stretch a section to the viewport with inline geometry. That
+ * is valid for the hero, but must not let sections after the hero overlap the
+ * Lumen sidebar grid. Keep that behaviour contained to this content column. */
+.cw-hero-template__layout--right > .cw-hero-template__content { grid-column: 1; grid-row: 1; }
+.cw-hero-template__layout--right > .cw-sidebar { grid-column: 2; grid-row: 1; }
+.cw-hero-template__layout--left > .cw-hero-template__content { grid-column: 2; grid-row: 1; }
+.cw-hero-template__layout--left > .cw-sidebar { grid-column: 1; grid-row: 1; }
+.cw-hero-template__content > .elementor > .elementor-section-stretched,
+.cw-hero-template__content > .elementor > .elementor-element.elementor-section-stretched,
+.cw-hero-template__content > .elementor > .elementor-element.e-con {
+	left: auto !important;
+	right: auto !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	margin-inline: 0 !important;
+}
+.cw-hero-template__content :is(.elementor-section, .e-con) { min-width: 0; }
+
+
+/* Elementor Paragraph compatibility: Elementor's Paragraph widget can keep
+ * a no-wrap/min-content text behavior inside CSS Grid, even when its visual
+ * box is correctly constrained. Limit this correction to post-hero Elementor
+ * content in the Lumen Hero ancho completo template. */
+.cw-hero-template__content .e-paragraph-base,
+.cw-hero-template__content .e-paragraph-base p {
+	display: block;
+	inline-size: auto;
+	min-inline-size: 0 !important;
+	max-inline-size: 100% !important;
+	width: 100%;
+	white-space: normal !important;
+	overflow-wrap: anywhere;
+	word-wrap: break-word;
+	word-break: normal;
+	hyphens: auto;
+}
+
+.cw-hero-template__content .e-paragraph-base :is(span, a, strong, em) {
+	white-space: inherit;
+	overflow-wrap: inherit;
+	word-break: inherit;
+}
+
+@media (max-width:960px) {
+	.cw-hero-template__layout,
+	.cw-hero-template__layout--none { width: min(calc(100% - var(--cw-tablet-gutter,32px) - var(--cw-tablet-gutter,32px)), var(--cw-layout-content,760px)); }
+}
+
+/* 1.4.29 — Fallback unlayered for a hero-only page.
+ * The footer owns its natural height; the Cover flexes into the remaining
+ * visible viewport. This must be outside the base layer to override Gutenberg
+ * inline editorial minima when a page is rendered by the front end. */
+body.cw-template--hero-only {
+	min-height: 100dvh !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+body.cw-template--hero-only .cw-site-shell {
+	display: flex !important;
+	flex: 1 1 0 !important;
+	flex-direction: column !important;
+	min-height: 0 !important;
+}
+body.cw-template--hero-only .cw-template-main--hero,
+body.cw-template--hero-only .cw-entry--hero-only,
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero {
+	display: flex !important;
+	flex: 1 1 0 !important;
+	flex-direction: column !important;
+	min-height: 0 !important;
+}
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero > :only-child {
+	flex: 1 1 0 !important;
+	min-height: 100% !important;
+	width: 100% !important;
+}
+body.cw-template--hero-only .cw-entry--hero-only .cw-hero-template__hero > .wp-block-cover {
+	flex: 1 1 0 !important;
+	min-height: 100% !important;
+	height: 100% !important;
+	aspect-ratio: auto !important;
+}
+body.cw-template--hero-only .cw-site-footer {
+	flex: 0 0 auto !important;
+	margin-top: 0 !important;
+}
+@media (min-width: 783px) {
+	body.admin-bar.cw-template--hero-only { min-height: calc(100dvh - 32px) !important; }
+}
+@media (max-width: 782px) {
+	body.admin-bar.cw-template--hero-only { min-height: calc(100dvh - 46px) !important; }
+}
+
+/* 1.4.46 · Lumen Pro Library patterns in Hero ancho completo.
+ * Library patterns are full-width groups that must remain in normal
+ * document flow. Do not apply the viewport-filler flex model reserved for
+ * native Cover hero-only pages. */
+body.cw-template--library-hero-only {
+	display: block !important;
+	min-height: 0 !important;
+}
+
+body.cw-template--library-hero-only .cw-site-shell,
+body.cw-template--library-hero-only .cw-template-main--hero,
+body.cw-template--library-hero-only .cw-entry--hero,
+body.cw-template--library-hero-only .cw-hero-template__hero {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--library-hero-only .cw-hero-template__hero > :only-child {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	width: 100%;
+}
+
+body.cw-template--library-hero-only .cw-site-footer {
+	margin-top: 0;
+	position: relative;
+	z-index: 1;
+}
+
+
+/* 1.4.46 · Ritmo final de Biblioteca Pro en Hero ancho completo.
+ * Mantiene los patterns de Biblioteca en flujo normal, pero evita que el footer
+ * quede pegado al bloque cuando la página tiene un único pattern corto. */
+body.cw-template--library-hero-only .cw-site-footer {
+	margin-top: clamp(1.5rem, 3.5vw, 3rem) !important;
+}
+
+@media (max-width: 782px) {
+	body.cw-template--library-hero-only .cw-site-footer {
+		margin-top: clamp(1.25rem, 6vw, 2.25rem) !important;
+	}
+}
+
+
+/* 1.4.46 · Ritmo de página para Biblioteca Pro corta.
+ * Mantiene el contenido de Biblioteca en flujo normal, pero recupera el flex
+ * de página completo en la plantilla Hero ancho completo. Así, un pattern corto
+ * como CTA final o Beneficios no deja el footer pegado y ubicado antes del
+ * cierre visual de la pantalla. */
+body.cw-template--library-hero-only {
+	min-height: 100dvh !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+body.cw-template--library-hero-only .cw-site-shell {
+	display: flex !important;
+	flex: 1 0 auto !important;
+	flex-direction: column !important;
+	min-height: 0 !important;
+	height: auto !important;
+}
+
+body.cw-template--library-hero-only .cw-template-main--hero {
+	display: block !important;
+	flex: 1 0 auto !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--library-hero-only .cw-entry--hero,
+body.cw-template--library-hero-only .cw-hero-template__hero {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--library-hero-only .cw-site-footer {
+	flex: 0 0 auto !important;
+	margin-top: clamp(2rem, 4vw, 3.5rem) !important;
+}
+
+@media (max-width: 782px) {
+	body.cw-template--library-hero-only .cw-site-footer {
+		margin-top: clamp(1.75rem, 7vw, 2.75rem) !important;
+	}
+}
+
+/* 1.4.47 · Hero Base común: footer sin aire extra solo en páginas hero-only.
+ * La regla vive en el Theme porque el Hero Base pasará a ser una estructura
+ * común gratuita. Afecta únicamente a la plantilla Lumen: Ancho completo cuando
+ * el primer bloque es un Hero Lumen y no existe contenido visible posterior. */
+body.cw-template--full-lumen-hero-only .cw-site-footer,
+body.cw-template--full-lumen-hero-only .cw-site-footer--after-lumen-hero {
+	margin-top: 0 !important;
+}
+
+body.cw-template--full-first-lumen-hero .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-template--full-first-lumen-hero .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	margin-top: 0;
+}
+
+body.cw-template--full-lumen-hero-only .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-template--full-lumen-hero-only .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	margin-bottom: 0;
+}
+
+/* 1.4.48 · Hero Base común: paridad de alto entre plantillas.
+ * El alto, la zona segura y el wrapper de las plantillas se igualan en el Theme
+ * para que funcionen tanto los futuros Heroes gratuitos como las variantes Pro.
+ * El alcance queda limitado a un Hero Lumen como primer bloque/direct child. */
+body.cw-template--full-first-lumen-hero .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-template--full-first-lumen-hero .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-template--default-lumen-hero-only .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-template--hero-full-width .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+body.cw-template--lumen-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+body.cw-template--library-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+	--cw-lumen-hero-header-height: var(--cw-lumen-pro-header-height, var(--cw-lumen-header-height, 84px));
+	--cw-lumen-hero-min-height: calc(100svh - var(--cw-lumen-hero-header-height));
+	--cw-lumen-hero-safe-top: clamp(2.75rem, 4.8vh, 4rem);
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-header-height: var(--cw-lumen-hero-header-height);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	min-height: var(--cw-lumen-hero-min-height) !important;
+}
+
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--full-first-lumen-hero .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--full-first-lumen-hero .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--default-lumen-hero-only .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--hero-full-width .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--lumen-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--library-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+	--cw-lumen-hero-min-height: 100svh;
+	--cw-lumen-hero-safe-top: max(clamp(3.25rem, 6vh, 4.75rem), calc(var(--cw-lumen-hero-header-height) + .95rem));
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+}
+
+body.cw-template--hero-full-width .cw-hero-template__hero:has(> :is(.cw-lumen-hero, .cw-lumen-pro-hero)),
+body.cw-template--lumen-hero-only .cw-hero-template__hero:has(> :is(.cw-lumen-hero, .cw-lumen-pro-hero)),
+body.cw-template--library-hero-only .cw-hero-template__hero:has(> :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+	min-height: 0 !important;
+	height: auto !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	overflow: visible !important;
+}
+
+body.cw-template--hero-full-width .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--lumen-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--library-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--full-first-lumen-hero .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--full-first-lumen-hero .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--default-lumen-hero-only .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child > :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner) {
+	min-height: var(--cw-lumen-hero-min-height, var(--cw-lumen-pro-hero-min-height)) !important;
+	height: auto !important;
+	padding-block-start: var(--cw-lumen-hero-safe-top, var(--cw-lumen-pro-hero-safe-top)) !important;
+	padding-block-end: var(--cw-lumen-hero-safe-bottom, var(--cw-lumen-pro-hero-safe-bottom)) !important;
+}
+
+@media (max-width: 782px) {
+	body.cw-template--full-first-lumen-hero .cw-template-main--full-canvas .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+	body.cw-template--full-first-lumen-hero .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+	body.cw-template--default-lumen-hero-only .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child,
+	body.cw-template--hero-full-width .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+	body.cw-template--lumen-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero),
+	body.cw-template--library-hero-only .cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-safe-top: clamp(2.75rem, 9vw, 4rem);
+		--cw-lumen-hero-safe-bottom: clamp(2.15rem, 7vw, 3.25rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	}
+}
+
+/* Phase 3A.1 mobile Hero flow · Hero templates with real content after the
+ * leading Hero should size to their content on phones instead of recentering
+ * against a viewport-height minimum after header metrics become available.
+ * True Hero-only and Library-only pages keep their dedicated contracts. */
+@media (max-width: 782px) {
+	body.cw-template--hero-full-width:not(.cw-template--hero-only):not(.cw-template--library-hero-only):not(.cw-template--lumen-hero-only)
+	.cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-min-height: 0px;
+		--cw-lumen-pro-hero-min-height: 0px;
+		--cw-lumen-hero-safe-top: clamp(2rem, 8vw, 3.25rem);
+		--cw-lumen-hero-safe-bottom: clamp(2rem, 8vw, 3.25rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+		min-height: 0 !important;
+		height: auto !important;
+	}
+
+	body.cw-template--hero-full-width:not(.cw-template--hero-only):not(.cw-template--library-hero-only):not(.cw-template--lumen-hero-only)
+	.cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero)
+	> :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner) {
+		min-height: 0 !important;
+		height: auto !important;
+		padding-block-start: var(--cw-lumen-hero-safe-top, var(--cw-lumen-pro-hero-safe-top)) !important;
+		padding-block-end: var(--cw-lumen-hero-safe-bottom, var(--cw-lumen-pro-hero-safe-bottom)) !important;
+	}
+
+	/* A transparent non-sticky Pro header overlays the Hero, so content-height
+	 * still needs a header-aware safe top even though full-viewport height is gone. */
+	body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--hero-full-width:not(.cw-template--hero-only):not(.cw-template--library-hero-only):not(.cw-template--lumen-hero-only)
+	.cw-hero-template__hero > :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-min-height: 0px;
+		--cw-lumen-pro-hero-min-height: 0px;
+		--cw-lumen-hero-safe-top: max(clamp(2rem, 8vw, 3.25rem), calc(var(--cw-lumen-hero-header-height, var(--cw-lumen-pro-header-height, var(--cw-lumen-header-height, 84px))) + .95rem));
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		min-height: 0 !important;
+		height: auto !important;
+	}
+}
+
+/* 1.4.49 · Hero Base común: flujo real del shell en canvas hero-only.
+ * En la plantilla Lumen: Ancho completo, el shell global usa min-height para
+ * empujar el footer en páginas editoriales cortas. Cuando el único contenido
+ * visible es un Hero Lumen, ese min-height agrega aire artificial entre el
+ * main y el footer. Se neutraliza solo en ese caso detectado por el Theme. */
+body.cw-template--full-lumen-hero-only .cw-site-shell {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--full-lumen-hero-only .cw-template-main--full-canvas,
+body.cw-template--full-lumen-hero-only .cw-entry--full-canvas,
+body.cw-template--full-lumen-hero-only .cw-entry--full-canvas > .entry-content {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--full-lumen-hero-only .cw-template-main--full-canvas {
+	padding-block: 0 !important;
+}
+
+body.cw-template--full-lumen-hero-only .cw-entry--full-canvas > .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	margin-block-end: 0 !important;
+}
+
+
+/* 1.4.50 · Hero Base común: plantilla por defecto hero-only.
+ * Reutiliza la detección de Hero Lumen para neutralizar únicamente el espacio
+ * superior del main y el crecimiento flex del shell cuando la página estándar
+ * no muestra título, imagen, sidebar, comentarios ni contenido posterior. */
+body.cw-template--default-lumen-hero-only .cw-site-shell {
+	display: block !important;
+	flex: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	overflow: visible !important;
+}
+
+body.cw-template--default-lumen-hero-only .cw-template-main,
+body.cw-template--default-lumen-hero-only .cw-content-wrap,
+body.cw-template--default-lumen-hero-only .cw-screen-layout__content,
+body.cw-template--default-lumen-hero-only .cw-screen-layout__content > article,
+body.cw-template--default-lumen-hero-only .cw-screen-layout__content > article > .entry-content {
+	display: block !important;
+	flex: none !important;
+	width: 100% !important;
+	max-width: none !important;
+	min-height: 0 !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	overflow: visible !important;
+}
+
+body.cw-template--default-lumen-hero-only .cw-screen-layout {
+	display: block !important;
+	grid-template-columns: none !important;
+	width: 100% !important;
+	max-width: none !important;
+	gap: 0 !important;
+}
+
+body.cw-template--default-lumen-hero-only .entry-content > :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	margin-block: 0 !important;
+}
+
+body.cw-template--default-lumen-hero-only .cw-site-footer,
+body.cw-template--default-lumen-hero-only .cw-site-footer--after-lumen-hero {
+	margin-top: 0 !important;
+}
+
+/* 1.4.80 · Primer Hero visible pegado a la cabecera en plantilla con sidebar.
+ * Se activa solo cuando no hay título ni imagen destacada antes del Hero. */
+body.cw-template--default-lumen-hero-sidebar-flush .cw-template-main {
+	padding-top: 0 !important;
+}
+
+body.cw-template--default-lumen-hero-sidebar-flush
+.cw-screen-layout__content > article > .entry-content
+> p:empty:has(~ :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+	display: none !important;
+	margin: 0 !important;
+}
+
+/* 1.4.52 · Hero Base en plantilla por defecto con sidebar.
+ * La estructura pertenece al Theme: cuando una página estándar comienza con
+ * un Hero Lumen y mantiene sidebar, el Hero se adapta a la columna de contenido
+ * en escritorio y elimina alturas full-screen artificiales en todos los tamaños.
+ * No modifica páginas sin sidebar ni las plantillas Ancho completo/Hero ancho completo. */
+body.cw-template--default-lumen-hero-sidebar
+.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+	--cw-lumen-hero-min-height: 0px;
+	--cw-lumen-pro-hero-min-height: 0px;
+	--cw-lumen-hero-safe-top: clamp(2.25rem, 4.5vw, 3.75rem);
+	--cw-lumen-hero-safe-bottom: clamp(2.25rem, 4.5vw, 3.75rem);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	min-height: 0 !important;
+	height: auto !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+body.cw-template--default-lumen-hero-sidebar
+.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero)
+> :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner),
+body.cw-template--default-lumen-hero-sidebar
+.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+> .cw-screen-layout__content > article > .entry-content
+> .cw-lumen-pro-hero--split .cw-lumen-pro-pattern__hero-media-text,
+body.cw-template--default-lumen-hero-sidebar
+.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+> .cw-screen-layout__content > article > .entry-content
+> .cw-lumen-pro-hero--split .wp-block-media-text__content {
+	min-height: 0 !important;
+	height: auto !important;
+}
+
+body.cw-lumen-pro-header-transparent.cw-template--default-lumen-hero-sidebar
+.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+	--cw-lumen-hero-safe-top: max(clamp(2.75rem, 5.5vw, 4.25rem), calc(var(--cw-lumen-hero-header-height, var(--cw-lumen-pro-header-height, 84px)) + .95rem));
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+}
+
+@media (min-width: 961px) {
+	body.cw-template--default-lumen-hero-sidebar
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		box-sizing: border-box !important;
+		position: relative !important;
+		left: auto !important;
+		right: auto !important;
+		inset-inline-start: auto !important;
+		inset-inline-end: auto !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-left: 0 !important;
+		margin-right: 0 !important;
+		transform: none !important;
+	}
+
+	body.cw-template--default-lumen-hero-sidebar
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> .cw-lumen-pro-hero--split .wp-block-media-text__media {
+		min-height: 0 !important;
+		height: 100% !important;
+	}
+}
+
+@media (max-width: 960px) {
+	body.cw-template--default-lumen-hero-sidebar
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-safe-top: clamp(2rem, 8vw, 3.25rem);
+		--cw-lumen-hero-safe-bottom: clamp(2rem, 8vw, 3.25rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	}
+}
+
+
+/* 1.4.53 · Hero compacto reutilizable dentro de una columna con sidebar.
+ * El Theme activa .cw-lumen-hero-layout--compact y conserva la propiedad de
+ * la estructura: ancho de columna, media primero, copy después y alturas auto.
+ * Las variantes premium solo refinan sus componentes visuales en Pro. */
+@media (min-width: 961px) {
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-compact-media-height: clamp(16rem, 28vw, 22rem);
+		--cw-lumen-hero-compact-gap: clamp(1.5rem, 3vw, 2.5rem);
+		--cw-lumen-hero-safe-top: clamp(2rem, 3vw, 3rem);
+		--cw-lumen-hero-safe-bottom: clamp(2rem, 3vw, 3rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	> :is(.cw-lumen-hero__inner--split, .cw-lumen-pro-hero__inner--split),
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	.cw-lumen-pro-pattern__hero-media-text {
+		box-sizing: border-box !important;
+		display: flex !important;
+		flex-direction: column !important;
+		grid-template-columns: 1fr !important;
+		align-items: stretch !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: 0 !important;
+		height: auto !important;
+		margin: 0 !important;
+		gap: var(--cw-lumen-hero-compact-gap) !important;
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	:is(.cw-lumen-pro-hero--split, .cw-lumen-hero--split)
+	.wp-block-media-text__media {
+		order: -1 !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: var(--cw-lumen-hero-compact-media-height) !important;
+		height: var(--cw-lumen-hero-compact-media-height) !important;
+		margin: 0 !important;
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	:is(.cw-lumen-pro-hero--split, .cw-lumen-hero--split)
+	.wp-block-media-text__media img {
+		position: absolute !important;
+		inset: 0 !important;
+		width: 100% !important;
+		height: 100% !important;
+		min-height: 0 !important;
+		object-fit: cover !important;
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	.wp-block-media-text__content,
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	> :is(.cw-lumen-hero__inner--split, .cw-lumen-pro-hero__inner--split)
+	> :is(.cw-lumen-hero__content, .cw-lumen-pro-hero__content) {
+		order: 0 !important;
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: 0 !important;
+		height: auto !important;
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):is(.cw-lumen-hero--media-copy, .cw-lumen-pro-hero--media-copy)
+	> :is(.cw-lumen-hero__inner--split, .cw-lumen-pro-hero__inner--split)
+	> :is(.cw-lumen-hero__media, .cw-lumen-pro-hero__media) {
+		order: -1 !important;
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-height: 0 !important;
+		height: auto !important;
+		margin: 0 !important;
+	}
+}
+
+
+/* 1.4.55 · Modo compacto con sidebar: reset de flex-items Gutenberg.
+ * Los Heroes basados en wp:columns conservan flex-grow/flex-basis de core.
+ * Al apilarlos en columna, esos valores pueden colapsar media y copy. El Theme
+ * neutraliza esa estructura solo dentro del contexto compacto con sidebar. */
+@media (min-width: 961px) {
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero)
+	> :is(.cw-lumen-hero__inner--split, .cw-lumen-pro-hero__inner--split)
+	> :is(.cw-lumen-hero__content, .cw-lumen-pro-hero__content, .cw-lumen-hero__media, .cw-lumen-pro-hero__media) {
+		flex: 0 0 auto !important;
+		flex-basis: auto !important;
+		flex-grow: 0 !important;
+		flex-shrink: 0 !important;
+		align-self: stretch !important;
+	}
+
+	body.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero)
+	> :is(.cw-lumen-hero__inner--split, .cw-lumen-pro-hero__inner--split) {
+		justify-content: flex-start !important;
+		overflow: visible !important;
+	}
+}
+
+/* 1.4.56 · Primer Hero Lumen full-width en plantilla predeterminada sin sidebar.
+ * El Theme expone .cw-lumen-hero-layout--full y hace escapar únicamente al
+ * primer Hero de la columna editorial. El contenido posterior conserva el
+ * ancho normal de la plantilla predeterminada. */
+body.cw-template--default-first-lumen-hero-full
+.cw-template-main > .cw-content-wrap.cw-screen-layout--none
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	--cw-lumen-hero-header-height: var(--cw-lumen-pro-header-height, var(--cw-lumen-header-height, 84px));
+	--cw-lumen-hero-min-height: calc(100svh - var(--cw-lumen-hero-header-height));
+	--cw-lumen-hero-safe-top: clamp(2.75rem, 4.8vh, 4rem);
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-header-height: var(--cw-lumen-hero-header-height);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	box-sizing: border-box !important;
+	position: relative !important;
+	left: 50% !important;
+	right: 50% !important;
+	width: 100vw !important;
+	max-width: 100vw !important;
+	min-height: var(--cw-lumen-hero-min-height) !important;
+	margin-left: -50vw !important;
+	margin-right: -50vw !important;
+	margin-top: 0 !important;
+	padding-inline: 0 !important;
+	border-radius: 0 !important;
+	overflow: hidden;
+}
+
+body.cw-template--default-first-lumen-hero-full
+.cw-template-main > .cw-content-wrap.cw-screen-layout--none
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child
+> :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner) {
+	min-height: var(--cw-lumen-hero-min-height, var(--cw-lumen-pro-hero-min-height)) !important;
+	height: auto !important;
+	padding-block-start: var(--cw-lumen-hero-safe-top, var(--cw-lumen-pro-hero-safe-top)) !important;
+	padding-block-end: var(--cw-lumen-hero-safe-bottom, var(--cw-lumen-pro-hero-safe-bottom)) !important;
+}
+
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--default-first-lumen-hero-full
+.cw-template-main > .cw-content-wrap.cw-screen-layout--none
+> .cw-screen-layout__content > article > .entry-content
+> :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+	--cw-lumen-hero-min-height: 100svh;
+	--cw-lumen-hero-safe-top: max(clamp(3.25rem, 6vh, 4.75rem), calc(var(--cw-lumen-hero-header-height) + .95rem));
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+}
+
+@media (max-width: 782px) {
+	body.cw-template--default-first-lumen-hero-full
+	.cw-template-main > .cw-content-wrap.cw-screen-layout--none
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero):first-child {
+		--cw-lumen-hero-safe-top: clamp(2.75rem, 9vw, 4rem);
+		--cw-lumen-hero-safe-bottom: clamp(2.15rem, 7vw, 3.25rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	}
+}
+
+/* 1.4.62 · Paridad de aire para el layout posterior de Hero ancho completo.
+ * La plantilla estándar crea su separación mediante padding del main. En Hero
+ * ancho completo el main no puede tener ese padding porque el primer bloque
+ * debe tocar el borde; cuando existe sidebar, la separación se traslada al
+ * layout posterior como padding interno para evitar colapso de márgenes y
+ * mantener el mismo aire respecto de la cabecera/contenido que la plantilla
+ * predeterminada. El contrato es de plantilla y se aplica a cualquier bloque. */
+.cw-hero-template__layout:is(.cw-screen-layout--left, .cw-screen-layout--right) {
+	box-sizing: border-box;
+	margin-block: 0;
+	padding-block: var(--cw-template-space, clamp(3rem, 7vw, 6rem));
+}
+
+
+
+/* 1.4.81 · Hero compacto con sidebar: cabecera en flujo sin reserva duplicada.
+ * El runtime de Pro fuerza una cabecera sólida en escritorio cuando Hero y
+ * sidebar ocupan superficies distintas. En ese estado la cabecera ya consume
+ * su altura en el flujo, por lo que el Hero no debe volver a sumarla como
+ * safe-top. La unión exterior queda en cero y el ritmo interno usa el contrato
+ * compacto común. */
+@media (min-width: 961px) {
+	body.cw-template--default-lumen-hero-sidebar.cw-lumen-hero-layout--compact
+	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)
+	> .cw-screen-layout__content > article > .entry-content
+	> :is(.cw-lumen-hero, .cw-lumen-pro-hero) {
+		--cw-lumen-hero-safe-top: clamp(2rem, 3vw, 3rem);
+		--cw-lumen-hero-safe-bottom: clamp(2rem, 3vw, 3rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+		margin-block-start: 0 !important;
+	}
+
+	body.cw-template--default-lumen-hero-sidebar-flush
+	:is(.cw-template-main, .cw-content-wrap, .cw-screen-layout__content, .cw-screen-layout__content > article, .cw-screen-layout__content > article > .entry-content) {
+		margin-block-start: 0 !important;
+		padding-block-start: 0 !important;
+		row-gap: 0 !important;
+	}
+}
+
+/* 1.4.83 · Primer Hero visible en Ancho completo.
+ * La detección PHP ya ignora artefactos editoriales vacíos. El CSS anterior
+ * dependía de :first-child y dejaba de aplicar el contrato cuando Gutenberg
+ * conservaba un párrafo vacío antes del Hero. :nth-child(... of ...) identifica
+ * el primer Hero real sin convertir Heroes posteriores en full-screen. */
+body.cw-template--full-first-lumen-hero
+:is(.cw-template-main--full-canvas, .cw-entry--full-canvas, .cw-entry--full-canvas > .entry-content) {
+	margin-block-start: 0 !important;
+	padding-block-start: 0 !important;
+	row-gap: 0 !important;
+}
+
+body.cw-template--full-first-lumen-hero
+.cw-entry--full-canvas > .entry-content
+> p:empty:has(~ :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+	display: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+body.cw-template--full-first-lumen-hero
+.cw-entry--full-canvas > .entry-content
+> :nth-child(1 of :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+	--cw-lumen-hero-header-height: var(--cw-lumen-pro-header-height, var(--cw-lumen-header-height, 84px));
+	--cw-lumen-hero-min-height: calc(100svh - var(--cw-lumen-hero-header-height));
+	--cw-lumen-hero-safe-top: clamp(2.75rem, 4.8vh, 4rem);
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-header-height: var(--cw-lumen-hero-header-height);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	min-height: var(--cw-lumen-hero-min-height) !important;
+	margin-block-start: 0 !important;
+}
+
+body.cw-lumen-pro-header-transparent:not(.cw-lumen-pro-header-placement--sticky).cw-template--full-first-lumen-hero
+.cw-entry--full-canvas > .entry-content
+> :nth-child(1 of :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+	--cw-lumen-hero-min-height: 100svh;
+	--cw-lumen-hero-safe-top: max(clamp(3.25rem, 6vh, 4.75rem), calc(var(--cw-lumen-hero-header-height) + .95rem));
+	--cw-lumen-hero-safe-bottom: clamp(2.35rem, 4.4vh, 3.75rem);
+	--cw-lumen-pro-hero-min-height: var(--cw-lumen-hero-min-height);
+	--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+	--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+}
+
+body.cw-template--full-first-lumen-hero
+.cw-entry--full-canvas > .entry-content
+> :nth-child(1 of :is(.cw-lumen-hero, .cw-lumen-pro-hero))
+> :is(.cw-lumen-hero__inner, .cw-lumen-pro-hero__inner) {
+	min-height: var(--cw-lumen-hero-min-height, var(--cw-lumen-pro-hero-min-height)) !important;
+	height: auto !important;
+	padding-block-start: var(--cw-lumen-hero-safe-top, var(--cw-lumen-pro-hero-safe-top)) !important;
+	padding-block-end: var(--cw-lumen-hero-safe-bottom, var(--cw-lumen-pro-hero-safe-bottom)) !important;
+}
+
+@media (max-width: 782px) {
+	body.cw-template--full-first-lumen-hero
+	.cw-entry--full-canvas > .entry-content
+	> :nth-child(1 of :is(.cw-lumen-hero, .cw-lumen-pro-hero)) {
+		--cw-lumen-hero-safe-top: clamp(2.75rem, 9vw, 4rem);
+		--cw-lumen-hero-safe-bottom: clamp(2.15rem, 7vw, 3.25rem);
+		--cw-lumen-pro-hero-safe-top: var(--cw-lumen-hero-safe-top);
+		--cw-lumen-pro-hero-safe-bottom: var(--cw-lumen-hero-safe-bottom);
+	}
+}
+
+/* 1.4.106 · Contrato directo para el primer Hero en plantilla predeterminada.
+ * La clase de body ya existe para todos los Heroes Lite/Pro detectados.
+ * El main conserva su espaciado normal en el resto del sitio, pero no agrega
+ * una segunda reserva sobre la cabecera cuando la página comienza con Hero. */
+body.cw-template--default-first-lumen-hero-full .cw-template-main {
+	padding-block-start: 0 !important;
+}
+
+/* El full-bleed de Lite usa 100vw. El viewport, no el shell interno, es el
+ * contenedor que debe recortar la diferencia producida por la barra de scroll. */
+body.cw-template--default-first-lumen-hero-full {
+	overflow-x: hidden;
+	overflow-x: clip;
+}
+
+body.cw-template--default-first-lumen-hero-full .cw-site-shell {
+	max-width: 100%;
+	overflow-x: hidden;
+	overflow-x: clip;
+}

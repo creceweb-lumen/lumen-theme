@@ -1,0 +1,249 @@
+/* Performance Phase 3A.2 · Native single-post/CPT presentation loaded only on is_single() requests. */
+.cw-entry--single .cw-screen-layout__content { min-width: 0; }
+
+.cw-entry__eyebrow,
+.cw-post-navigation__label {
+	margin: 0;
+	color: color-mix(in srgb, var(--cw-color-accent-strong) 78%, var(--cw-color-heading));
+	font-size: .72rem;
+	font-weight: 760;
+	letter-spacing: .14em;
+	line-height: 1.35;
+	text-transform: uppercase;
+}
+.cw-entry__eyebrow a { color: inherit; text-decoration: none; }
+.cw-entry__eyebrow a:hover { text-decoration: underline; text-underline-offset: .18em; }
+.cw-entry--single .cw-single-post { max-width: 50rem; margin-inline: auto; }
+.cw-entry--single .entry-header { max-width: 48rem; margin-inline: auto; margin-bottom: clamp(1.75rem, 4vw, 3.15rem); }
+.cw-entry--single .entry-header .entry-title {
+	margin: .78rem 0 0;
+	font-size: clamp(2.35rem, 5.2vw, 4.65rem);
+	line-height: .98;
+	letter-spacing: -.055em;
+	text-wrap: balance;
+}
+.cw-entry--single .entry-meta { margin-top: 1.15rem; font-size: .73rem; font-weight: 650; letter-spacing: .08em; line-height: 1.45; text-transform: uppercase; }
+.cw-entry--single .entry-thumbnail { margin: 0 auto clamp(2rem, 5vw, 4rem); border-radius: min(1.25rem, var(--cw-radius-lg)); background: color-mix(in srgb, var(--cw-color-accent) 9%, var(--cw-color-surface)); }
+.cw-entry--single .entry-thumbnail img { width: 100%; max-height: min(62vw, 38rem); object-fit: cover; }
+.cw-entry--single .entry-content { max-width: 44rem; margin-inline: auto; font-size: clamp(1.03rem, 1.25vw, 1.16rem); line-height: 1.82; }
+.cw-entry--single .entry-content > :where(p,ul,ol) { max-width: 42rem; }
+
+/* 1.4.109 · Opt-in full reading width for single posts only.
+ * Existing Standard, Narrow and Wide modes keep their previous behavior.
+ * In Full mode, the outer single-post canvas can span the available width,
+ * while ordinary Gutenberg roots remain centered at the site's wide measure.
+ * Explicit alignfull roots and Elementor keep control of their own full width. */
+.cw-content-wrap.cw-entry--single.cw-single-layout--full.cw-screen-layout--none {
+	width: 100%;
+	max-width: none;
+}
+.cw-entry--single.cw-single-layout--full .cw-single-post {
+	width: 100%;
+	max-width: none;
+}
+/* 1.4.109 · In Full mode, the native single-post header uses the full-canvas
+ * horizontal rhythm instead of the historical editorial/wide cap. This keeps
+ * the header aligned with the visual content area used by full-width builders
+ * while Header alignment continues to control only text alignment. Standard,
+ * Narrow and Wide remain unchanged. */
+.cw-entry--single.cw-single-layout--full .entry-header {
+	width: min(calc(100% - 2rem), 90vw);
+	max-width: none;
+	margin-inline: auto;
+}
+.cw-entry--single.cw-single-layout--full .entry-content {
+	width: 100%;
+	max-width: none;
+	margin-inline: 0;
+}
+.cw-entry--single.cw-single-layout--full .entry-content > :where(:not(.alignfull):not(.alignwide):not(.elementor)) {
+	width: min(calc(100% - 2rem), var(--cw-layout-wide, 1120px));
+	max-width: none;
+	margin-inline: auto;
+}
+.cw-entry--single.cw-single-layout--full .entry-content > .alignwide {
+	width: min(calc(100% - 2rem), var(--cw-layout-wide, 1120px));
+	max-width: none;
+	margin-inline: auto;
+}
+.cw-entry--single.cw-single-layout--full .entry-content > :is(.alignfull, .elementor) {
+	width: 100%;
+	max-width: none;
+	margin-inline: 0;
+}
+.cw-entry--single.cw-single-layout--full .entry-content > :where(p,ul,ol) {
+	max-width: none;
+}
+.cw-entry--single.cw-single-layout--full .entry-thumbnail,
+.cw-entry--single.cw-single-layout--full .entry-footer,
+.cw-entry--single.cw-single-layout--full .post-navigation,
+.cw-entry--single.cw-single-layout--full .cw-comments {
+	width: min(calc(100% - 2rem), var(--cw-layout-wide, 1120px));
+	max-width: none;
+	margin-inline: auto;
+}
+.cw-entry--single .entry-content > :where(h2,h3,h4) { margin-top: 2.15em; letter-spacing: -.025em; }
+.cw-entry--single .entry-content > blockquote { margin: 2.2em 0; padding: .2rem 0 .2rem clamp(1.2rem, 3vw, 2rem); border-left: 2px solid var(--cw-color-accent); color: var(--cw-color-heading); font-size: 1.18em; font-style: normal; line-height: 1.55; }
+.cw-entry--single .entry-content > blockquote > :last-child { margin-bottom: 0; }
+.cw-single-header-align--center .entry-header { text-align: center; }
+.cw-single-header-align--center .cw-entry__eyebrow { justify-content: center; }
+
+/* Single-post navigation is structurally separate from pagination.
+ * Previous/next destinations are full, readable cards rather than tiny stacked
+ * pills. The generic .nav-links styles below also serve archive pagination, so
+ * the post-navigation spans explicitly reset those pagination treatments. */
+.post-navigation { max-width: 50rem; margin: clamp(3rem, 7vw, 5rem) auto 0; padding-top: 1.25rem; border-top: 1px solid color-mix(in srgb, var(--cw-color-border) 72%, transparent); }
+.post-navigation .nav-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; width: 100%; }
+.post-navigation .nav-previous, .post-navigation .nav-next { min-width: 0; }
+.post-navigation .nav-links > :only-child { width: min(100%, 27rem); }
+/* When WordPress has only one destination, keep its semantic direction in the
+ * two-column desktop grid. A next post belongs on the right; a previous post
+ * remains on the left. */
+.post-navigation .nav-previous:only-child { grid-column: 1; justify-self: start; }
+.post-navigation .nav-next:only-child { grid-column: 2; justify-self: end; }
+.post-navigation .nav-links a {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	min-height: 7.2rem;
+	gap: .55rem;
+	width: 100%;
+	padding: 1.2rem 4.25rem 1.2rem 1.3rem;
+	border: 1px solid color-mix(in srgb, var(--cw-color-border) 78%, transparent);
+	border-radius: var(--cw-radius-md);
+	background: var(--cw-color-surface);
+	box-shadow: 0 1px 0 rgb(15 23 42 / 2%);
+	color: var(--cw-color-heading);
+	text-decoration: none;
+	transition: border-color var(--cw-motion-fast) var(--cw-ease-standard), background-color var(--cw-motion-fast) var(--cw-ease-standard), box-shadow var(--cw-motion-fast) var(--cw-ease-standard), transform var(--cw-motion-fast) var(--cw-ease-standard);
+}
+.post-navigation .nav-links span {
+	display: block;
+	min-width: 0;
+	min-height: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+}
+.post-navigation .nav-next a::after,
+.post-navigation .nav-previous a::before {
+	position: absolute;
+	top: 50%;
+	display: grid;
+	place-items: center;
+	width: 2.4rem;
+	height: 2.4rem;
+	border-radius: 999px;
+	background: color-mix(in srgb, var(--cw-color-accent) 10%, var(--cw-color-surface));
+	color: var(--cw-color-accent-strong);
+	font-size: 1.2rem;
+	font-weight: 720;
+	line-height: 1;
+	transform: translateY(-50%);
+	transition: background-color var(--cw-motion-fast) var(--cw-ease-standard), color var(--cw-motion-fast) var(--cw-ease-standard), transform var(--cw-motion-fast) var(--cw-ease-standard);
+}
+.post-navigation .nav-next a::after { content: '→'; right: 1.25rem; }
+.post-navigation .nav-previous a { align-items: flex-end; padding: 1.2rem 1.3rem 1.2rem 4.25rem; text-align: right; }
+.post-navigation .nav-previous a::before { content: '←'; left: 1.25rem; }
+.post-navigation .nav-links a:hover,
+.post-navigation .nav-links a:focus-visible { border-color: color-mix(in srgb, var(--cw-color-accent) 72%, var(--cw-color-border)); background: color-mix(in srgb, var(--cw-color-accent) 5%, var(--cw-color-surface)); color: var(--cw-color-accent-strong); box-shadow: 0 .35rem .9rem rgb(15 23 42 / 7%); transform: translateY(-1px); }
+.post-navigation .nav-links a:hover::after,
+.post-navigation .nav-links a:focus-visible::after { transform: translate(.18rem, -50%); }
+.post-navigation .nav-links a:hover::before,
+.post-navigation .nav-links a:focus-visible::before { transform: translate(-.18rem, -50%); }
+.cw-post-navigation__label { color: var(--cw-color-text-muted); font-size: .68rem; letter-spacing: .13em; }
+.cw-post-navigation__title { max-width: 24ch; color: var(--cw-color-heading); font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: 760; line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+
+/* A sidebarless wide/full post uses a broad utility canvas while the article
+ * body keeps its own readable measure. Navigation, comments and the form no
+ * longer inherit the narrow editorial column in those profiles. */
+body.cw-lumen-pro-width--wide .cw-entry--single.cw-screen-layout--none .post-navigation,
+body.cw-lumen-pro-width--wide .cw-entry--single.cw-screen-layout--none .cw-comments,
+body.cw-lumen-pro-width--full .cw-entry--single.cw-screen-layout--none .post-navigation,
+body.cw-lumen-pro-width--full .cw-entry--single.cw-screen-layout--none .cw-comments {
+	width: min(calc(100% - 2rem), var(--cw-layout-wide, 1120px));
+	max-width: none;
+}
+@media (max-width: 781px) {
+	.cw-entry--single .entry-header .entry-title { font-size: clamp(2.1rem, 11vw, 3rem); }
+	.cw-entry--single .entry-content { font-size: 1rem; line-height: 1.76; }
+	.post-navigation .nav-links {
+		grid-template-columns: 1fr;
+		grid-auto-rows: 1fr;
+		align-items: stretch;
+	}
+	.post-navigation .nav-links > :only-child { width: 100%; }
+	.post-navigation .nav-previous:only-child,
+	.post-navigation .nav-next:only-child { justify-self: stretch; }
+	.post-navigation .nav-links a { min-height: 6.5rem; }
+	.post-navigation .nav-previous a { align-items: flex-start; padding-right: 4.25rem; padding-left: 1.3rem; text-align: left; }
+	.post-navigation .nav-previous a::before { right: 1.25rem; left: auto; content: '←'; }
+}
+
+/* Long unbroken titles are valid Theme Unit Test input and must wrap inside
+ * the editorial canvas rather than creating page-level horizontal scrolling. */
+.cw-entry--single .entry-title,
+.cw-post-navigation__title {
+	max-width: 100%;
+	overflow-wrap: anywhere;
+	word-break: break-word;
+}
+/* Native and classic video embeds remain inside the readable content width. */
+.cw-entry--single .entry-content :is(video, iframe, embed, object) {
+	max-width: 100%;
+}
+
+.cw-entry--single .entry-content :is(
+	.wp-block-embed.is-type-video .wp-block-embed__wrapper,
+	.wp-block-embed-youtube .wp-block-embed__wrapper,
+	.wp-block-embed-vimeo .wp-block-embed__wrapper
+) {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+
+.cw-entry--single .entry-content :is(
+	.wp-block-embed.is-type-video .wp-block-embed__wrapper,
+	.wp-block-embed-youtube .wp-block-embed__wrapper,
+	.wp-block-embed-vimeo .wp-block-embed__wrapper
+) > :is(iframe, video, embed, object) {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.cw-entry--single .entry-content iframe:is(
+	[src*='youtube.com'],
+	[src*='youtube-nocookie.com'],
+	[src*='youtu.be'],
+	[src*='vimeo.com']
+) {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}
+
+/* Both destinations share the height required by the longer title. Unbroken
+ * strings wrap inside each card instead of crossing its arrow or neighbour. */
+.post-navigation .nav-previous,
+.post-navigation .nav-next {
+	display: flex;
+	min-width: 0;
+}
+
+.post-navigation .nav-links a {
+	min-width: 0;
+	height: 100%;
+}
+
+.post-navigation .cw-post-navigation__title {
+	width: 100%;
+}

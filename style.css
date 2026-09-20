@@ -1,0 +1,27 @@
+/*
+Theme Name: CreceWeb Lumen
+Theme URI: https://creceweb.com.ar/lumen-theme
+Author: CreceWeb
+Author URI: https://creceweb.com.ar
+Description: CreceWeb Lumen is a classic hybrid theme for professional websites, blogs, and commercial landing pages. It includes a flexible header, accessible navigation, sidebars, widget areas, full-width templates, Gutenberg editor styles, and thoughtful Elementor compatibility.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 8.1
+Version: 1.4.109
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: creceweb-lumen
+Domain Path: /languages
+Tags: blog, custom-colors, custom-logo, custom-menu, editor-style, featured-images, footer-widgets, full-width-template, left-sidebar, one-column, right-sidebar, threaded-comments, translation-ready, wide-blocks, block-styles
+*/
+
+
+/* WordPress core alignment and media classes. */
+.alignleft { float: left; margin-right: 1.5em; margin-bottom: 1em; }
+.alignright { float: right; margin-left: 1.5em; margin-bottom: 1em; }
+.aligncenter { clear: both; display: block; margin-left: auto; margin-right: auto; }
+.wp-caption { max-width: 100%; }
+.wp-caption-text { margin-top: .5rem; color: var(--cw-color-muted, #64748b); font-size: .875rem; line-height: 1.5; text-align: center; }
+.gallery-caption { color: var(--cw-color-muted, #64748b); font-size: .875rem; line-height: 1.5; }
+.bypostauthor { }
+.sticky { }

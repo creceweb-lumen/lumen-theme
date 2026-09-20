@@ -1,0 +1,187 @@
+/*
+ * 1.4.60 · Section Base reutilizable.
+ *
+ * El Theme es propietario de la estructura neutral de las secciones: ancho,
+ * zonas seguras, grilla por contenedor y estabilidad de las tarjetas. Las
+ * variantes visuales y comerciales permanecen en los plugins que consumen
+ * estas clases.
+ */
+@layer creceweb-base {
+	.cw-lumen-section {
+		--cw-lumen-section-space-y: clamp(2rem, 4.2vw, 3.9rem);
+		--cw-lumen-section-safe-x: clamp(1rem, 3.5vw, 2rem);
+		--cw-lumen-section-max-width: var(--cw-layout-wide, 1120px);
+		--cw-lumen-section-grid-gap: clamp(1rem, 2vw, 1.5rem);
+		--cw-lumen-section-card-padding: 0;
+		--cw-lumen-section-card-radius: 0;
+		--cw-lumen-section-card-border: 0 solid transparent;
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		padding-block: var(--cw-lumen-section-space-y);
+		padding-inline: 0;
+		container: cw-lumen-section / inline-size;
+	}
+
+	.cw-lumen-section__inner {
+		box-sizing: border-box;
+		width: min(
+			calc(100% - var(--cw-lumen-section-safe-x) - var(--cw-lumen-section-safe-x)),
+			var(--cw-lumen-section-max-width)
+		);
+		max-width: 100%;
+		min-width: 0;
+		margin-inline: auto;
+	}
+
+
+	/* Utilidad neutral para composiciones estructurales que no son una grilla
+	 * de tarjetas (split, editorial, texto + panel). Los plugins pueden usarla
+	 * sin crear un nuevo parche de ancho por cada pattern. */
+	.cw-lumen-section-layout {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+
+	/*
+	 * A Section Grid is a structural child, not editorial content. WordPress'
+	 * constrained-layout rule can otherwise reapply --cw-layout-content and
+	 * compress cards even when the section inner owns a wider canvas.
+	 */
+	.cw-lumen-section__inner.is-layout-constrained > .cw-lumen-section-grid,
+	.cw-lumen-section__inner > .cw-lumen-section-grid {
+		width: 100% !important;
+		max-width: 100% !important;
+		margin-inline: 0 !important;
+	}
+
+	.cw-lumen-section-heading {
+		min-width: 0;
+	}
+
+	.cw-lumen-section-grid {
+		display: grid !important;
+		grid-template-columns: minmax(0, 1fr) !important;
+		gap: var(--cw-lumen-section-grid-gap);
+		align-items: stretch;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+	.cw-lumen-section-grid > * {
+		box-sizing: border-box;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		margin: 0;
+		flex: 0 1 auto !important;
+		flex-basis: auto !important;
+	}
+
+	.cw-lumen-section-card {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 100%;
+		min-width: 0;
+		height: 100%;
+		padding: var(--cw-lumen-section-card-padding);
+		border: var(--cw-lumen-section-card-border);
+		border-radius: var(--cw-lumen-section-card-radius);
+	}
+
+	/* 1.4.61 · Utilidad opt-in de tarjetas con igual altura.
+	 * No se fuerza sobre todas las grillas: el pattern agrega la clase cuando
+	 * necesita que las tarjetas compartan inicio, final y altura. Gutenberg
+	 * intercala wrappers de bloque, por eso se cubren ambos niveles. */
+	.cw-lumen-section-grid--equal-height {
+		align-items: stretch !important;
+	}
+
+	.cw-lumen-section-grid--equal-height > * {
+		align-self: stretch !important;
+		height: 100%;
+		margin-block: 0 !important;
+	}
+
+	/* 1.4.59 · Paridad de canvas móvil para secciones Lumen.
+	 *
+	 * La plantilla predeterminada y el contenido posterior de Hero ancho
+	 * completo viven dentro de un contenedor editorial que ya descuenta un
+	 * gutter móvil. Section Inner vuelve a aplicar su propia zona segura, lo
+	 * que produce un doble margen frente a Lumen: Ancho completo. Solo las
+	 * secciones estructurales de Lumen con alignfull escapan al viewport; el
+	 * contenido interior conserva --cw-lumen-section-safe-x. Los Heroes y los
+	 * bloques alignfull ajenos a Lumen no participan de esta regla. */
+	@media (max-width: 781px) {
+		.cw-template-main
+		> .cw-content-wrap.cw-screen-layout
+		> .cw-screen-layout__content
+		> article
+		> .entry-content
+		> .cw-lumen-section.alignfull,
+		.cw-hero-template__layout
+		> .cw-hero-template__content
+		> .cw-lumen-section.alignfull {
+			box-sizing: border-box !important;
+			position: relative !important;
+			left: auto !important;
+			right: auto !important;
+			inset-inline: auto !important;
+			width: 100vw !important;
+			max-width: 100vw !important;
+			margin-left: calc(50% - 50vw) !important;
+			margin-right: calc(50% - 50vw) !important;
+			transform: none !important;
+		}
+
+		/* El primer bloque de Hero ancho completo ya posee un canvas full-width.
+		 * Se normaliza sin breakout adicional para evitar desplazamientos. */
+		.cw-hero-template__hero > .cw-lumen-section.alignfull {
+			box-sizing: border-box !important;
+			width: 100% !important;
+			max-width: none !important;
+			margin-inline: 0 !important;
+		}
+	}
+
+	/* Fallback para navegadores sin Container Queries. */
+	@media (min-width: 620px) {
+		.cw-lumen-section-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		}
+	}
+
+	@media (min-width: 920px) {
+		.cw-lumen-section-grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+		}
+	}
+
+	/* La consulta real se realiza sobre la sección, no sobre el viewport. */
+	@supports (container-type: inline-size) {
+		@container cw-lumen-section (max-width: 619px) {
+			.cw-lumen-section-grid {
+				grid-template-columns: minmax(0, 1fr) !important;
+			}
+		}
+
+		@container cw-lumen-section (min-width: 620px) {
+			.cw-lumen-section-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+			}
+		}
+
+		@container cw-lumen-section (min-width: 920px) {
+			.cw-lumen-section-grid {
+				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			}
+		}
+	}
+}

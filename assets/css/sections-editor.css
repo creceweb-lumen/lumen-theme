@@ -1,0 +1,82 @@
+/*
+ * Gutenberg-only companion for Lumen Section Base.
+ *
+ * Kept separate so frontend requests do not download block-editor wrapper
+ * contracts that can never match outside the editor.
+ */
+@layer creceweb-base {
+	/* 1.4.60 · Canvas estructural común dentro de Gutenberg.
+	 * editor.css limita cada .wp-block a 760px para proteger el contenido de
+	 * lectura. Section Base necesita excluir únicamente su estructura neutral:
+	 * el bloque full-width usa todo el canvas editorial, Section Inner recupera
+	 * --cw-lumen-section-max-width y Grid/Layout conservan el ancho interior.
+	 * Los headings y bloques editoriales normales mantienen el límite global. */
+	.editor-styles-wrapper .cw-lumen-section.alignfull {
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: none !important;
+		margin-inline: 0 !important;
+	}
+
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section__inner {
+		box-sizing: border-box !important;
+		width: min(
+			calc(100% - var(--cw-lumen-section-safe-x) - var(--cw-lumen-section-safe-x)),
+			var(--cw-lumen-section-max-width)
+		) !important;
+		max-width: var(--cw-lumen-section-max-width) !important;
+		min-width: 0 !important;
+		margin-inline: auto !important;
+	}
+
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section__inner > .block-editor-inner-blocks,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section__inner > .block-editor-inner-blocks > .block-editor-block-list__layout,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-grid,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-layout {
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		margin-inline: 0 !important;
+	}
+
+
+	/* 1.4.63 · Gutenberg inserta wrappers internos dentro de Grid/Layout.
+	 * También son estructura neutral y deben usar el ancho completo del bloque
+	 * propietario; de lo contrario un pattern puede conservar 760px internamente
+	 * aunque Section Inner ya haya recuperado el canvas amplio. */
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-grid > .block-editor-inner-blocks,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-grid > .block-editor-inner-blocks > .block-editor-block-list__layout,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-layout > .block-editor-inner-blocks,
+	.editor-styles-wrapper .cw-lumen-section .cw-lumen-section-layout > .block-editor-inner-blocks > .block-editor-block-list__layout {
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: none !important;
+		min-width: 0 !important;
+		margin-inline: 0 !important;
+	}
+
+	.editor-styles-wrapper
+	.cw-lumen-section-grid--equal-height
+	> .block-editor-inner-blocks
+	> .block-editor-block-list__layout {
+		align-items: stretch !important;
+	}
+
+	.editor-styles-wrapper
+	.cw-lumen-section-grid--equal-height
+	> .block-editor-inner-blocks
+	> .block-editor-block-list__layout
+	> * {
+		align-self: stretch !important;
+		height: 100% !important;
+		margin-block: 0 !important;
+	}
+
+	.editor-styles-wrapper
+	.cw-lumen-section-grid--equal-height
+	.cw-lumen-section-card {
+		height: 100% !important;
+	}
+
+}

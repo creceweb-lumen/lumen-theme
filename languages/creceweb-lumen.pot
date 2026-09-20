@@ -1,0 +1,2523 @@
+# Translation template for CreceWeb Lumen.
+# Copyright (C) 2026 CreceWeb
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: CreceWeb Lumen 1.4.109\n"
+"Report-Msgid-Bugs-To: lumen_soporte@creceweb.com.ar\n"
+"POT-Creation-Date: 2026-09-11 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: CreceWeb <lumen_soporte@creceweb.com.ar>\n"
+"Language-Team: CreceWeb <lumen_soporte@creceweb.com.ar>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: inc/appearance.php:252 inc/appearance.php:383 inc/appearance.php:391 inc/customizer-controls.php:125
+msgid " (abre en una nueva pestaña)"
+msgstr ""
+
+#: comments.php:19
+#, python-format
+msgid "%s comentario"
+msgid_plural "%s comentarios"
+msgstr[0] ""
+msgstr[1] ""
+
+#: single.php:38
+msgctxt "tag separator"
+msgid ", "
+msgstr ""
+
+#: inc/customizer/content-blog.php:42 inc/customizer/footer.php:25 inc/customizer/footer.php:36
+msgid "1 columna"
+msgstr ""
+
+#: inc/customizer/social.php:59
+msgid "1. Cabecera"
+msgstr ""
+
+#: inc/customizer/content-blog.php:39
+msgid "1. Listados del blog"
+msgstr ""
+
+#: inc/customizer/footer.php:24
+msgid "1. Widgets del pie"
+msgstr ""
+
+#: inc/customizer/header-navigation.php
+#, python-format
+msgid ""
+"100% usa el color sólido; 0% lo hace totalmente transparente. Solo se aplica cuando definís "
+"“Submenú: fondo hover”."
+msgstr ""
+
+#: inc/customizer/content-blog.php:42 inc/customizer/footer.php:25 inc/customizer/footer.php:36
+msgid "2 columnas"
+msgstr ""
+
+#: inc/customizer/footer.php:28
+msgid "2. Apariencia del pie"
+msgstr ""
+
+#: inc/customizer/content-blog.php:57
+msgid "2. Entrada individual"
+msgstr ""
+
+#: inc/customizer/social.php:78
+msgid "2. Pie de página"
+msgstr ""
+
+#: inc/customizer/content-blog.php:42 inc/customizer/footer.php:25
+msgid "3 columnas"
+msgstr ""
+
+#: inc/customizer/social.php:108
+msgid "3. Apariencia común"
+msgstr ""
+
+#: inc/customizer/footer.php:33
+msgid "3. Copyright"
+msgstr ""
+
+#: inc/customizer/footer.php:25
+msgid "4 columnas"
+msgstr ""
+
+#: inc/customizer/notes.php:30
+msgid "4. Pie de página en celular"
+msgstr ""
+
+#: inc/customizer/footer.php:25
+msgid "5 columnas"
+msgstr ""
+
+#: inc/appearance.php:305
+msgid "Abrir Biblioteca Lumen"
+msgstr ""
+
+#: inc/appearance.php:157
+msgid "Abrir Botón Volver arriba"
+msgstr ""
+
+#: inc/appearance.php:171 inc/appearance.php:255
+msgid "Abrir Personalizar"
+msgstr ""
+
+#: inc/customizer/sections.php:119
+msgid "Abrir ayuda y documentación"
+msgstr ""
+
+#: inc/navigation.php:73
+msgid "Abrir menú"
+msgstr ""
+
+#: inc/enqueue.php:51
+#, python-format
+msgid "Abrir submenú de %s"
+msgstr ""
+
+#: inc/customizer/sections.php:98
+msgid "Accedé a la guía oficial de CreceWeb Lumen según el idioma de tu perfil."
+msgstr ""
+
+#: inc/customizer/sections.php:91
+msgid "Accesibilidad"
+msgstr ""
+
+#: inc/appearance.php:247
+msgid "Accesos directos"
+msgstr ""
+
+#: inc/integrations.php:134
+msgid "Acción"
+msgstr ""
+
+#: inc/integrations.php:138
+msgid "Acción activa"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Acento"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Acento intenso"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:50
+msgid "Activar diseño compacto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:45
+msgid "Activá únicamente la información que querés repetir en cada entrada del listado."
+msgstr ""
+
+#: inc/customizer/notes.php:32
+msgid "Activá “Mostrar ajustes detallados” en Inicio rápido para modificar foco visible y movimiento."
+msgstr ""
+
+#: inc/appearance.php:264
+msgid ""
+"Administrá el menú principal, los widgets de barra lateral, la barra superior y las áreas del pie"
+" de página."
+msgstr ""
+
+#: inc/widgets.php:79
+msgid "Administrá las áreas de widgets del sitio."
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Advertencia"
+msgstr ""
+
+#: inc/widgets.php:76
+msgid ""
+"Agregá el bloque nativo Iconos sociales. En modo compartido, esta área alimenta cabecera y pie. "
+"La ubicación y apariencia se configuran en Personalizar > Diseño > Redes sociales."
+msgstr ""
+
+#: inc/widgets.php:71
+msgid ""
+"Agregá el bloque nativo Iconos sociales. Puede usarse de forma independiente o como respaldo del "
+"modo compartido. La ubicación y apariencia se configuran en Personalizar > Diseño > Redes "
+"sociales."
+msgstr ""
+
+#: inc/appearance.php:220
+msgid "Agregá los widgets que necesites desde Widgets. Las áreas vacías no reservan espacio en el sitio."
+msgstr ""
+
+#: inc/widgets.php:107 inc/widgets.php:117 inc/widgets.php:129
+msgid "Agregá widgets para las pantallas que usan barra lateral."
+msgstr ""
+
+#: inc/customizer/footer.php:31
+msgid ""
+"Ajusta el espaciado vertical seleccionado para un pie más compacto o más amplio, o lo elimina por"
+" completo."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:39
+msgid "Ajusta el espaciado vertical seleccionado para una cabecera más compacta o más amplia."
+msgstr ""
+
+#: inc/appearance.php:260
+msgid "Ajustes de lectura"
+msgstr ""
+
+#: inc/customizer/notes.php:32
+msgid "Ajustes detallados"
+msgstr ""
+
+#: inc/customizer/notes.php:26
+msgid "Ajustes visuales compartidos por botones, campos y enlaces."
+msgstr ""
+
+#: inc/appearance.php:254
+msgid "Ajustá identidad, cabecera, navegación, blog, pie, responsive y accesibilidad con vista previa."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:27
+msgid "Alineación"
+msgstr ""
+
+#: inc/customizer/content-blog.php:34
+msgid "Alineación del contenido"
+msgstr ""
+
+#: inc/customizer/content-blog.php:59
+msgid "Alineación del encabezado"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:44
+msgid "Alineación del menú"
+msgstr ""
+
+#: inc/customizer/social.php:96
+msgid "Alineación en el pie"
+msgstr ""
+
+#: inc/customizer/footer.php:31 inc/customizer/header-navigation.php:39
+#: inc/customizer/header-navigation.php:45 inc/customizer/screen-layout.php:29
+msgid "Amplia"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58 inc/customizer/global-style.php:26
+#: inc/customizer/header-navigation.php:26 inc/customizer/header-navigation.php:34
+msgid "Amplio"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58
+msgid "Ancho completo"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:29
+msgid "Ancho de barra lateral"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58 inc/customizer/global-style.php:24
+msgid "Ancho de lectura"
+msgstr ""
+
+#: inc/customizer/global-style.php:25
+msgid "Ancho de secciones"
+msgstr ""
+
+#: inc/customizer/branding.php:50
+msgid "Ancho del logo"
+msgstr ""
+
+#: inc/customizer/branding.php:65
+msgid "Ancho específico de logo"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:26 inc/customizer/header-navigation.php:34
+msgid "Ancho interno"
+msgstr ""
+
+#: inc/customizer/sections.php:50
+msgid "Anchos, ritmo, colores, tipografías, botones y formularios del sitio."
+msgstr ""
+
+#: inc/customizer/screen-layout.php:29
+msgid "Angosta"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58
+msgid "Angosto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58
+msgid ""
+"Angosto favorece artículos largos; Amplio aprovecha el ancho amplio del sitio; Ancho completo "
+"permite que bloques y constructores visuales usen todo el ancho disponible."
+msgstr ""
+
+#: template-parts/content-loop.php
+msgid "Ant."
+msgstr ""
+
+#: inc/customizer/social.php:86
+msgid "Antes de los widgets"
+msgstr ""
+
+#: inc/customizer/social.php:67
+msgid "Antes del menú"
+msgstr ""
+
+#: inc/customizer/content-blog.php:60
+msgid "Antes del título"
+msgstr ""
+
+#: inc/customizer/content-blog.php:53
+msgid "Apariencia de las tarjetas"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58
+msgid "Apariencia de “Seguir leyendo”"
+msgstr ""
+
+#: inc/customizer-controls.php:383
+msgid ""
+"Aplicar un estilo reemplaza los valores visuales globales de CreceWeb. No modifica páginas, "
+"bloques, menús, widgets ni estilos de constructores visuales."
+msgstr ""
+
+#: inc/appearance.php:203
+msgid "Armá el pie de página"
+msgstr ""
+
+#: inc/customizer/footer.php:24
+msgid ""
+"Armá el pie desde Apariencia > Widgets. La fila completa sirve para logo, navegación, datos de "
+"contacto o una llamada a la acción; las columnas se usan para información secundaria."
+msgstr ""
+
+#: inc/customizer/global-style.php:24
+msgid "Artículos, páginas y texto principal."
+msgstr ""
+
+#: inc/customizer/footer.php:25
+msgid "Automáticas"
+msgstr ""
+
+#: inc/appearance.php:251 inc/customizer/sections.php:97 inc/customizer/sections.php:116
+msgid "Ayuda y documentación"
+msgstr ""
+
+#: inc/customizer-controls.php:244 inc/customizer-controls.php:261
+msgid "BLOG"
+msgstr ""
+
+#: inc/appearance.php:219 sidebar.php:16
+msgid "Barra lateral"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:25 inc/customizer/screen-layout.php:26
+#: inc/customizer/screen-layout.php:27 inc/customizer/screen-layout.php:28
+msgid "Barra lateral derecha"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:25 inc/customizer/screen-layout.php:26
+#: inc/customizer/screen-layout.php:27 inc/customizer/screen-layout.php:28
+msgid "Barra lateral izquierda"
+msgstr ""
+
+#: inc/widgets.php:34 inc/widgets.php:106 inc/widgets.php:116 inc/widgets.php:128
+msgid "Barra lateral principal"
+msgstr ""
+
+#: inc/customizer/notes.php:29 inc/widgets.php:40 inc/widgets.php:239
+msgid "Barra superior"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:24
+msgid "Barras laterales"
+msgstr ""
+
+#: inc/customizer/sections.php:62
+msgid "Barras laterales y distribución de contenido para blog, entradas y páginas."
+msgstr ""
+
+#: inc/integrations.php:208
+msgid "Base"
+msgstr ""
+
+#: inc/customization.php:137
+msgid "Blog · Ideas y novedades"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:26
+msgid "Blog, categorías y búsquedas"
+msgstr ""
+
+#: inc/customizer/social.php:62
+msgid "Bloques independientes"
+msgstr ""
+
+#: inc/customizer/content-blog.php:65
+msgid "Borde"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Borde"
+msgstr ""
+
+#: inc/customizer/content-blog.php:54
+msgid "Borde o sombra"
+msgstr ""
+
+#: inc/customizer/colors.php:36 inc/integrations.php:166
+msgid "Bordes"
+msgstr ""
+
+#: inc/customizer/global-style.php:54 inc/integrations.php:135
+msgid "Botones del contenido: fondo"
+msgstr ""
+
+#: inc/customizer/global-style.php:55 inc/integrations.php:140
+msgid "Botones del contenido: hover"
+msgstr ""
+
+#: inc/customizer/global-style.php:56 inc/integrations.php:145
+msgid "Botones del contenido: texto"
+msgstr ""
+
+#: inc/customizer/colors.php:50 inc/customizer/notes.php:26
+msgid "Botones y formularios"
+msgstr ""
+
+#: inc/customizer/colors.php:53
+msgid "Botones: fondo"
+msgstr ""
+
+#: inc/customizer/colors.php:54
+msgid "Botones: hover"
+msgstr ""
+
+#: inc/customizer/colors.php:55
+msgid "Botones: texto"
+msgstr ""
+
+#: inc/customizer/sections.php:85
+msgid "Botón Volver arriba"
+msgstr ""
+
+#: inc/integrations.php:177
+msgid "Botón fondo"
+msgstr ""
+
+#: inc/integrations.php:182
+msgid "Botón hover"
+msgstr ""
+
+#: inc/integrations.php:187
+msgid "Botón texto"
+msgstr ""
+
+#: search.php:17
+#, python-format
+msgid "Buscaste: %s"
+msgstr ""
+
+#: inc/customizer-controls.php:205
+msgid "CABECERA"
+msgstr ""
+
+#: inc/customizer/content-blog.php:24
+msgid "Cabecera del blog"
+msgstr ""
+
+#: inc/customizer/sections.php:55
+msgid "Cabecera y navegación"
+msgstr ""
+
+#: inc/appearance.php:241
+msgid "Cambiar idioma del perfil"
+msgstr ""
+
+#: comments.php:64
+msgid "Cancelar respuesta"
+msgstr ""
+
+#: inc/customizer/content-blog.php:42
+msgid "Cantidad de columnas"
+msgstr ""
+
+#: inc/appearance.php:188
+msgid ""
+"Cargá logo, nombre, colores y tipografías. Empezá por Marca del sitio y Estilo global para darle "
+"una base propia al sitio."
+msgstr ""
+
+#: inc/customizer/content-blog.php:52
+msgid "Categoría"
+msgstr ""
+
+#: inc/customizer/sections.php:79
+msgid "Celular y tablet"
+msgstr ""
+
+#: inc/customizer/content-blog.php:34 inc/customizer/content-blog.php:59
+#: inc/customizer/header-navigation.php:41
+msgid "Centrada"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:27 inc/customizer/header-navigation.php:44
+msgid "Centro"
+msgstr ""
+
+#: inc/customization.php:255
+msgid "Cercano y comercial"
+msgstr ""
+
+#: inc/navigation.php:78 inc/navigation.php:83
+msgid "Cerrar menú"
+msgstr ""
+
+#: inc/customizer/footer.php:29 inc/customizer/header-navigation.php:25
+#: inc/customizer/header-navigation.php:37
+msgid "Claro"
+msgstr ""
+
+#: inc/customizer/colors.php:28
+msgid "Color de acción"
+msgstr ""
+
+#: inc/customizer/colors.php:29
+msgid "Color de acción activo"
+msgstr ""
+
+#: inc/customizer/accessibility.php:24
+msgid "Color de foco visible"
+msgstr ""
+
+#: inc/customizer/floating-action.php:30 inc/customizer/header-navigation.php:25
+msgid "Color de fondo"
+msgstr ""
+
+#: inc/customizer/social.php:75
+msgid "Color de iconos en cabecera"
+msgstr ""
+
+#: inc/customizer/social.php:105
+msgid "Color de iconos en el pie"
+msgstr ""
+
+#: inc/customizer/floating-action.php:31
+msgid "Color del ícono"
+msgstr ""
+
+#: inc/customizer/social.php:76
+msgid "Color hover en cabecera"
+msgstr ""
+
+#: inc/customizer/social.php:106
+msgid "Color hover en el pie"
+msgstr ""
+
+#: inc/customizer/colors.php:27
+msgid "Color principal"
+msgstr ""
+
+#: inc/customizer/colors.php:41
+msgid "Colores de enlaces y estados del menú principal y de los submenús."
+msgstr ""
+
+#: inc/customizer/global-style.php:49
+msgid "Colores del contenido"
+msgstr ""
+
+#: inc/widgets.php:56
+#, python-format
+msgid "Columna %d del pie de página. Se muestra solo cuando contiene contenido."
+msgstr ""
+
+#: inc/customizer/footer.php:25
+msgid "Columnas de widgets"
+msgstr ""
+
+#: inc/customizer/footer.php:36
+msgid "Columnas del pie en diseño compacto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:43 inc/customizer/footer.php:31 inc/customizer/global-style.php:31
+#: inc/customizer/header-navigation.php:39 inc/customizer/header-navigation.php:45
+msgid "Compacta"
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid "Compacto"
+msgstr ""
+
+#: inc/customizer/social.php:65
+msgid ""
+"Compartido: el área “Redes sociales · Pie” alimenta ambas ubicaciones; si está vacía, se usa "
+"“Redes sociales · Cabecera”. Independiente: cada ubicación usa exclusivamente su propia área."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:26
+msgid "Completo"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:35
+msgid "Comportamiento"
+msgstr ""
+
+#: inc/customizer/content-blog.php:43
+msgid "Composición de las entradas"
+msgstr ""
+
+#: inc/customizer/content-blog.php:54
+msgid "Con borde"
+msgstr ""
+
+#: inc/customizer/content-blog.php:54
+msgid "Con sombra"
+msgstr ""
+
+#: inc/customizer/content-blog.php:36
+msgid "Configuración en dos partes"
+msgstr ""
+
+#: inc/appearance.php:178
+msgid "Configuración inicial"
+msgstr ""
+
+#: inc/customizer/assets.php:71
+msgid "Configuración visual personalizada. Tus valores actuales se mantienen hasta que elijas un estilo."
+msgstr ""
+
+#: inc/appearance.php:197
+msgid "Configurar barra lateral"
+msgstr ""
+
+#: inc/appearance.php:213
+msgid "Configurar blog"
+msgstr ""
+
+#: inc/appearance.php:205
+msgid "Configurar el pie"
+msgstr ""
+
+#: inc/appearance.php:189
+msgid "Configurar marca"
+msgstr ""
+
+#: inc/customizer/notes.php:27
+msgid "Configurá el comportamiento, tono, espaciado y distribución general."
+msgstr ""
+
+#: inc/customizer/sections.php:68
+msgid "Configurá por separado los listados del blog, las tarjetas y la lectura de cada entrada."
+msgstr ""
+
+#: inc/block-library.php:67
+msgid "Construí una presencia clara, rápida y profesional"
+msgstr ""
+
+#: inc/customizer/sections.php:117
+msgid ""
+"Consultá instrucciones de configuración, recomendaciones y respuestas a las preguntas frecuentes "
+"del theme."
+msgstr ""
+
+#: inc/integrations.php:224
+msgid "Contenido"
+msgstr ""
+
+#: inc/customizer/social.php:59
+msgid "Contenido de cabecera y pie"
+msgstr ""
+
+#: inc/customizer/content-blog.php:45
+msgid "Contenido de cada tarjeta"
+msgstr ""
+
+#: inc/customizer/social.php:52
+msgid "Contenido de las redes"
+msgstr ""
+
+#: inc/customizer/sections.php:67
+msgid "Contenido y blog"
+msgstr ""
+
+#: inc/customizer/global-style.php:36
+msgid "Contorno"
+msgstr ""
+
+#: inc/customizer/colors.php:68
+msgid "Copyright: fondo"
+msgstr ""
+
+#: inc/customizer/colors.php:69
+msgid "Copyright: texto"
+msgstr ""
+
+#: inc/appearance.php:260
+msgid "Crear entrada"
+msgstr ""
+
+#: inc/appearance.php:213
+msgid "Crear página"
+msgstr ""
+
+#: inc/appearance.php:15 inc/appearance.php:16 inc/appearance.php:87 inc/appearance.php:168
+#: inc/block-library.php:63 inc/extension-bridge.php:111 inc/theme-details.php:28
+msgid "CreceWeb Lumen"
+msgstr ""
+
+#: inc/customizer/floating-action.php:29
+msgid ""
+"CreceWeb Lumen administra únicamente el botón Volver arriba. Si otro plugin agrega una acción "
+"flotante en la misma esquina, podés desactivar este botón para evitar superposiciones."
+msgstr ""
+
+#: inc/appearance.php:237
+msgid ""
+"CreceWeb Lumen y las extensiones compatibles instaladas incluyen interfaz en español e inglés. El"
+" idioma se adapta automáticamente al configurado en tu perfil de WordPress. Este cambio afecta "
+"solamente la administración; no traduce páginas, entradas, menús ni contenido publicado."
+msgstr ""
+
+#: inc/appearance.php:212
+msgid ""
+"Creá tus páginas y entradas con Gutenberg. Después elegí cómo se muestran el blog, las tarjetas, "
+"el extracto y la cabecera editorial."
+msgstr ""
+
+#: inc/customizer/content-blog.php:47
+msgid "Cuadrada 1:1"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Cuerpo"
+msgstr ""
+
+#: inc/customizer/global-style.php:31
+msgid "Cómoda"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:50
+msgid ""
+"Define desde qué ancho se activa el menú móvil y las adaptaciones compactas de cabecera, "
+"contenido y footer."
+msgstr ""
+
+#: inc/customizer/global-style.php:57
+msgid ""
+"Define el acento de las tarjetas Lumen y de elementos con la clase CSS cw-content-box. En "
+"Elementor, esa clase opta explícitamente por el color de Lumen. La variante cw-content-box--"
+"filled usa el color como fondo."
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid ""
+"Define el aire vertical entre las secciones del sitio. Compacto reduce los espacios, Normal "
+"mantiene el equilibrio y Amplio agrega más separación en páginas y secciones."
+msgstr ""
+
+#: inc/customizer/footer.php:25
+msgid "Define la distribución de las áreas Widget del pie de página 1 a 5 que tengan contenido."
+msgstr ""
+
+#: inc/customizer/content-blog.php:53
+msgid "Definí cuánta separación visual tienen las entradas respecto al fondo general."
+msgstr ""
+
+#: inc/customizer/notes.php:28
+msgid "Definí la alineación del menú y cómo se adapta en celular o tablet."
+msgstr ""
+
+#: inc/appearance.php:187
+msgid "Definí la marca y el estilo"
+msgstr ""
+
+#: inc/customizer/colors.php:25
+msgid "Definí los valores base. Los colores aplicados dentro de bloques o constructores prevalecen."
+msgstr ""
+
+#: inc/customizer/notes.php:24
+msgid "Definí primero la lectura, las secciones amplias y el aire entre bloques."
+msgstr ""
+
+#: inc/appearance.php:196
+msgid ""
+"Definí si blog, entradas y páginas usan barra lateral a la izquierda, derecha o sin barra. La "
+"barra solo se ve cuando tiene widgets."
+msgstr ""
+
+#: inc/customizer/content-blog.php:42
+msgid "Dejala vacía si no querés mostrar una descripción."
+msgstr ""
+
+#: inc/customizer/content-blog.php:51
+msgid "Dejalo vacío para recuperar “Seguir leyendo”."
+msgstr ""
+
+#: inc/customizer/content-blog.php:27
+msgid "Dejalo vacío para usar el título de la página de entradas o “Ideas y novedades”."
+msgstr ""
+
+#: inc/customizer/content-blog.php:41
+msgid "Dejalo vacío para usar “Últimas publicaciones”."
+msgstr ""
+
+#: comments.php:61
+msgid "Dejá un comentario"
+msgstr ""
+
+#: inc/customizer/footer.php:31 inc/customizer/header-navigation.php:39
+msgid "Densidad predefinida"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:27 inc/customizer/header-navigation.php:44
+msgid "Derecha"
+msgstr ""
+
+#: inc/customizer/content-blog.php:55
+msgid "Desactivá esta opción para quitar la acción de la tarjeta."
+msgstr ""
+
+#: inc/customizer/content-blog.php:28
+msgid "Descripción"
+msgstr ""
+
+#: inc/customizer/branding.php:67
+msgid "Descripción corta en diseño compacto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:42
+msgid "Descripción del listado"
+msgstr ""
+
+#: inc/customizer/social.php:87
+msgid "Después de los widgets"
+msgstr ""
+
+#: inc/customizer/social.php:68
+msgid "Después del menú"
+msgstr ""
+
+#: inc/customizer/content-blog.php:60
+msgid "Después del título"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Destacado"
+msgstr ""
+
+#: inc/customizer/sections.php:26
+msgid "Diseño"
+msgstr ""
+
+#: inc/customizer/sections.php:61
+msgid "Diseño de pantalla"
+msgstr ""
+
+#: inc/customizer/content-blog.php:40
+msgid "Diseño del listado"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:25
+msgid "Diseño global"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:41
+msgid "Distribución interna"
+msgstr ""
+
+#: inc/appearance.php:197
+msgid "Editar widgets"
+msgstr ""
+
+#: inc/appearance.php:205
+msgid "Editar widgets del pie"
+msgstr ""
+
+#: inc/customization.php:273
+msgid "Editorial y blog"
+msgstr ""
+
+#: inc/appearance.php:259
+msgid ""
+"Editá contenidos con Gutenberg y definí si la portada muestra una página estática o las últimas "
+"entradas."
+msgstr ""
+
+#: inc/customizer/content-blog.php:26
+msgid "Ejemplo: Blog · Ideas y novedades."
+msgstr ""
+
+#: inc/appearance.php:224
+msgid ""
+"El pie se construye desde Widgets. No hay logo ni menú duplicados: agregá solo las áreas que "
+"necesites."
+msgstr ""
+
+#: inc/customizer/floating-action.php:32
+msgid "El ícono se ajusta proporcionalmente. Para interacción táctil se recomiendan 44 px o más."
+msgstr ""
+
+#: inc/customizer/footer.php:36
+msgid ""
+"Elegí 1 o 2 columnas para todo el diseño compacto. Usá 1 columna cuando los widgets tengan textos"
+" largos."
+msgstr ""
+
+#: inc/customizer/content-blog.php:40
+msgid "Elegí Lista o Grilla. Debajo aparecen solo las opciones compatibles con esa elección."
+msgstr ""
+
+#: inc/customizer/social.php:69
+msgid "Elegí dónde aparece el área social de cabecera."
+msgstr ""
+
+#: inc/customizer/social.php:88
+msgid ""
+"Elegí dónde aparece el área social del pie. El contenido puede ser compartido con la cabecera o "
+"independiente según la opción anterior."
+msgstr ""
+
+#: inc/customizer/screen-layout.php:24
+msgid ""
+"Elegí dónde usar la barra lateral. Agregá su contenido desde Apariencia > Widgets > Barra lateral"
+" principal. Sin widgets activos, el contenido ocupa todo el ancho."
+msgstr ""
+
+#: inc/appearance.php:195
+msgid "Elegí el diseño de pantalla"
+msgstr ""
+
+#: inc/customizer/notes.php:25
+msgid "Elegí familias y escala globales para mantener una lectura consistente."
+msgstr ""
+
+#: inc/customizer/quick-start.php:30
+msgid "Elegí un estilo inicial"
+msgstr ""
+
+#: inc/customizer/content-blog.php:58
+msgid ""
+"Elegí un estilo y una forma. Los colores son opcionales: si quedan vacíos, Lumen usa los colores "
+"propios del estilo seleccionado."
+msgstr ""
+
+#: inc/customizer/quick-start.php:31
+msgid ""
+"Elegí una base visual para el sitio. Podés ajustar cada valor después sin cambiar contenido, "
+"menús ni widgets."
+msgstr ""
+
+#: inc/customizer/sections.php:44
+msgid "Elegí una base visual y definí si querés ver los ajustes detallados."
+msgstr ""
+
+#: inc/customizer/content-blog.php:42
+msgid "En celular se adapta a una columna y en tablet utiliza hasta dos."
+msgstr ""
+
+#: inc/customizer/screen-layout.php:29
+msgid "En celular y tablet angosta la barra se apila automáticamente debajo del contenido."
+msgstr ""
+
+#: inc/customizer/content-blog.php:40
+msgid "Encabezado de últimas publicaciones"
+msgstr ""
+
+#: inc/customizer/content-blog.php:31
+msgid "Enlace del botón"
+msgstr ""
+
+#: inc/customizer/content-blog.php:50
+msgid "Enlace “Seguir leyendo”"
+msgstr ""
+
+#: inc/integrations.php:158
+msgid "Enlaces"
+msgstr ""
+
+#: inc/customizer/colors.php:34
+msgid "Enlaces generales"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:31
+msgid "Enlaces personalizados"
+msgstr ""
+
+#: single.php:50
+msgid "Entrada anterior"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:27
+msgid "Entradas individuales"
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid "Equilibrado"
+msgstr ""
+
+#: inc/customizer/global-style.php:31
+msgid "Escala tipográfica"
+msgstr ""
+
+#: inc/customizer/branding.php:62
+msgid "Esconder descripción corta"
+msgstr ""
+
+#: inc/customizer/branding.php:60
+msgid "Esconder título del sitio"
+msgstr ""
+
+#: inc/customizer/footer.php:30 inc/customizer/header-navigation.php:28
+#: inc/customizer/header-navigation.php:38
+msgid "Espaciado vertical"
+msgstr ""
+
+#: inc/customizer/notes.php:24
+msgid "Espaciado y ancho"
+msgstr ""
+
+#: inc/customizer/floating-action.php:29
+msgid "Estado del botón"
+msgstr ""
+
+#: inc/customizer/colors.php:51
+msgid "Estados para acciones, campos y foco."
+msgstr ""
+
+#: inc/customizer/notes.php:30
+msgid "Estas opciones se aplican solo en pantallas de hasta 781 px."
+msgstr ""
+
+#: inc/customizer/assets.php:72
+msgid ""
+"Este estilo reemplazará los ajustes visuales globales de CreceWeb. No modificará contenido, "
+"páginas, menús ni widgets. ¿Querés aplicarlo?"
+msgstr ""
+
+#: inc/customizer/content-blog.php:59
+msgid "Estilo"
+msgstr ""
+
+#: inc/customizer/global-style.php:36
+msgid "Estilo de botones"
+msgstr ""
+
+#: inc/customizer/sections.php:49
+msgid "Estilo global"
+msgstr ""
+
+#: inc/customizer/notes.php:31
+msgid ""
+"Estos valores mantienen alineados cabecera, contenido y pie. Los overrides de logo y menú están "
+"en sus secciones correspondientes."
+msgstr ""
+
+#: inc/customizer/footer.php:28
+msgid "Estos valores se aplican a las áreas de widgets del pie y mantienen el mismo estilo general."
+msgstr ""
+
+#: inc/customizer/notes.php:27
+msgid "Estructura de cabecera"
+msgstr ""
+
+#: inc/customizer/sections.php:56
+msgid "Estructura de cabecera, menú de escritorio, menú compacto y barra superior."
+msgstr ""
+
+#: inc/customizer/content-blog.php:58 inc/customizer/global-style.php:31
+#: inc/customizer/global-style.php:41 inc/customizer/screen-layout.php:29
+msgid "Estándar"
+msgstr ""
+
+#: inc/customizer/content-blog.php:26
+msgid "Etiqueta superior"
+msgstr ""
+
+#: single.php:43
+#, python-format
+msgid "Etiquetas: %s"
+msgstr ""
+
+#: inc/appearance.php:290 inc/appearance.php:298
+msgid "Extensión instalada"
+msgstr ""
+
+#: inc/customizer/content-blog.php:49
+msgid "Extracto o resumen"
+msgstr ""
+
+#: inc/customizer/global-style.php:29
+msgid "Familia de texto"
+msgstr ""
+
+#: inc/customizer/global-style.php:30
+msgid "Familia de títulos"
+msgstr ""
+
+#: inc/customizer/content-blog.php:48
+msgid "Fecha de publicación"
+msgstr ""
+
+#: inc/customizer/content-blog.php:61
+msgid "Fecha y autor"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:35
+msgid "Fijo al desplazarse"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:35
+msgid "Fijo desde el inicio"
+msgstr ""
+
+#: inc/widgets.php:45
+msgid "Fila completa del pie"
+msgstr ""
+
+#: inc/widgets.php:47
+msgid ""
+"Fila de ancho completo para bloques o widgets del pie. Podés usarla para logo, navegación, "
+"contacto o llamadas a la acción."
+msgstr ""
+
+#: inc/customizer/sections.php:92
+msgid "Foco visible y preferencias de movimiento para una experiencia más inclusiva."
+msgstr ""
+
+#: inc/customizer/content-blog.php:61
+msgid "Fondo"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Fondo"
+msgstr ""
+
+#: inc/customizer/colors.php:30 inc/integrations.php:142
+msgid "Fondo general"
+msgstr ""
+
+#: inc/customizer/content-blog.php:62
+msgid "Fondo hover"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:29
+msgid "Fondo personalizado"
+msgstr ""
+
+#: inc/customizer/colors.php:62
+msgid "Footer y copyright"
+msgstr ""
+
+#: inc/customizer/colors.php:67
+msgid "Footer: enlaces"
+msgstr ""
+
+#: inc/customizer/colors.php:65
+msgid "Footer: fondo"
+msgstr ""
+
+#: inc/customizer/colors.php:66
+msgid "Footer: texto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:60
+msgid "Forma"
+msgstr ""
+
+#: inc/customizer/global-style.php:35
+msgid "Forma de controles y cards"
+msgstr ""
+
+#: inc/customizer/colors.php:57
+msgid "Formularios: borde"
+msgstr ""
+
+#: inc/customizer/colors.php:58
+msgid "Formularios: foco"
+msgstr ""
+
+#: inc/customizer/colors.php:56
+msgid "Formularios: fondo"
+msgstr ""
+
+#: inc/customizer/footer.php:33
+msgid "Franja inferior opcional con el año y el nombre del sitio."
+msgstr ""
+
+#: inc/customizer/content-blog.php:51
+msgid ""
+"Funciona también con Imagen lateral y Compacta. Solo recorta la visualización de la tarjeta; no "
+"modifica el archivo original."
+msgstr ""
+
+#: inc/appearance.php:305
+msgid "Gestionar extensión"
+msgstr ""
+
+#: inc/appearance.php:265
+msgid "Gestionar menús"
+msgstr ""
+
+#: inc/appearance.php:265
+msgid "Gestionar widgets"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Grande"
+msgstr ""
+
+#: inc/customizer/content-blog.php:41
+msgid "Grilla"
+msgstr ""
+
+#: inc/appearance.php:268
+msgid "Gutenberg y builders"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:50
+msgid "Hasta 1024 px"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:50
+msgid "Hasta 781 px"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:50
+msgid "Hasta 960 px"
+msgstr ""
+
+#: inc/customizer/content-blog.php:59
+msgid "Heredar botones globales"
+msgstr ""
+
+#: inc/customizer/content-blog.php:60
+msgid "Heredar forma global"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:26 inc/customizer/screen-layout.php:27
+#: inc/customizer/screen-layout.php:28
+msgid "Heredar global"
+msgstr ""
+
+#: inc/block-library.php:84
+msgid "Hero Lumen con CTA"
+msgstr ""
+
+#: inc/block-library.php:85
+msgid "Hero editable de ancho completo con título, texto introductorio y botón principal."
+msgstr ""
+
+#: inc/customizer/global-style.php:25
+msgid "Hero, grids y contenido alineado como amplio."
+msgstr ""
+
+#: inc/appearance.php:248
+msgid "Herramientas del sitio"
+msgstr ""
+
+#: template-parts/blog-intro.php:67
+msgid "Ideas claras"
+msgstr ""
+
+#: template-parts/blog-intro.php:19 template-parts/blog-intro.php:20
+msgid "Ideas y novedades"
+msgstr ""
+
+#: inc/customization.php:139 template-parts/blog-intro.php:26
+msgid "Ideas, recursos y novedades para impulsar tu presencia digital."
+msgstr ""
+
+#: inc/appearance.php:239
+#, python-format
+msgid "Idioma actual del perfil: %s."
+msgstr ""
+
+#: inc/appearance.php:235
+msgid "Idiomas disponibles"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:25
+msgid "Igual a la cabecera"
+msgstr ""
+
+#: inc/customizer/global-style.php:30
+msgid "Igual al texto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:32
+msgid "Ilustración del theme"
+msgstr ""
+
+#: inc/customizer/content-blog.php:43
+msgid "Imagen arriba"
+msgstr ""
+
+#: inc/customizer/content-blog.php:32
+msgid "Imagen de la biblioteca"
+msgstr ""
+
+#: inc/customizer/content-blog.php:33
+msgid "Imagen de la cabecera"
+msgstr ""
+
+#: inc/customizer/content-blog.php:46 inc/customizer/content-blog.php:60
+msgid "Imagen destacada"
+msgstr ""
+
+#: inc/customizer/content-blog.php:43
+msgid "Imagen lateral"
+msgstr ""
+
+#: inc/customizer/content-blog.php:59
+msgid "Incluye título y datos de la entrada."
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Información"
+msgstr ""
+
+#: inc/customizer/content-blog.php:61
+msgid "Información visible"
+msgstr ""
+
+#: inc/navigation.php:167
+msgid "Inicio"
+msgstr ""
+
+#: inc/customizer/sections.php:43
+msgid "Inicio rápido"
+msgstr ""
+
+#: inc/appearance.php:236
+msgid "Interfaz disponible en español e inglés"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Inverso"
+msgstr ""
+
+#: inc/customizer/content-blog.php:34 inc/customizer/content-blog.php:59
+#: inc/customizer/header-navigation.php:27 inc/customizer/header-navigation.php:41
+#: inc/customizer/header-navigation.php:44
+msgid "Izquierda"
+msgstr ""
+
+#: inc/appearance.php:300
+msgid "La extensión instalada agrega su biblioteca y herramientas desde esta misma pantalla."
+msgstr ""
+
+#: inc/appearance.php:292
+msgid "La extensión instalada amplía CreceWeb Lumen y se administra desde su propia pantalla."
+msgstr ""
+
+#: 404.php:9
+msgid "La página que buscás no existe o fue movida."
+msgstr ""
+
+#: inc/customizer/social.php:71
+msgid "La ubicación se aplica al área “Redes sociales · Cabecera”."
+msgstr ""
+
+#: inc/customizer/social.php:90
+msgid "La ubicación se aplica al área “Redes sociales · Pie”."
+msgstr ""
+
+#: inc/customizer/screen-layout.php:28
+msgid "Las plantillas “Ancho completo” y “Landing sin cabecera” no incluyen barra lateral."
+msgstr ""
+
+#: inc/customizer/social.php:51
+msgid ""
+"Las redes y sus URLs permanecen en el bloque nativo “Iconos sociales” de WordPress. Elegí si "
+"querés compartir un mismo bloque entre cabecera y pie o administrar bloques independientes."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:26 inc/customizer/header-navigation.php:34
+msgid "Lectura"
+msgstr ""
+
+#: inc/customization.php:274
+msgid "Lectura protagonista, títulos expresivos y una presentación más serena."
+msgstr ""
+
+#: front-page.php:45 home.php:18
+msgid "Lecturas prácticas para construir un sitio claro y útil."
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Leyenda"
+msgstr ""
+
+#: inc/customizer/content-blog.php:41
+msgid "Lista"
+msgstr ""
+
+#: inc/customizer/content-blog.php:41
+msgid "Lista o grilla"
+msgstr ""
+
+#: inc/customizer/branding.php:64
+msgid "Logo en diseño compacto"
+msgstr ""
+
+#: inc/customizer/sections.php:38
+msgid "Logo, título y descripción corta. Cada elemento funciona de manera independiente."
+msgstr ""
+
+#: inc/appearance.php:161
+msgid "Los ajustes de CreceWeb Lumen se restablecieron correctamente."
+msgstr ""
+
+#: comments.php:52
+msgid "Los comentarios están cerrados."
+msgstr ""
+
+#: inc/appearance.php:299
+msgid "Lumen Lite está activo"
+msgstr ""
+
+#: inc/appearance.php:291
+msgid "Lumen Pro está activo"
+msgstr ""
+
+#: inc/block-library.php:28
+msgid "Lumen suave"
+msgstr ""
+
+#: inc/integrations.php:323
+msgid "Lumen · Colores de contenido"
+msgstr ""
+
+#: inc/integrations.php:318
+msgid "Lumen · Paleta base"
+msgstr ""
+
+#: page-templates/full-width.php:3
+msgid "Lumen: Ancho completo"
+msgstr ""
+
+#: page-templates/hero-full-width.php:3
+msgid "Lumen: Hero ancho completo"
+msgstr ""
+
+#: page-templates/landing-canvas.php:3
+msgid "Lumen: Landing sin cabecera"
+msgstr ""
+
+#: inc/customizer-controls.php:228
+msgid "MENÚ"
+msgstr ""
+
+#: inc/customizer/sections.php:37
+msgid "Marca del sitio"
+msgstr ""
+
+#: inc/customizer/colors.php:24
+msgid "Marca y superficies"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:36
+msgid "Marcada"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:48
+msgid "Mayúsculas"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Medio"
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid "Menos aire"
+msgstr ""
+
+#: inc/customizer/notes.php:28
+msgid "Menú de escritorio y diseño compacto"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:49
+msgid "Menú móvil"
+msgstr ""
+
+#: inc/enqueue.php:53 inc/navigation.php:23
+msgid "Menú principal"
+msgstr ""
+
+#: inc/customizer/colors.php:45
+msgid "Menú: enlace activo"
+msgstr ""
+
+#: inc/customizer/colors.php:44
+msgid "Menú: hover"
+msgstr ""
+
+#: inc/customizer/colors.php:43
+msgid "Menú: normal"
+msgstr ""
+
+#: inc/appearance.php:263
+msgid "Menús y widgets"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Monoespaciada del sistema"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:24
+msgid "Mostrar Barra Superior"
+msgstr ""
+
+#: inc/customizer/quick-start.php:37
+msgid "Mostrar ajustes detallados"
+msgstr ""
+
+#: inc/customizer/content-blog.php:29
+msgid "Mostrar botón"
+msgstr ""
+
+#: inc/customizer/content-blog.php:25
+msgid "Mostrar cabecera del blog"
+msgstr ""
+
+#: inc/customizer/footer.php:34
+msgid "Mostrar copyright"
+msgstr ""
+
+#: inc/customizer/social.php:74
+msgid "Mostrar también en diseño compacto"
+msgstr ""
+
+#: inc/customizer/sections.php:86
+msgid ""
+"Mostrá u ocultá el acceso para regresar al inicio de la página. Si otro plugin agrega una acción "
+"flotante en la misma esquina, revisá la ubicación para evitar superposiciones."
+msgstr ""
+
+#: inc/customizer/accessibility.php:25
+msgid "Movimiento"
+msgstr ""
+
+#: inc/customizer/notes.php:31
+msgid "Márgenes por dispositivo"
+msgstr ""
+
+#: inc/customizer/sections.php:80
+msgid ""
+"Márgenes y ajustes opcionales por dispositivo. Las opciones de menú, marca y pie se encuentran en"
+" sus áreas correspondientes."
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid "Más aire"
+msgstr ""
+
+#: inc/customization.php:256
+msgid "Más contraste, llamados visibles y energía para captar consultas."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:34
+msgid "Máximo"
+msgstr ""
+
+#: inc/customizer/colors.php:40
+msgid "Navegación"
+msgstr ""
+
+#: comments.php:45
+msgid "Navegación de comentarios"
+msgstr ""
+
+#: inc/navigation.php:41
+msgid "Navegación del pie"
+msgstr ""
+
+#: inc/navigation.php:41
+msgid "Navegación principal"
+msgstr ""
+
+#: inc/appearance.php:275
+msgid ""
+"No elimina páginas, entradas, menús, widgets, logo, contenido de Gutenberg ni estilos de "
+"constructores visuales."
+msgstr ""
+
+#: template-parts/content-none.php:9
+msgid "No encontramos contenido"
+msgstr ""
+
+#: inc/customizer/floating-action.php:25
+msgid "No mostrar botón"
+msgstr ""
+
+#: inc/appearance.php:97
+msgid "No tenés permisos para restablecer estos ajustes."
+msgstr ""
+
+#: inc/extension-bridge.php:151
+msgid "No tenés permisos para ver estas opciones."
+msgstr ""
+
+#: inc/customizer/footer.php:31 inc/customizer/global-style.php:26
+#: inc/customizer/header-navigation.php:35 inc/customizer/header-navigation.php:39
+#: inc/customizer/header-navigation.php:45 inc/customizer/header-navigation.php:48
+msgid "Normal"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:35
+msgid ""
+"Normal: la cabecera se desplaza junto con el contenido. Fijo al desplazarse: se fija al llegar "
+"arriba. Fijo desde el inicio: permanece visible arriba desde la carga."
+msgstr ""
+
+#: inc/customizer/global-style.php:41
+msgid "Nunca"
+msgstr ""
+
+#: inc/customizer/social.php:66 inc/customizer/social.php:90
+msgid "Oculta"
+msgstr ""
+
+#: inc/customizer/branding.php:62
+msgid "Oculta la descripción corta en la cabecera y el pie. No afecta el logo ni el título."
+msgstr ""
+
+#: inc/customizer/branding.php:60
+msgid "Oculta solo el título del sitio en la cabecera. No afecta el logo ni la descripción corta."
+msgstr ""
+
+#: inc/customizer/footer.php:37
+msgid "Oculta todas las áreas de widgets del pie de página."
+msgstr ""
+
+#: inc/customizer/content-blog.php:60 inc/customizer/content-blog.php:61
+msgid "Ocultar"
+msgstr ""
+
+#: inc/customizer/footer.php:37
+msgid "Ocultar widgets del pie"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:40
+msgid "Oculto"
+msgstr ""
+
+#: inc/customizer/content-blog.php:62
+msgid "Opcional. Color del fondo al pasar o enfocar."
+msgstr ""
+
+#: inc/customizer/content-blog.php:64
+msgid "Opcional. Color del texto al pasar o enfocar."
+msgstr ""
+
+#: inc/customizer/social.php:76 inc/customizer/social.php:106
+msgid "Opcional. Se aplica al pasar el puntero o enfocar un enlace social."
+msgstr ""
+
+#: inc/customizer/content-blog.php:65
+msgid "Opcional. Se usa cuando el estilo muestra borde."
+msgstr ""
+
+#: inc/customizer/social.php:75 inc/customizer/social.php:105
+msgid "Opcional. Si queda vacío, se respetan los colores definidos por el bloque Iconos sociales."
+msgstr ""
+
+#: inc/customizer/content-blog.php:63
+msgid "Opcional. Vacío conserva el color del estilo elegido."
+msgstr ""
+
+#: inc/customizer/content-blog.php:61
+msgid "Opcional. Vacío conserva el fondo del estilo elegido."
+msgstr ""
+
+#: inc/extension-bridge.php:125
+msgid "Opciones de Lumen"
+msgstr ""
+
+#: inc/customizer/content-blog.php:47
+msgid "Original"
+msgstr ""
+
+#: inc/customizer-controls.php:284
+msgid "PIE"
+msgstr ""
+
+#: inc/customizer-controls.php:284
+msgid "PIE · AUTO"
+msgstr ""
+
+#: inc/customizer/global-style.php:39
+msgid "Padding horizontal de botones"
+msgstr ""
+
+#: inc/customizer/responsive.php:25
+msgid "Padding lateral en diseño compacto"
+msgstr ""
+
+#: inc/customizer/responsive.php:24
+msgid "Padding lateral en tablet"
+msgstr ""
+
+#: inc/customizer/global-style.php:38
+msgid "Padding vertical de botones"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:49
+msgid "Panel lateral"
+msgstr ""
+
+#: inc/customizer/content-blog.php:47
+msgid "Panorámica 16:9"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:49
+msgid "Pantalla completa"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Pequeño"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:25
+msgid "Personalizado"
+msgstr ""
+
+#: inc/appearance.php:227
+msgid "Personalizador"
+msgstr ""
+
+#: inc/appearance.php:86
+msgid "Personalizar"
+msgstr ""
+
+#: inc/appearance.php:253
+msgid "Personalizar diseño"
+msgstr ""
+
+#: inc/customizer/content-blog.php:24
+msgid ""
+"Personalizá el bloque editorial que aparece antes de las últimas entradas. No modifica la "
+"cabecera global del sitio."
+msgstr ""
+
+#: inc/customizer/content-blog.php:40
+msgid ""
+"Personalizá el título y la descripción que aparecen justo antes del listado en la página de "
+"entradas. La descripción puede quedar vacía."
+msgstr ""
+
+#: inc/customizer/global-style.php:32
+msgid "Peso de títulos"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:47
+msgid "Peso del menú"
+msgstr ""
+
+#: inc/customizer/sections.php:73
+msgid "Pie de página"
+msgstr ""
+
+#: inc/appearance.php:223
+msgid "Pie y widgets"
+msgstr ""
+
+#: inc/customizer/content-blog.php:31
+msgid "Podés usar una URL completa o un ancla como #cw-latest-posts."
+msgstr ""
+
+#: inc/customizer/branding.php:64
+msgid "Por defecto, el logo de tablet y celular usa el ancho definido en Diseño > Marca del sitio."
+msgstr ""
+
+#: inc/customizer/content-blog.php:59
+msgid "Predeterminado de Lumen"
+msgstr ""
+
+#: inc/appearance.php:211
+msgid "Prepará páginas y blog"
+msgstr ""
+
+#: inc/customizer/content-blog.php:36
+msgid ""
+"Primero definí cómo se ven el blog, las categorías y las búsquedas. Después configurá la lectura "
+"de cada artículo."
+msgstr ""
+
+#: inc/integrations.php:130
+msgid "Principal"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Principal"
+msgstr ""
+
+#: inc/customizer/footer.php:29 inc/customizer/header-navigation.php:25
+#: inc/customizer/header-navigation.php:37
+msgid "Principal oscuro"
+msgstr ""
+
+#: template-parts/content-none.php:10
+msgid "Probá con otra búsqueda o volvé al inicio."
+msgstr ""
+
+#: inc/customization.php:237
+msgid "Profesional"
+msgstr ""
+
+#: inc/customizer/content-blog.php:47
+msgid "Proporción de imagen"
+msgstr ""
+
+#: comments.php:65
+msgid "Publicar comentario"
+msgstr ""
+
+#: inc/appearance.php:179
+msgid "Publicá una primera versión en cuatro pasos"
+msgstr ""
+
+#: inc/customizer-controls.php:358
+msgid "Puntos de partida visuales"
+msgstr ""
+
+#: template-parts/content-loop.php
+msgid "Página anterior"
+msgstr ""
+
+#: 404.php:9
+msgid "Página no encontrada"
+msgstr ""
+
+#: template-parts/content-loop.php
+msgid "Página siguiente"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:28
+msgid "Páginas"
+msgstr ""
+
+#: inc/appearance.php:258
+msgid "Páginas y entradas"
+msgstr ""
+
+#: inc/customizer/content-blog.php:60
+msgid "Píldora"
+msgstr ""
+
+#: inc/customizer/global-style.php:37
+msgid "Radio de botones"
+msgstr ""
+
+#: inc/customizer/global-style.php:40
+msgid "Radio de formularios"
+msgstr ""
+
+#: inc/customizer/global-style.php:35
+msgid "Recta"
+msgstr ""
+
+#: inc/integrations.php:197
+msgid "Recuadros"
+msgstr ""
+
+#: inc/customizer/global-style.php:57 inc/integrations.php:155
+msgid "Recuadros del contenido"
+msgstr ""
+
+#: inc/customizer/sections.php:75 inc/widgets.php:197 inc/widgets.php:228
+msgid "Redes sociales"
+msgstr ""
+
+#: inc/widgets.php:62
+msgid "Redes sociales · Cabecera"
+msgstr ""
+
+#: inc/widgets.php:67
+msgid "Redes sociales · Pie"
+msgstr ""
+
+#: inc/customizer/global-style.php:35
+msgid "Redondeada"
+msgstr ""
+
+#: inc/customizer/accessibility.php:25
+msgid "Reducir siempre"
+msgstr ""
+
+#: inc/customizer/accessibility.php:25
+msgid "Respetar preferencia del sistema"
+msgstr ""
+
+#: comments.php:63
+#, python-format
+msgid "Responder a %s"
+msgstr ""
+
+#: inc/appearance.php:273
+msgid "Restablecer Personalizador"
+msgstr ""
+
+#: inc/appearance.php:279
+msgid "Restablecer ajustes"
+msgstr ""
+
+#: inc/appearance.php:274
+msgid "Restaura solamente los ajustes propios de CreceWeb Lumen."
+msgstr ""
+
+#: search.php:15
+msgid "Resultados de búsqueda"
+msgstr ""
+
+#: inc/customizer/quick-start.php:37
+msgid ""
+"Revela tamaños finos, estados especiales y preferencias técnicas dentro de cada área, sin ocultar"
+" secciones del menú."
+msgstr ""
+
+#: inc/appearance.php:305
+msgid "Revisar extensiones"
+msgstr ""
+
+#: inc/appearance.php:294
+msgid "Revisión requerida"
+msgstr ""
+
+#: inc/appearance.php:157
+msgid "Revisá las acciones flotantes."
+msgstr ""
+
+#: inc/appearance.php:295
+msgid "Revisá las extensiones instaladas"
+msgstr ""
+
+#: inc/customizer/global-style.php:26
+msgid "Ritmo vertical"
+msgstr ""
+
+#: inc/accessibility.php:18
+msgid "Saltar al contenido principal"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Sans del sistema"
+msgstr ""
+
+#: inc/customizer/responsive.php:24
+msgid "Se aplica a cabecera, contenido, footer y widgets entre 782 y 1024 px."
+msgstr ""
+
+#: inc/customizer/responsive.php:25
+msgid "Se aplica a cabecera, contenido, footer y widgets por debajo del ancho definido en Navegación."
+msgstr ""
+
+#: inc/customizer/content-blog.php:39
+msgid "Se aplica al blog, categorías, etiquetas y resultados de búsqueda. No modifica páginas normales."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:36
+msgid "Se aplica cuando elegís una cabecera fija."
+msgstr ""
+
+#: inc/customizer/content-blog.php:57
+msgid ""
+"Se aplica dentro de cada artículo. No cambia páginas, archivos ni contenido creado con "
+"constructores visuales."
+msgstr ""
+
+#: inc/customizer/branding.php:51
+msgid "Se aplica en escritorio, tablet y celular. Podés crear una excepción desde Celular y tablet."
+msgstr ""
+
+#: inc/widgets.php:42
+msgid "Se muestra antes de la cabecera cuando contiene contenido."
+msgstr ""
+
+#: inc/customizer/content-blog.php:33
+msgid "Se muestra como una imagen decorativa a la derecha."
+msgstr ""
+
+#: inc/customizer/content-blog.php:25
+msgid "Se muestra en la página de entradas y en la portada cuando muestra las últimas entradas."
+msgstr ""
+
+#: inc/widgets.php:36
+msgid ""
+"Se muestra en las pantallas donde activás una barra lateral desde Personalizar > Diseño > Diseño "
+"de pantalla."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:24
+msgid "Se muestra solo si hay bloques agregados en Apariencia > Widgets > Barra Superior."
+msgstr ""
+
+#: inc/customizer/notes.php:29
+msgid "Se muestra únicamente cuando agregás contenido en Apariencia > Widgets > Barra Superior."
+msgstr ""
+
+#: inc/customization.php:133 template-parts/content-card.php:13
+msgid "Seguir leyendo"
+msgstr ""
+
+#: inc/appearance.php:180
+msgid "Seguí este recorrido en una instalación nueva. Podés volver a cualquier paso cuando lo necesites."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:45
+msgid "Separación entre enlaces"
+msgstr ""
+
+#: inc/customizer/social.php:110
+msgid "Separación entre iconos"
+msgstr ""
+
+#: inc/customizer/footer.php:26
+msgid "Separación entre widgets"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:41
+msgid "Separada"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:40
+msgid "Separador inferior"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Serif del sistema"
+msgstr ""
+
+#: inc/customizer/social.php:74
+msgid "Si queda desactivado, los iconos de cabecera se ocultan al activarse el menú compacto."
+msgstr ""
+
+#: inc/customizer/global-style.php:58
+msgid ""
+"Si se configura, Lumen lo ofrece a Elementor como Global Color y lo usa como color predeterminado"
+" de los íconos de Icon List; una elección local u otro Global Color en Elementor tiene prioridad."
+" Las viñetas nativas de WordPress siguen usando el mismo token de Lumen."
+msgstr ""
+
+#: inc/customizer/global-style.php:55
+msgid ""
+"Si se configura, Lumen lo ofrece a Elementor como Global Color y lo usa como fondo hover "
+"predeterminado de los botones; una elección local u otro Global Color en Elementor tiene "
+"prioridad."
+msgstr ""
+
+#: inc/customizer/global-style.php:54
+msgid ""
+"Si se configura, Lumen lo ofrece a Elementor como Global Color y lo usa como fondo predeterminado"
+" de los botones; una elección local u otro Global Color en Elementor tiene prioridad."
+msgstr ""
+
+#: inc/customizer/global-style.php:56
+msgid ""
+"Si se configura, Lumen lo ofrece a Elementor como Global Color y lo usa como texto predeterminado"
+" de los botones; una elección local u otro Global Color en Elementor tiene prioridad."
+msgstr ""
+
+#: inc/customizer/global-style.php:53
+msgid ""
+"Si se configura, Lumen lo ofrece a Elementor como Global Color y lo usa como valor predeterminado"
+" de los títulos; una elección local u otro Global Color en Elementor tiene prioridad."
+msgstr ""
+
+#: inc/customizer/global-style.php:41
+msgid "Siempre"
+msgstr ""
+
+#: template-parts/content-loop.php
+msgid "Sig."
+msgstr ""
+
+#: single.php:51
+msgid "Siguiente entrada"
+msgstr ""
+
+#: inc/customizer/screen-layout.php:25 inc/customizer/screen-layout.php:26
+#: inc/customizer/screen-layout.php:27 inc/customizer/screen-layout.php:28
+msgid "Sin barra lateral"
+msgstr ""
+
+#: inc/customizer/content-blog.php:54
+msgid "Sin borde ni sombra"
+msgstr ""
+
+#: inc/customizer/footer.php:31
+msgid "Sin espaciado"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:36
+msgid "Sin sombra"
+msgstr ""
+
+#: inc/customizer/content-blog.php:32
+msgid "Sin visual"
+msgstr ""
+
+#: inc/customizer/global-style.php:29
+msgid "Sistema mono"
+msgstr ""
+
+#: inc/customizer/global-style.php:29 inc/customizer/global-style.php:30
+msgid "Sistema sans"
+msgstr ""
+
+#: inc/customizer/global-style.php:29 inc/customizer/global-style.php:30
+msgid "Sistema serif"
+msgstr ""
+
+#: inc/customization.php:238
+msgid "Sobrio, claro y confiable para empresas, estudios y servicios."
+msgstr ""
+
+#: inc/block-library.php:69
+msgid "Solicitar presupuesto"
+msgstr ""
+
+#: inc/customizer/global-style.php:41
+msgid "Solo al pasar"
+msgstr ""
+
+#: inc/customizer/content-blog.php:61
+msgid "Solo fecha"
+msgstr ""
+
+#: inc/customizer/content-blog.php:47
+msgid "Solo recorta la visualización de la tarjeta; no modifica el archivo original."
+msgstr ""
+
+#: inc/customizer/branding.php:65
+msgid "Solo se aplica cuando elegís un ancho específico para el diseño compacto."
+msgstr ""
+
+#: inc/customizer/content-blog.php:43
+msgid ""
+"Solo se muestra con Lista. En Grilla las tarjetas usan siempre imagen arriba para mantener "
+"columnas consistentes."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:36
+msgid "Sombra al fijar"
+msgstr ""
+
+#: inc/customizer/global-style.php:50
+msgid ""
+"Son opcionales y se aplican solo al contenido de páginas y entradas. Si un campo queda vacío, "
+"Lumen no cambia el valor predeterminado de ese elemento. En Gutenberg, los colores explícitos de "
+"los bloques siguen teniendo prioridad. En Elementor, Lumen registra estos colores como Global "
+"Colors y, cuando están configurados, los usa como valores predeterminados de los widgets "
+"compatibles; un color local u otro Global Color elegido en Elementor puede reemplazarlos."
+msgstr ""
+
+#: inc/customizer/global-style.php:35
+msgid "Suave"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Suave"
+msgstr ""
+
+#: inc/customizer/colors.php:46
+msgid "Submenú: fondo"
+msgstr ""
+
+#: inc/customizer/colors.php:52
+msgid "Submenú: fondo hover"
+msgstr ""
+
+#: inc/customizer/header-navigation.php
+msgid "Submenú: opacidad del fondo hover"
+msgstr ""
+
+#: inc/customizer/colors.php:48
+msgid "Submenú: texto hover"
+msgstr ""
+
+#: inc/customizer/global-style.php:41
+msgid "Subrayado de enlaces"
+msgstr ""
+
+#: inc/customizer/colors.php:31 inc/integrations.php:146
+msgid "Superficie"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Superficie"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:36
+msgid "Sutil"
+msgstr ""
+
+#: inc/customizer/global-style.php:36
+msgid "Sólido"
+msgstr ""
+
+#: inc/customizer/global-style.php:36
+msgid "Sólido con elevación"
+msgstr ""
+
+#: inc/customizer/social.php:109
+msgid "Tamaño de iconos"
+msgstr ""
+
+#: inc/customizer/branding.php:61
+msgid "Tamaño de la descripción corta"
+msgstr ""
+
+#: inc/customizer/floating-action.php:32
+msgid "Tamaño del botón"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:46
+msgid "Tamaño del menú"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:53
+msgid "Tamaño del menú en diseño compacto"
+msgstr ""
+
+#: inc/customizer/branding.php:59
+msgid "Tamaño del título"
+msgstr ""
+
+#: inc/customizer/social.php:121
+msgid "Tamaño real de los iconos y separación compartidos por las áreas sociales de cabecera y pie."
+msgstr ""
+
+#: inc/block-library.php:37
+msgid "Tarjeta Lumen"
+msgstr ""
+
+#: inc/theme-details.php:29
+msgid ""
+"Tema clásico híbrido para sitios profesionales, blogs y páginas comerciales. Incluye cabecera "
+"flexible, navegación accesible, barras laterales, áreas de widgets, plantillas de ancho completo,"
+" estilos para Gutenberg y compatibilidad cuidada con Elementor."
+msgstr ""
+
+#: inc/customizer/content-blog.php:59 inc/customizer/content-blog.php:63
+msgid "Texto"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Texto"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Texto atenuado"
+msgstr ""
+
+#: inc/customizer/content-blog.php:30
+msgid "Texto del botón"
+msgstr ""
+
+#: inc/customizer/content-blog.php:51
+msgid "Texto del enlace"
+msgstr ""
+
+#: inc/customizer/content-blog.php:64
+msgid "Texto hover"
+msgstr ""
+
+#: inc/customizer/content-blog.php:28
+msgid ""
+"Texto inicial: “Ideas, recursos y novedades para impulsar tu presencia digital.” Podés editarlo o"
+" dejarlo vacío para recuperar ese texto."
+msgstr ""
+
+#: inc/customizer/header-navigation.php:30
+msgid "Texto personalizado"
+msgstr ""
+
+#: inc/customizer/colors.php:32 inc/integrations.php:150
+msgid "Texto principal"
+msgstr ""
+
+#: inc/customizer/colors.php:35 inc/integrations.php:162
+msgid "Texto secundario"
+msgstr ""
+
+#: inc/customizer/notes.php:25
+msgid "Tipografía"
+msgstr ""
+
+#: inc/extension-bridge.php:211
+msgid "Todos los derechos reservados"
+msgstr ""
+
+#: inc/customizer/footer.php:29 inc/customizer/header-navigation.php:37
+msgid "Tono"
+msgstr ""
+
+#: comments.php:66
+msgid "Tu dirección de correo electrónico no será publicada."
+msgstr ""
+
+#: inc/customizer/content-blog.php:27
+msgid "Título"
+msgstr ""
+
+#: inc/customizer/content-blog.php:41
+msgid "Título del listado"
+msgstr ""
+
+#: inc/customizer/branding.php:66
+msgid "Título del sitio en diseño compacto"
+msgstr ""
+
+#: inc/customizer/colors.php:33 inc/integrations.php:172
+msgid "Títulos"
+msgstr ""
+
+#: inc/customizer/global-style.php:53 inc/integrations.php:130
+msgid "Títulos del contenido"
+msgstr ""
+
+#: inc/customizer/social.php:83
+msgid "Ubicación en el pie"
+msgstr ""
+
+#: inc/customizer/social.php:64
+msgid "Ubicación en la cabecera"
+msgstr ""
+
+#: inc/customizer/sections.php:76
+msgid ""
+"Ubicación y apariencia del bloque nativo Iconos sociales en la cabecera y el pie. Las redes y sus"
+" URLs se administran desde Apariencia > Widgets."
+msgstr ""
+
+#: inc/customizer/social.php:61
+msgid "Un solo bloque compartido"
+msgstr ""
+
+#: inc/appearance.php:169
+msgid ""
+"Una base estable para editar tu sitio sin complicaciones. Personalizá la identidad y el diseño "
+"desde un flujo guiado, sin entregar la estructura global del sitio."
+msgstr ""
+
+#: inc/appearance.php:296
+msgid ""
+"Una extensión instalada requiere versiones compatibles. Revisá su estado antes de habilitar sus "
+"módulos."
+msgstr ""
+
+#: inc/appearance.php:228
+msgid ""
+"Usalo para estilos globales. El texto, las imágenes y las secciones de cada página se editan "
+"desde Páginas o Entradas."
+msgstr ""
+
+#: inc/customizer/branding.php:64
+msgid "Usar ancho de Marca del sitio"
+msgstr ""
+
+#: inc/customizer/branding.php:64
+msgid "Usar un ancho específico"
+msgstr ""
+
+#: inc/appearance.php:204
+msgid ""
+"Usá Fila completa del pie para un bloque ancho, o Widgets del pie de página 1 a 5 para columnas. "
+"Las áreas vacías no se muestran."
+msgstr ""
+
+#: inc/appearance.php:358
+msgid ""
+"Usá Gutenberg como opción recomendada u otros editores compatibles en páginas específicas. La "
+"estructura global sigue bajo control de Lumen."
+msgstr ""
+
+#: inc/block-library.php:68
+msgid ""
+"Usá este hero como punto de partida para una portada, una página institucional o una landing "
+"simple con Gutenberg."
+msgstr ""
+
+#: inc/customizer/screen-layout.php:25
+msgid "Valor base para archivos, entradas y páginas que usan “Heredar global”."
+msgstr ""
+
+#: inc/customizer/colors.php:63
+msgid "Valores base del pie de página."
+msgstr ""
+
+#: inc/customizer/sections.php:27
+msgid ""
+"Valores base del theme. Los estilos definidos en Gutenberg, Elementor u otro editor prevalecen en"
+" cada bloque o módulo."
+msgstr ""
+
+#: inc/customization.php:141
+msgid "Ver artículos"
+msgstr ""
+
+#: inc/appearance.php:270
+msgid "Ver plugins instalados"
+msgstr ""
+
+#: inc/appearance.php:260
+msgid "Ver páginas"
+msgstr ""
+
+#: inc/appearance.php:167
+#, python-format
+msgid "Versión %s"
+msgstr ""
+
+#: inc/customizer/header-navigation.php:40
+msgid "Visible"
+msgstr ""
+
+#: inc/customizer/content-blog.php:32
+msgid "Visual lateral"
+msgstr ""
+
+#: inc/integrations.php:192
+msgid "Viñetas e iconos"
+msgstr ""
+
+#: inc/customizer/global-style.php:58 inc/integrations.php:150
+msgid "Viñetas e íconos de listas"
+msgstr ""
+
+#: 404.php:9
+msgid "Volver al inicio"
+msgstr ""
+
+#: inc/accessibility.php:41 inc/accessibility.php:42 inc/customizer/floating-action.php:26
+msgid "Volver arriba"
+msgstr ""
+
+#: inc/appearance.php:243
+msgid ""
+"Volver arriba funciona de forma independiente. Si una extensión instalada agrega otra acción "
+"flotante en la misma esquina, configurá su posición para evitar superposiciones. El Theme no "
+"controla la posición de las acciones proporcionadas por extensiones."
+msgstr ""
+
+#: inc/widgets.php:53
+#, python-format
+msgid "Widget del pie de página %d"
+msgstr ""
+
+#: inc/widgets.php:78
+msgid "Widgets"
+msgstr ""
+
+#: inc/widgets.php:267
+msgid "Widgets del pie de página"
+msgstr ""
+
+#: inc/customizer/sections.php:74
+msgid ""
+"Widgets, copyright y comportamiento del pie en celular. Podés construir logo, enlaces y menús "
+"desde Widgets."
+msgstr ""
+
+#: inc/enqueue.php:52
+msgid "este elemento"
+msgstr ""
+
+#: inc/appearance.php
+msgid "por"
+msgstr ""
+
+#: inc/extension-bridge.php:208
+msgid "© %1$s %2$s · %3$s"
+msgstr ""
+
+#: inc/appearance.php:276
+msgid "¿Restablecer los ajustes de CreceWeb Lumen?"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Éxito"
+msgstr ""
+
+#: front-page.php:44 home.php:17
+msgid "Últimas publicaciones"
+msgstr ""
+
+#: inc/customizer/sections.php
+msgid "Apoyar Theme + Lite"
+msgstr ""
+
+#: inc/customizer/sections.php
+msgid "Tu aporte voluntario ayuda a sostener el desarrollo y mantenimiento de Lumen Theme y Lumen Lite."
+msgstr ""
+
+#: inc/customizer/sections.php
+msgid "Abrir página de apoyo"
+msgstr ""

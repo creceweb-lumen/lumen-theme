@@ -1,0 +1,57 @@
+.editor-styles-wrapper {
+	background: var(--wp--preset--color--background, #f8fafc);
+}
+
+
+/* Keep the prose width on root blocks only. Nested blocks own their width
+ * through their parent layout and must not inherit the editor canvas limit. */
+:is(
+	.editor-styles-wrapper,
+	.editor-styles-wrapper .is-root-container
+) > .wp-block {
+	max-width: 760px;
+}
+
+:is(
+	.editor-styles-wrapper,
+	.editor-styles-wrapper .is-root-container
+) > .wp-block[data-align="wide"] {
+	max-width: 1120px;
+}
+
+:is(
+	.editor-styles-wrapper,
+	.editor-styles-wrapper .is-root-container
+) > .wp-block[data-align="full"] {
+	max-width: none;
+}
+
+.editor-styles-wrapper .cw-card {
+	background: var(--wp--preset--color--surface, #fff);
+	border: 1px solid var(--wp--preset--color--lumen-border, var(--wp--preset--color--border, #cbd5e1));
+	border-radius: 0.75rem;
+}
+
+.editor-styles-wrapper :focus-visible {
+	outline: 3px solid var(--wp--preset--color--accent-strong, #059669);
+	outline-offset: 3px;
+}
+
+
+.editor-styles-wrapper .cw-demo-hero {
+	padding: 4rem 1.5rem;
+}
+
+.editor-styles-wrapper .cw-demo-card,
+.editor-styles-wrapper .cw-demo-stat-card,
+.editor-styles-wrapper .cw-demo-note {
+	padding: 2rem;
+	border: 1px solid var(--wp--preset--color--lumen-border, var(--wp--preset--color--border, #cbd5e1));
+	border-radius: var(--cw-radius-lg, 1rem);
+	background: var(--wp--preset--color--surface, #fff);
+}
+
+.editor-styles-wrapper .cw-demo-callout {
+	padding: 2.5rem;
+	border-radius: var(--cw-radius-xl, 1.5rem);
+}

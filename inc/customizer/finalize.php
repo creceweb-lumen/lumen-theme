@@ -1,0 +1,51 @@
+<?php
+/**
+ * Customizer finalization.
+ *
+ * Applies detailed-mode visibility and stable control ordering after modules register.
+ *
+ * @package CreceWebLumen
+ */
+
+namespace CreceWeb\Lumen;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+/**
+ * Finalizes visibility and ordering for all registered controls.
+ *
+ * @param \WP_Customize_Manager $wp_customize Manager.
+ * @return void
+ */
+function finalize_customizer_controls( \WP_Customize_Manager $wp_customize ): void {
+	// Detailed controls are hidden individually, rather than hiding entire sections.
+	mark_customizer_controls_as_detailed(
+		$wp_customize,
+		array(
+			'wide_width', 'button_radius', 'button_padding_y', 'button_padding_x', 'form_radius', 'link_decoration',
+			'header_width', 'header_sticky_shadow', 'header_divider', 'navigation_gap', 'navigation_weight', 'navigation_transform',
+			'top_bar_tone', 'top_bar_width', 'top_bar_alignment', 'top_bar_padding', 'top_bar_background_color', 'top_bar_text_color', 'top_bar_link_color',
+			'blog_surface', 'footer_padding', 'footer_widget_gap',
+			'mobile_logo_width_mode', 'mobile_logo_width', 'mobile_site_title_size', 'mobile_site_tagline_size', 'mobile_navigation_font_size',
+			'focus_color', 'motion_preference'
+		)
+	);
+
+	order_customizer_controls(
+		$wp_customize,
+		array(
+			'title_tagline' => array( 'custom_logo', get_customizer_setting_id( 'logo_width' ), 'blogname', get_customizer_setting_id( 'site_title_size' ), get_customizer_setting_id( 'hide_site_title' ), 'blogdescription', get_customizer_setting_id( 'site_tagline_size' ), get_customizer_setting_id( 'hide_site_tagline' ), get_customizer_setting_id( 'mobile_logo_width_mode' ), get_customizer_setting_id( 'mobile_logo_width' ), get_customizer_setting_id( 'mobile_site_title_size' ), get_customizer_setting_id( 'mobile_site_tagline_size' ), 'site_icon' ),
+			'creceweb_global_style' => array( 'creceweb_global_style_dimensions_note', get_customizer_setting_id( 'content_width' ), get_customizer_setting_id( 'wide_width' ), get_customizer_setting_id( 'spacing_density' ), 'creceweb_colors_note_brand', get_customizer_setting_id( 'primary_color' ), get_customizer_setting_id( 'accent_color' ), get_customizer_setting_id( 'accent_strong' ), get_customizer_setting_id( 'background_color' ), get_customizer_setting_id( 'surface_color' ), get_customizer_setting_id( 'text_color' ), get_customizer_setting_id( 'heading_color' ), get_customizer_setting_id( 'link_color' ), get_customizer_setting_id( 'text_muted_color' ), get_customizer_setting_id( 'border_color' ), 'creceweb_content_colors_note', get_customizer_setting_id( 'content_heading_color' ), get_customizer_setting_id( 'content_button_background_color' ), get_customizer_setting_id( 'content_button_hover_color' ), get_customizer_setting_id( 'content_button_text_color' ), get_customizer_setting_id( 'content_box_color' ), get_customizer_setting_id( 'content_bullet_color' ), 'creceweb_global_style_type_note', get_customizer_setting_id( 'font_preset' ), get_customizer_setting_id( 'heading_preset' ), get_customizer_setting_id( 'font_scale' ), get_customizer_setting_id( 'heading_weight' ), 'creceweb_colors_note_actions', get_customizer_setting_id( 'button_background_color' ), get_customizer_setting_id( 'button_hover_color' ), get_customizer_setting_id( 'button_text_color' ), get_customizer_setting_id( 'form_background_color' ), get_customizer_setting_id( 'form_border_color' ), get_customizer_setting_id( 'form_focus_color' ), 'creceweb_global_style_controls_note', get_customizer_setting_id( 'shape' ), get_customizer_setting_id( 'button_style' ), get_customizer_setting_id( 'button_radius' ), get_customizer_setting_id( 'button_padding_y' ), get_customizer_setting_id( 'button_padding_x' ), get_customizer_setting_id( 'form_radius' ), get_customizer_setting_id( 'link_decoration' ) ),
+			'creceweb_header_navigation' => array( 'creceweb_header_structure_note', get_customizer_setting_id( 'header_width' ), get_customizer_setting_id( 'header_behavior' ), get_customizer_setting_id( 'header_sticky_shadow' ), get_customizer_setting_id( 'header_tone' ), get_customizer_setting_id( 'header_padding' ), get_customizer_setting_id( 'header_density' ), get_customizer_setting_id( 'header_divider' ), get_customizer_setting_id( 'header_alignment' ), 'creceweb_header_menu_note', get_customizer_setting_id( 'navigation_align' ), get_customizer_setting_id( 'navigation_gap' ), get_customizer_setting_id( 'navigation_font_size' ), get_customizer_setting_id( 'navigation_weight' ), get_customizer_setting_id( 'navigation_transform' ), get_customizer_setting_id( 'mobile_menu_style' ), get_customizer_setting_id( 'mobile_menu_breakpoint' ), get_customizer_setting_id( 'mobile_navigation_font_size' ), 'creceweb_colors_note_navigation', get_customizer_setting_id( 'navigation_color' ), get_customizer_setting_id( 'navigation_hover_color' ), get_customizer_setting_id( 'navigation_active_color' ), get_customizer_setting_id( 'submenu_background_color' ), get_customizer_setting_id( 'submenu_hover_text_color' ), get_customizer_setting_id( 'submenu_hover_background_color' ), get_customizer_setting_id( 'submenu_hover_background_opacity' ), 'creceweb_header_topbar_note', get_customizer_setting_id( 'top_bar_enabled' ), get_customizer_setting_id( 'top_bar_tone' ), get_customizer_setting_id( 'top_bar_width' ), get_customizer_setting_id( 'top_bar_alignment' ), get_customizer_setting_id( 'top_bar_padding' ), get_customizer_setting_id( 'top_bar_background_color' ), get_customizer_setting_id( 'top_bar_text_color' ), get_customizer_setting_id( 'top_bar_link_color' ) ),
+			'creceweb_screen_layout' => array( 'creceweb_sidebar_note', get_customizer_setting_id( 'sidebar_layout' ), get_customizer_setting_id( 'archive_sidebar_layout' ), get_customizer_setting_id( 'single_sidebar_layout' ), get_customizer_setting_id( 'page_sidebar_layout' ), get_customizer_setting_id( 'sidebar_width' ) ),
+			'creceweb_content_blog' => array( 'creceweb_blog_intro_note', get_customizer_setting_id( 'blog_intro_enabled' ), get_customizer_setting_id( 'blog_intro_eyebrow' ), get_customizer_setting_id( 'blog_intro_title' ), get_customizer_setting_id( 'blog_intro_description' ), get_customizer_setting_id( 'blog_intro_show_button' ), get_customizer_setting_id( 'blog_intro_button_label' ), get_customizer_setting_id( 'blog_intro_button_url' ), get_customizer_setting_id( 'blog_intro_visual_type' ), get_customizer_setting_id( 'blog_intro_image' ), get_customizer_setting_id( 'blog_intro_alignment' ), 'creceweb_blog_overview_note', 'creceweb_blog_archive_note', 'creceweb_blog_feed_header_note', get_customizer_setting_id( 'blog_feed_title' ), get_customizer_setting_id( 'blog_feed_description' ), 'creceweb_blog_structure_note', get_customizer_setting_id( 'blog_layout' ), get_customizer_setting_id( 'blog_columns' ), get_customizer_setting_id( 'blog_card_layout' ), 'creceweb_blog_content_note', get_customizer_setting_id( 'blog_show_featured_image' ), get_customizer_setting_id( 'blog_image_ratio' ), get_customizer_setting_id( 'blog_show_category' ), get_customizer_setting_id( 'blog_show_meta' ), get_customizer_setting_id( 'blog_show_excerpt' ), get_customizer_setting_id( 'blog_show_read_more' ), get_customizer_setting_id( 'blog_read_more_label' ), 'creceweb_blog_read_more_style_note', get_customizer_setting_id( 'blog_read_more_style' ), get_customizer_setting_id( 'blog_read_more_shape' ), get_customizer_setting_id( 'blog_read_more_background_color' ), get_customizer_setting_id( 'blog_read_more_hover_background_color' ), get_customizer_setting_id( 'blog_read_more_text_color' ), get_customizer_setting_id( 'blog_read_more_hover_text_color' ), get_customizer_setting_id( 'blog_read_more_border_color' ), 'creceweb_blog_style_note', get_customizer_setting_id( 'blog_surface' ), 'creceweb_single_post_note', get_customizer_setting_id( 'single_layout' ), get_customizer_setting_id( 'single_header_alignment' ), get_customizer_setting_id( 'single_featured_position' ), get_customizer_setting_id( 'single_meta_visibility' ) ),
+			'creceweb_footer' => array( 'creceweb_footer_widgets_note', get_customizer_setting_id( 'footer_widget_columns' ), get_customizer_setting_id( 'footer_widget_gap' ), 'creceweb_footer_appearance_note', get_customizer_setting_id( 'footer_tone' ), get_customizer_setting_id( 'footer_padding' ), get_customizer_setting_id( 'footer_density' ), 'creceweb_footer_copyright_note', get_customizer_setting_id( 'show_copyright' ), 'creceweb_colors_note_footer', get_customizer_setting_id( 'footer_background_color' ), get_customizer_setting_id( 'footer_text_color' ), get_customizer_setting_id( 'footer_link_color' ), get_customizer_setting_id( 'copyright_background_color' ), get_customizer_setting_id( 'copyright_text_color' ), 'creceweb_footer_mobile_note', get_customizer_setting_id( 'mobile_footer_columns' ), get_customizer_setting_id( 'hide_footer_widgets_on_mobile' ) ),
+			'creceweb_social' => array( 'creceweb_social_source_note', get_customizer_setting_id( 'social_content_mode' ), 'creceweb_social_header_note', get_customizer_setting_id( 'social_header_position' ), get_customizer_setting_id( 'social_header_mobile_enabled' ), get_customizer_setting_id( 'social_header_color' ), get_customizer_setting_id( 'social_header_hover_color' ), 'creceweb_social_footer_note', get_customizer_setting_id( 'social_footer_position' ), get_customizer_setting_id( 'social_footer_alignment' ), get_customizer_setting_id( 'social_footer_color' ), get_customizer_setting_id( 'social_footer_hover_color' ), 'creceweb_social_common_note', get_customizer_setting_id( 'social_icon_size' ), get_customizer_setting_id( 'social_icon_gap' ) ),
+			'creceweb_responsive' => array( 'creceweb_responsive_note', get_customizer_setting_id( 'tablet_gutter' ), get_customizer_setting_id( 'mobile_gutter' ) ),
+			'creceweb_floating_action' => array( get_customizer_setting_id( 'floating_action' ), get_customizer_setting_id( 'floating_action_background_color' ), get_customizer_setting_id( 'floating_action_icon_color' ), get_customizer_setting_id( 'floating_action_size' ) ),
+			'creceweb_accessibility' => array( 'creceweb_accessibility_note', get_customizer_setting_id( 'focus_color' ), get_customizer_setting_id( 'motion_preference' ) ),
+		)
+	);
+}

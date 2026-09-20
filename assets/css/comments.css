@@ -1,0 +1,29 @@
+/* Performance Phase 3A.2 · Native comments presentation loaded only when comments can render. */
+/* Comments: native WordPress template with the same restrained editorial rhythm. */
+.cw-comments { max-width:44rem; margin:clamp(3rem,7vw,5rem) auto 0; padding-top:clamp(2rem,4vw,3rem); border-top:1px solid color-mix(in srgb,var(--cw-color-border) 72%,transparent); }
+.cw-comments__title, .cw-comments__reply-title { margin:0; color:var(--cw-color-heading,var(--cw-color-primary)); font-size:clamp(1.25rem,2vw,1.55rem); letter-spacing:-.025em; }
+.cw-comments__list, .cw-comments__list .children { list-style:none; margin:0; padding:0; }
+.cw-comments__list { display:grid; gap:1.5rem; margin-top:1.5rem; }
+.cw-comments__list .children { display:grid; gap:1.25rem; margin-top:1.25rem; margin-left:clamp(1rem,4vw,2.5rem); padding-left:clamp(.9rem,3vw,1.5rem); border-left:1px solid color-mix(in srgb,var(--cw-color-border) 72%,transparent); }
+.cw-comments .comment-body { position:relative; padding:1.25rem 1.35rem; border:1px solid color-mix(in srgb,var(--cw-color-border) 78%,transparent); border-radius:var(--cw-radius-md); background:var(--cw-color-surface); }
+.cw-comments .comment-author { display:flex; align-items:center; gap:.7rem; min-height:48px; color:var(--cw-color-heading,var(--cw-color-primary)); font-weight:720; }
+.cw-comments .comment-author .avatar { width:48px; height:48px; margin:0 .65rem 0 0; border-radius:50%; }
+.cw-comments .comment-metadata { margin-top:.5rem; color:var(--cw-color-text-muted); font-size:.84rem; }
+.cw-comments .comment-metadata a { color:inherit; }
+.cw-comments .comment-content { margin-top:1rem; line-height:1.72; }
+.cw-comments .comment-content > :last-child { margin-bottom:0; }
+.cw-comments .reply { margin-top:1rem; }
+.cw-comments .reply a, .cw-comments .comment-reply-title small a { color:var(--cw-color-accent-strong); font-size:.9rem; font-weight:720; text-decoration:none; }
+.cw-comments .reply a:hover, .cw-comments .comment-reply-title small a:hover { text-decoration:underline; }
+.cw-comments__navigation { margin-top:1.5rem; }
+.cw-comments__closed { margin:1.5rem 0 0; color:var(--cw-color-text-muted); }
+.cw-comments .comment-respond { margin-top:2rem; padding:clamp(1.25rem,3vw,1.75rem); border-radius:var(--cw-radius-md); background:color-mix(in srgb,var(--cw-color-accent) 6%,var(--cw-color-surface)); }
+.cw-comments .comment-respond .comment-form { display:grid; gap:1rem; margin-top:1rem; }
+.cw-comments .comment-respond .comment-form > p { margin:0; }
+.cw-comments .comment-respond label { display:block; margin-bottom:.4rem; color:var(--cw-color-heading,var(--cw-color-primary)); font-size:.92rem; font-weight:700; }
+.cw-comments .comment-respond :is(input[type="text"],input[type="email"],input[type="url"],textarea) { width:100%; padding:.75rem .85rem; border:1px solid var(--cw-color-border); border-radius:.45rem; background:var(--cw-color-surface); color:var(--cw-color-text); font:inherit; }
+.cw-comments .comment-respond textarea { min-height:10rem; resize:vertical; }
+.cw-comments .comment-respond .form-submit { margin-top:.25rem; }
+.cw-comments .comment-respond input[type="submit"] { border:0; border-radius:.45rem; padding:.75rem 1rem; background:var(--cw-color-accent-strong); color:#fff; cursor:pointer; font:inherit; font-weight:720; }
+.cw-comments .comment-respond input[type="submit"]:hover { transform:translateY(-1px); }
+@media (max-width:581px) { .cw-comments .comment-body { padding:1rem; } .cw-comments__list .children { margin-left:.5rem; padding-left:.75rem; } }

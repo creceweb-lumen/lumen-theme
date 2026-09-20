@@ -1,0 +1,28 @@
+CreceWeb Lumen resource licenses
+=================================
+
+Theme code and design
+Copyright 2026 CreceWeb.
+Source: https://creceweb.com.ar/lumen-theme
+License: GNU General Public License v2 or later.
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Theme screenshot and original illustration (screenshot.png)
+Copyright 2026 CreceWeb.
+Source: https://creceweb.com.ar/lumen-theme
+Note: Original CreceWeb asset created specifically for CreceWeb Lumen and included in this theme package.
+License: GNU General Public License v2 or later.
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Inline SVG geometric icons
+Copyright 2026 CreceWeb.
+Source: https://creceweb.com.ar/lumen-theme
+Note: Original CreceWeb assets created specifically for CreceWeb Lumen and included inline in the theme PHP templates.
+License: GNU General Public License v2 or later.
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Fonts
+No font files or remote font services are bundled or loaded. The theme uses system font stacks.
+
+Third-party libraries and assets
+No third-party JavaScript, CSS, fonts, images, icon libraries, or other third-party assets are bundled with this theme. WordPress core-provided dependencies such as jQuery and Dashicons are referenced through WordPress APIs and are not bundled.
