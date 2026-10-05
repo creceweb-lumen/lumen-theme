@@ -27,6 +27,9 @@ function ensure_customizer_control_classes(): void {
 		__NAMESPACE__ . '\\Logo_Width_Control',
 		__NAMESPACE__ . '\\Boolean_Checkbox_Control',
 		__NAMESPACE__ . '\\External_Link_Control',
+		__NAMESPACE__ . '\\External_Link_Section',
+		__NAMESPACE__ . '\\Font_Source_Select_Control',
+		__NAMESPACE__ . '\\Google_Font_Catalog_Control',
 	);
 
 	foreach ( $required_classes as $class_name ) {

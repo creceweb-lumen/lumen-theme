@@ -12,6 +12,60 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Normalizes frontend module requirements to the public allowlist.
+ *
+ * @param array<int,mixed> $modules Raw module identifiers.
+ * @return array<int,string>
+ */
+function normalize_frontend_modules( array $modules ): array {
+	$known      = array( 'sections', 'header_metrics', 'chrome_extras' );
+	$normalized = array();
+
+	foreach ( $modules as $module ) {
+		if ( ! is_scalar( $module ) ) {
+			continue;
+		}
+
+		$module = sanitize_key( (string) $module );
+		if ( in_array( $module, $known, true ) ) {
+			$normalized[] = $module;
+		}
+	}
+
+	return array_values( array_unique( $normalized ) );
+}
+
+/**
+ * Returns the frontend modules required by the Theme and active extensions.
+ *
+ * Extensions may add known requirements but cannot remove Theme-owned ones.
+ *
+ * @return array<int,string>
+ */
+function get_required_frontend_modules(): array {
+	$theme = function_exists( __NAMESPACE__ . '\\get_theme_required_frontend_modules' )
+		? normalize_frontend_modules( get_theme_required_frontend_modules() )
+		: array();
+
+	$filtered = apply_filters( 'creceweb_lumen_required_frontend_modules', $theme );
+	$filtered = is_array( $filtered ) ? $filtered : array();
+
+	return normalize_frontend_modules( array_merge( $theme, $filtered ) );
+}
+
+/**
+ * Returns whether one known frontend module is required for this request.
+ *
+ * @param string $module Frontend module identifier.
+ * @return bool
+ */
+function request_requires_frontend_module( string $module ): bool {
+	$module = sanitize_key( $module );
+
+	return in_array( $module, get_required_frontend_modules(), true );
+}
+
+/**
  * Returns the registered sections shown inside Appearance > CreceWeb Lumen.
  *
  * @return array<string,array{label:string,callback:callable,capability:string,priority:int,owner:string}>

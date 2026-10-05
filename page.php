@@ -80,6 +80,7 @@ if ( $creceweb_default_lumen_hero_only || $creceweb_default_lumen_hero_with_side
 }
 
 $GLOBALS['creceweb_lumen_default_hero_only_page'] = $creceweb_default_lumen_hero_only;
+$GLOBALS['creceweb_lumen_breadcrumb_defer_after_hero'] = (bool) $creceweb_default_lumen_hero;
 
 get_header();
 ?>
@@ -91,7 +92,15 @@ get_header();
 					<h1 class="entry-title wp-block-post-title"><?php the_title(); ?></h1>
 				<?php endif; ?>
 				<?php if ( has_post_thumbnail() ) : ?><div class="entry-thumbnail"><?php the_post_thumbnail( 'large' ); ?></div><?php endif; ?>
-				<div class="entry-content wp-block-post-content"><?php the_content(); ?></div>
+				<div class="entry-content wp-block-post-content"><?php
+					if ( $creceweb_default_lumen_hero ) {
+						\CreceWeb\Lumen\start_breadcrumb_after_hero_capture( $creceweb_default_lumen_hero['block'] );
+					}
+					the_content();
+					if ( $creceweb_default_lumen_hero ) {
+						\CreceWeb\Lumen\stop_breadcrumb_after_hero_capture();
+					}
+				?></div>
 				<?php wp_link_pages(); ?>
 			</article>
 			<?php if ( comments_open() || get_comments_number() ) { comments_template(); } ?>

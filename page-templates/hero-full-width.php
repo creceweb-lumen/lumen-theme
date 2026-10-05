@@ -26,6 +26,7 @@ $creceweb_template_page_id = (int) get_queried_object_id();
 $creceweb_template_hero_only = false;
 $creceweb_template_library_hero_only = false;
 $creceweb_template_lumen_hero_only = false;
+$creceweb_template_has_hero_candidate = false;
 
 /**
  * Lumen Library patterns from Lite or Pro are full-width Gutenberg groups, not native
@@ -57,6 +58,7 @@ if ( $creceweb_template_page_id > 0 && ! comments_open( $creceweb_template_page_
 	$creceweb_template_hero    = \CreceWeb\Lumen\get_leading_full_width_block( $creceweb_template_blocks );
 
 	if ( $creceweb_template_hero ) {
+		$creceweb_template_has_hero_candidate = true;
 		$creceweb_template_remaining = \CreceWeb\Lumen\get_visible_blocks( array_slice( $creceweb_template_blocks, $creceweb_template_hero['index'] + 1 ) );
 		$creceweb_template_hero_only = empty( $creceweb_template_remaining );
 		$creceweb_template_library_hero_only = $creceweb_template_hero_only && $creceweb_is_library_pattern_block( $creceweb_template_hero['block'] ?? null );
@@ -91,7 +93,16 @@ add_filter(
 
 $GLOBALS['creceweb_lumen_hero_only_page'] = $creceweb_template_hero_only;
 $GLOBALS['creceweb_lumen_library_hero_only_page'] = $creceweb_template_library_hero_only;
+if (
+	! $creceweb_template_has_hero_candidate
+	&& $creceweb_template_page_id > 0
+	&& 'builder' === (string) get_post_meta( $creceweb_template_page_id, '_elementor_edit_mode', true )
+) {
+	$creceweb_template_has_hero_candidate = true;
+}
+
 $GLOBALS['creceweb_lumen_hero_base_only_page'] = $creceweb_template_lumen_hero_only;
+$GLOBALS['creceweb_lumen_breadcrumb_defer_after_hero'] = $creceweb_template_has_hero_candidate;
 
 get_header();
 ?>
@@ -179,6 +190,9 @@ get_header();
 				<section class="cw-hero-template__hero<?php echo $creceweb_is_elementor ? ' cw-hero-template__hero--elementor' : ''; ?>" data-cw-lumen-hero="1"<?php echo $creceweb_is_hero_only ? ' style="display:flex;flex:1 1 0;flex-direction:column;min-height:0"' : ''; ?>>
 					<?php echo $creceweb_hero_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered WordPress/Elementor markup. ?>
 				</section>
+				<?php \CreceWeb\Lumen\render_breadcrumb_area( 'after_hero' ); ?>
+			<?php elseif ( $creceweb_template_has_hero_candidate ) : ?>
+				<?php \CreceWeb\Lumen\render_breadcrumb_area( 'after_header' ); ?>
 			<?php endif; ?>
 
 			<?php // The sidebar belongs only to real content after the hero; never render it by itself. ?>

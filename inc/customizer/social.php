@@ -48,7 +48,7 @@ function register_social_controls( \WP_Customize_Manager $wp_customize ): void {
 		'creceweb_social_source_note',
 		'creceweb_social',
 		__( 'Contenido de las redes', 'creceweb-lumen' ),
-		__( 'Las redes y sus URLs permanecen en el bloque nativo “Iconos sociales” de WordPress. Elegí si querés compartir un mismo bloque entre cabecera y pie o administrar bloques independientes.', 'creceweb-lumen' ),
+		__( 'Las redes y sus URLs permanecen en el bloque nativo “Iconos sociales” de WordPress. Elegí si querés compartir un mismo bloque entre las ubicaciones del Theme o administrar cabecera y pie de forma independiente.', 'creceweb-lumen' ),
 		5,
 		'step'
 	);
@@ -56,15 +56,28 @@ function register_social_controls( \WP_Customize_Manager $wp_customize ): void {
 		$wp_customize,
 		'social_content_mode',
 		'creceweb_social',
-		__( 'Contenido de cabecera y pie', 'creceweb-lumen' ),
+		__( 'Fuente del contenido social', 'creceweb-lumen' ),
 		array(
 			'shared'   => __( 'Un solo bloque compartido', 'creceweb-lumen' ),
 			'separate' => __( 'Bloques independientes', 'creceweb-lumen' ),
 		),
 		10,
-		__( 'Compartido: el área “Redes sociales · Pie” alimenta ambas ubicaciones; si está vacía, se usa “Redes sociales · Cabecera”. Independiente: cada ubicación usa exclusivamente su propia área.', 'creceweb-lumen' ),
+		__( 'Compartido: el área “Redes sociales · Pie” alimenta cabecera, pie y menú móvil; si está vacía, se usa “Redes sociales · Cabecera”. Independiente: cabecera y menú móvil usan el área de cabecera; el pie usa su propia área.', 'creceweb-lumen' ),
 		'refresh'
 	);
+
+	add_customizer_checkbox(
+		$wp_customize,
+		'social_mobile_menu_enabled',
+		'creceweb_social',
+		__( 'Mostrar dentro del menú móvil', 'creceweb-lumen' ),
+		15,
+		__( 'Muestra el mismo contenido social dentro del panel móvil. En modo independiente usa el área “Redes sociales · Cabecera”.', 'creceweb-lumen' ),
+		null,
+		'refresh'
+	);
+	add_customizer_color( $wp_customize, 'social_mobile_menu_color', 'creceweb_social', __( 'Color de iconos en menú móvil', 'creceweb-lumen' ), 16, null, __( 'Opcional. Si queda vacío, se respetan los colores definidos por el bloque Iconos sociales.', 'creceweb-lumen' ), 'refresh' );
+
 
 	add_customizer_note( $wp_customize, 'creceweb_social_header_note', 'creceweb_social', __( '1. Cabecera', 'creceweb-lumen' ), __( 'Elegí dónde aparece el área social de cabecera.', 'creceweb-lumen' ), 20, 'step' );
 	add_customizer_select(

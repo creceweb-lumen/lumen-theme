@@ -47,6 +47,8 @@ if ( $creceweb_template_has_hero ) {
 	);
 }
 
+$GLOBALS['creceweb_lumen_breadcrumb_defer_after_hero'] = $creceweb_template_has_hero;
+
 get_header();
 ?>
 <main id="cw-main-content" class="cw-template-main<?php echo $creceweb_template_has_hero ? ' cw-template-main--hero' : ''; ?>">
@@ -87,6 +89,9 @@ get_header();
 			<section class="cw-hero-template__hero<?php echo $creceweb_is_elementor ? ' cw-hero-template__hero--elementor' : ''; ?>" data-cw-lumen-hero="1">
 				<?php echo $creceweb_hero_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered WordPress/Elementor markup. ?>
 			</section>
+			<?php \CreceWeb\Lumen\render_breadcrumb_area( 'after_hero' ); ?>
+		<?php elseif ( $creceweb_template_has_hero ) : ?>
+			<?php \CreceWeb\Lumen\render_breadcrumb_area( 'after_header' ); ?>
 		<?php endif; ?>
 
 		<div class="<?php echo $creceweb_has_hero ? 'cw-hero-template__layout ' : ''; ?>cw-content-wrap cw-entry--single cw-single-layout--<?php echo esc_attr( $creceweb_single_layout ); ?> cw-single-header-align--<?php echo esc_attr( $creceweb_header_alignment ); ?> cw-screen-layout cw-screen-layout--<?php echo esc_attr( $creceweb_sidebar_layout ); ?>">

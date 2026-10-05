@@ -2,7 +2,7 @@
 /**
  * Quick-start Customizer controls.
  *
- * Registers visual presets and detailed-mode controls.
+ * Registers visual presets.
  *
  * @package CreceWebLumen
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return void
  */
 function register_quick_start_controls( \WP_Customize_Manager $wp_customize ): void {
-	// Inicio rápido: presets y modo de profundidad del panel.
+	// Inicio rápido: preset visual.
 	$preset_setting = add_customizer_setting( $wp_customize, 'design_preset', 'refresh' );
 	$wp_customize->add_control(
 		new Design_Preset_Control(
@@ -34,5 +34,6 @@ function register_quick_start_controls( \WP_Customize_Manager $wp_customize ): v
 			)
 		)
 	);
-	add_customizer_checkbox( $wp_customize, 'show_advanced_controls', 'creceweb_quick_start', __( 'Mostrar ajustes detallados', 'creceweb-lumen' ), 20, __( 'Revela tamaños finos, estados especiales y preferencias técnicas dentro de cada área, sin ocultar secciones del menú.', 'creceweb-lumen' ), null, 'postMessage' );
+	// Compatibilidad: el setting histórico permanece registrado, pero G2.2 ya no lo usa para ocultar controles.
+	add_customizer_setting( $wp_customize, 'show_advanced_controls', 'postMessage' );
 }

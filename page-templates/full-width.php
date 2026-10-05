@@ -43,6 +43,7 @@ add_filter(
 
 $GLOBALS['creceweb_lumen_full_first_hero_page'] = $creceweb_template_first_lumen_hero;
 $GLOBALS['creceweb_lumen_full_hero_only_page']  = $creceweb_template_lumen_hero_only;
+$GLOBALS['creceweb_lumen_breadcrumb_defer_after_hero'] = $creceweb_template_first_lumen_hero;
 
 get_header();
 ?>
@@ -51,7 +52,15 @@ get_header();
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'cw-entry cw-entry--full cw-entry--full-canvas' ); ?>>
 			<?php // This canvas template intentionally omits Lumen's automatic title. Add a heading block in the selected editor when needed. ?>
 			<div class="entry-content wp-block-post-content">
-				<?php the_content(); ?>
+				<?php
+				if ( $creceweb_template_lumen_hero ) {
+					\CreceWeb\Lumen\start_breadcrumb_after_hero_capture( $creceweb_template_lumen_hero['block'] );
+				}
+				the_content();
+				if ( $creceweb_template_lumen_hero ) {
+					\CreceWeb\Lumen\stop_breadcrumb_after_hero_capture();
+				}
+				?>
 				<?php wp_link_pages(); ?>
 			</div>
 			<?php if ( comments_open() || get_comments_number() ) { comments_template(); } ?>

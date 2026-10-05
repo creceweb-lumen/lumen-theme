@@ -187,6 +187,81 @@ function get_leading_lumen_hero_block( array $blocks ): ?array {
 
 
 /**
+ * Returns a stable signature for one parsed Gutenberg block.
+ *
+ * @param array<string,mixed> $block Parsed block.
+ * @return string
+ */
+function breadcrumb_target_block_signature( array $block ): string {
+	$encoded = wp_json_encode( $block );
+
+	return is_string( $encoded ) ? md5( $encoded ) : '';
+}
+
+/**
+ * Captures the dedicated Breadcrumb bridge directly after one known leading
+ * Lumen Hero block while preserving WordPress' normal the_content pipeline.
+ *
+ * @param array<string,mixed> $hero_block Parsed leading Hero block.
+ * @return void
+ */
+function start_breadcrumb_after_hero_capture( array $hero_block ): void {
+	$signature = breadcrumb_target_block_signature( $hero_block );
+	if ( '' === $signature ) {
+		return;
+	}
+
+	$GLOBALS['creceweb_lumen_breadcrumb_target_signature'] = $signature;
+	$GLOBALS['creceweb_lumen_breadcrumb_target_rendered']  = false;
+
+	add_filter( 'render_block', __NAMESPACE__ . '\\append_breadcrumb_after_target_hero', 999, 2 );
+}
+
+/** @return void */
+function stop_breadcrumb_after_hero_capture(): void {
+	remove_filter( 'render_block', __NAMESPACE__ . '\\append_breadcrumb_after_target_hero', 999 );
+	unset( $GLOBALS['creceweb_lumen_breadcrumb_target_signature'], $GLOBALS['creceweb_lumen_breadcrumb_target_rendered'] );
+}
+
+/**
+ * @param string                   $block_content Rendered block markup.
+ * @param array<string,mixed>      $block         Parsed block.
+ * @return string
+ */
+function append_breadcrumb_after_target_hero( string $block_content, array $block ): string {
+	if (
+		! empty( $GLOBALS['creceweb_lumen_breadcrumb_target_rendered'] )
+		|| empty( $GLOBALS['creceweb_lumen_breadcrumb_target_signature'] )
+	) {
+		return $block_content;
+	}
+
+	$signature = breadcrumb_target_block_signature( $block );
+	if ( '' === $signature || $signature !== (string) $GLOBALS['creceweb_lumen_breadcrumb_target_signature'] ) {
+		return $block_content;
+	}
+
+	$GLOBALS['creceweb_lumen_breadcrumb_target_rendered'] = true;
+
+	ob_start();
+	do_action( 'creceweb_lumen_breadcrumb_area', 'after_hero' );
+	$breadcrumb = (string) ob_get_clean();
+
+	return $block_content . $breadcrumb;
+}
+
+/**
+ * Prints the dedicated Breadcrumb bridge for template-level placements.
+ *
+ * @param string $context Placement context.
+ * @return void
+ */
+function render_breadcrumb_area( string $context = 'after_header' ): void {
+	do_action( 'creceweb_lumen_breadcrumb_area', $context );
+}
+
+
+/**
  * Determines whether a parsed Gutenberg block produces a visible region.
  *
  * Gutenberg can keep trailing empty paragraphs, whitespace-only freeform

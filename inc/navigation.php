@@ -27,6 +27,59 @@ function register_navigation_locations(): void {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\register_navigation_locations', 20 );
 
 /**
+ * Renders the existing WordPress site identity inside the compact menu.
+ *
+ * @return string
+ */
+function render_mobile_menu_identity(): string {
+	$settings = get_customizations();
+	if ( '1' !== (string) ( $settings['mobile_menu_identity_enabled'] ?? '0' ) ) {
+		return '';
+	}
+
+	$parts = array();
+	$logo  = get_custom_logo();
+	if ( is_string( $logo ) && '' !== trim( $logo ) ) {
+		$parts[] = str_replace( 'custom-logo-link', 'custom-logo-link wp-block-site-logo', $logo );
+	}
+
+	$name = trim( (string) get_bloginfo( 'name', 'display' ) );
+	if ( '' !== $name ) {
+		$parts[] = sprintf(
+			'<a class="cw-classic-navigation__mobile-identity-name" href="%1$s" rel="home">%2$s</a>',
+			esc_url( home_url( '/' ) ),
+			esc_html( $name )
+		);
+	}
+
+	if ( empty( $parts ) ) {
+		return '';
+	}
+
+	return '<div class="cw-classic-navigation__mobile-identity">' . implode( '', $parts ) . '</div>';
+}
+
+/**
+ * Renders extension-owned compact-menu utilities without giving extensions
+ * ownership of the menu container or navigation geometry.
+ *
+ * @return string
+ */
+function render_mobile_menu_utilities(): string {
+	/**
+	 * Filters optional utilities rendered after the primary menu in compact mode.
+	 *
+	 * @param string $markup Existing safe extension markup.
+	 */
+	$markup = apply_filters( 'creceweb_lumen_mobile_menu_utilities', '' );
+	if ( ! is_string( $markup ) || '' === trim( $markup ) ) {
+		return '';
+	}
+
+	return '<div class="cw-classic-navigation__mobile-utilities">' . $markup . '</div>';
+}
+
+/**
  * Returns the native menu rendered for one registered location.
  *
  * The primary menu includes the structural elements required by the mobile
@@ -62,33 +115,57 @@ function render_navigation( string $location = CRECEWEB_PRIMARY_MENU_LOCATION ):
 		return '';
 	}
 
-	$toggle   = '';
-	$backdrop = '';
-	$close    = '';
+	$toggle          = '';
+	$backdrop        = '';
+	$close           = '';
+	$mobile_identity = '';
 
 	if ( $is_primary ) {
-		$toggle = sprintf(
-			'<button class="cw-classic-navigation__toggle" type="button" aria-controls="%1$s" aria-expanded="false"><span class="screen-reader-text">%2$s</span><span aria-hidden="true">☰</span></button>',
-			esc_attr( $container ),
-			esc_html__( 'Abrir menú', 'creceweb-lumen' )
-		);
+		$settings   = get_customizations();
+		$open_style = (string) ( $settings['mobile_menu_open_style'] ?? 'icon' );
+		$toggle     = 'label_icon' === $open_style
+			? sprintf(
+				'<button class="cw-classic-navigation__toggle cw-classic-navigation__toggle--label-icon" type="button" aria-controls="%1$s" aria-expanded="false" aria-label="%2$s"><span class="cw-classic-navigation__toggle-label" aria-hidden="true">%3$s</span><span class="cw-classic-navigation__toggle-glyph" aria-hidden="true">—</span></button>',
+				esc_attr( $container ),
+				esc_attr__( 'Abrir menú', 'creceweb-lumen' ),
+				esc_html__( 'Menú', 'creceweb-lumen' )
+			)
+			: sprintf(
+				'<button class="cw-classic-navigation__toggle cw-classic-navigation__toggle--icon" type="button" aria-controls="%1$s" aria-expanded="false"><span class="screen-reader-text">%2$s</span><span aria-hidden="true">☰</span></button>',
+				esc_attr( $container ),
+				esc_html__( 'Abrir menú', 'creceweb-lumen' )
+			);
 
 		$backdrop = sprintf(
 			'<button class="cw-classic-navigation__backdrop" type="button" tabindex="-1" aria-hidden="true" aria-label="%1$s"></button>',
 			esc_attr__( 'Cerrar menú', 'creceweb-lumen' )
 		);
 
-		$close = sprintf(
-			'<button class="cw-classic-navigation__close" type="button"><span class="screen-reader-text">%1$s</span><span aria-hidden="true">×</span></button>',
-			esc_html__( 'Cerrar menú', 'creceweb-lumen' )
-		);
+		$close_style = (string) ( $settings['mobile_menu_close_style'] ?? 'icon' );
+		$close       = 'label_icon' === $close_style
+			? sprintf(
+				'<button class="cw-classic-navigation__close cw-classic-navigation__close--label-icon" type="button"><span class="cw-classic-navigation__close-label">%1$s</span><span aria-hidden="true">×</span></button>',
+				esc_html__( 'Cerrar menú', 'creceweb-lumen' )
+			)
+			: sprintf(
+				'<button class="cw-classic-navigation__close cw-classic-navigation__close--icon" type="button"><span class="screen-reader-text">%1$s</span><span aria-hidden="true">×</span></button>',
+				esc_html__( 'Cerrar menú', 'creceweb-lumen' )
+			);
+
+		$mobile_identity = render_mobile_menu_identity();
 	}
 
+	$mobile_utilities = $is_primary ? render_mobile_menu_utilities() : '';
+	$mobile_social    = $is_primary ? render_mobile_menu_social_widgets() : '';
+
 	$menu_panel = sprintf(
-		'<div id="%1$s" class="cw-classic-navigation__menu-container">%2$s%3$s</div>',
+		'<div id="%1$s" class="cw-classic-navigation__menu-container">%2$s%3$s%4$s%5$s%6$s</div>',
 		esc_attr( $container ),
+		$mobile_identity,
 		$close,
-		$menu_markup
+		$menu_markup,
+		$mobile_utilities,
+		$mobile_social
 	);
 
 	return sprintf(

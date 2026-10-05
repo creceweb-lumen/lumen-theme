@@ -7,6 +7,24 @@
 
 namespace CreceWeb\Lumen;
 
+
+/**
+ * Loads the selected remote Google Fonts stylesheet in block-editor contexts.
+ *
+ * @return void
+ */
+function enqueue_editor_google_fonts(): void {
+	if ( ! is_admin() || ! should_enqueue_remote_google_fonts() ) {
+		return;
+	}
+
+	$url = get_google_fonts_stylesheet_url();
+	if ( '' !== $url ) {
+		wp_enqueue_style( 'creceweb-lumen-google-fonts', $url, array(), null );
+	}
+}
+add_action( 'enqueue_block_assets', __NAMESPACE__ . '\enqueue_editor_google_fonts', 5 );
+
 /**
  * Adds a body class that helps blocks identify the recommended Lumen environment.
  *
@@ -31,7 +49,7 @@ function add_editor_customization_styles( array $settings, $context ): array {
 	}
 
 	$settings['styles'][] = array(
-		'css' => get_customization_css(),
+		'css' => get_inter_font_face_css() . get_customization_css(),
 	);
 
 	return $settings;
