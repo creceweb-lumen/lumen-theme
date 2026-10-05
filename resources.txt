@@ -10,19 +10,54 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Theme screenshot and original illustration (screenshot.png)
 Copyright 2026 CreceWeb.
 Source: https://creceweb.com.ar/lumen-theme
-Note: Original CreceWeb asset created specifically for CreceWeb Lumen and included in this theme package.
+Note: Original CreceWeb asset created specifically for CreceWeb Lumen and included in this Theme package.
+License: GNU General Public License v2 or later.
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Lumen Lite compatibility logo (assets/images/lumen-lite-logo.webp)
+Copyright 2026 CreceWeb.
+Source: https://creceweb.com.ar/lumen-lite
+Note: Original CreceWeb asset used only in the Theme administration/onboarding interface.
 License: GNU General Public License v2 or later.
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Inline SVG geometric icons
 Copyright 2026 CreceWeb.
 Source: https://creceweb.com.ar/lumen-theme
-Note: Original CreceWeb assets created specifically for CreceWeb Lumen and included inline in the theme PHP templates.
+Note: Original CreceWeb assets created specifically for CreceWeb Lumen and included inline in Theme PHP templates.
 License: GNU General Public License v2 or later.
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Fonts
-No font files or remote font services are bundled or loaded. The theme uses system font stacks.
+No font binaries are bundled. By default the Theme uses system font stacks and makes no font request. Inter Local is stored in WordPress uploads only after explicit administrator selection. Google Fonts are optional and remote only after explicit administrator selection. The Customizer catalog metadata is a bundled local JSON snapshot and is shown only after the administrator enables it.
+
+Inter
+Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter).
+Source: https://github.com/rsms/inter
+Local font source used after opt-in: https://fonts.gstatic.com/
+Bundled license text: assets/licenses/inter-OFL-1.1.txt
+License: SIL Open Font License 1.1
+License URI: https://openfontlicense.org/
+
+Google Fonts catalog metadata
+Source: https://fonts.google.com/
+File: assets/data/google-fonts-catalog.json
+Use: Bundled metadata only (family names, categories and available weights) for the Customizer selector. It contains no font binaries, CSS or executable code and makes no external request when displayed.
+
+Google Fonts remote service
+Service: https://fonts.google.com/
+Stylesheet endpoint: https://fonts.googleapis.com/css2
+Font files: https://fonts.gstatic.com/
+Use: Optional and conditional on explicit administrator selection of a Google Fonts family. Showing the bundled catalog metadata does not contact Google.
+Terms: https://developers.google.com/fonts/terms
+Privacy: https://policies.google.com/privacy
+
+Theme CSS source mapping
+Human-readable source: assets/css/lumen-core.css
+Minified runtime counterpart: assets/css/lumen-core.min.css
+Note: The source file is included for review and redistribution requirements; the Theme continues serving the minified runtime file.
+License: GNU General Public License v2 or later.
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Third-party libraries and assets
-No third-party JavaScript, CSS, fonts, images, icon libraries, or other third-party assets are bundled with this theme. WordPress core-provided dependencies such as jQuery and Dashicons are referenced through WordPress APIs and are not bundled.
+No third-party JavaScript, CSS, font binaries, images, icon libraries, or executable third-party assets are bundled with this Theme. The Google Fonts catalog metadata snapshot documented above is bundled as data only. WordPress core-provided dependencies such as jQuery and Dashicons are referenced through WordPress APIs and are not bundled.

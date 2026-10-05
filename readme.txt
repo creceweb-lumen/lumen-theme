@@ -10,118 +10,106 @@ A flexible classic-hybrid theme for professional sites, blogs, and landing pages
 
 == Description ==
 
-CreceWeb Lumen provides a clean, responsive foundation for professional websites, editorial blogs, and commercial landing pages.
+CreceWeb Lumen provides a responsive presentation layer for professional websites, editorial blogs, and commercial landing pages while keeping content in WordPress.
 
-* Flexible header and accessible desktop and mobile navigation.
-* Native left, right, or disabled sidebar layouts.
-* Widget-based top bar and footer areas.
-* Presentation support for the WordPress core Social Icons block, with shared or independent header/footer content modes plus theme-controlled placement, true icon size, spacing, alignment, and optional colors.
-* Full-width, hero full-width, and blank landing templates.
-* Gutenberg editor styles, wide alignment, and block styles.
-* Customizer controls for colors, typography, layout, blog cards, editable blog-list headings, card content visibility, read-more presentation, footer, responsive spacing, and optional content-specific color tokens.
-* Independent submenu hover text/background colors with optional 0–100% hover-background opacity; empty fields leave that hover property unforced.
+* Flexible header with optional top bar, transparent/sticky/fixed behavior, and accessible desktop/compact navigation.
+* Compact mobile menu with optional text/icon open action, site identity, Social Icons placement, and dedicated mobile colors.
+* Native left, right, or disabled sidebar layouts. Empty widget areas do not reserve layout space.
+* Footer built from WordPress widgets/blocks: one full-width row plus five widget columns, with Classic and Editorial presentation options.
+* Editorial footer columns keep Theme-provided fallback content only until that same column receives a widget, so neighboring columns remain independent.
+* Presentation support for the WordPress core Social Icons block, with shared or independent header/footer content modes plus placement, icon size, spacing, alignment, and optional colors.
+* Unified typography controls for system fonts, optional locally cached Inter, and optional Google Fonts selected with explicit administrator opt-in.
+* Full-width, Hero full-width, post full-width, post Hero full-width, and blank landing templates.
+* Gutenberg editor styles, wide alignment, block styles, and synchronized Theme color/typography presentation.
+* Elementor compatibility on individual pages/posts, including Theme Global Color mirroring and Gallery border fallback behavior without rewriting Elementor document data.
+* Customizer controls for colors, typography, header/navigation, content/layout, blog cards, footer/social areas, responsive spacing, accessibility, and optional content-specific color tokens.
+* Independent submenu hover text/background colors with optional 0–100% hover-background opacity.
 * Optional back-to-top button with keyboard-accessible behavior.
-* Translation-ready administration in Spanish and English.
-* Compatible with Elementor on individual pages.
+* Translation-ready administration. The Theme source strings use one Spanish source language and include an English (en_US) catalog; WordPress language packs can provide additional locales.
 
-The theme works independently and does not require a plugin.
+The Theme works independently and does not require a plugin. Compatible extensions may use neutral Theme bridges for optional features without changing Theme ownership of templates or presentation.
 
 == Installation ==
 
 1. In WordPress, go to Appearance > Themes > Add New > Upload Theme.
-2. Upload the theme ZIP and activate CreceWeb Lumen.
+2. Upload the Theme ZIP and activate CreceWeb Lumen.
 3. Open Appearance > CreceWeb Lumen for the guided setup page.
-4. Configure the site identity, layout, footer, and blog from Appearance > Customize.
-5. Add widgets only to the areas you want to display.
+4. Configure site identity, layout, header/navigation, typography, footer, and blog options from Appearance > Customize.
+5. Add widgets/blocks only to the areas you want to display.
 
 == Frequently Asked Questions ==
 
-= Does the theme require a plugin? =
+= Does the Theme require a plugin? =
 
-No. CreceWeb Lumen works independently. Compatible extensions may add optional tools when they are installed by the user.
+No. CreceWeb Lumen works independently. Compatible extensions may add optional tools when they are installed and activated by the user.
+
+= How does the mobile menu work? =
+
+The compact navigation keeps the desktop menu content while adapting it to a drawer-style layout. You can choose an icon-only or text-plus-icon open action, optionally repeat the site identity and Social Icons inside the mobile panel, and configure mobile normal/hover/active colors independently from desktop navigation.
+
+= How does the footer work? =
+
+Build footer content from Appearance > Widgets. Lumen provides one full-width footer row plus five footer widget columns. Classic keeps a conventional column layout. Editorial gives the first column more visual weight and provides Theme fallback content in its first three columns until you add a widget to that same column. Replacing one Editorial column does not remove the fallback from neighboring columns.
+
+= What typography options are available? =
+
+System fonts require no font request. Inter Local is optional: after explicit administrator selection, WordPress downloads one Latin variable WOFF2 file server-side and stores it in WordPress uploads so visitors receive it from the site's own domain. Google Fonts are also optional; enabling the bundled local catalog does not contact Google, while selecting and using a Google family explicitly enables the remote Google Fonts stylesheet/font requests for that family.
 
 = Does it support Gutenberg? =
 
-Yes. The theme includes editor styles, wide and full alignment support, block styles, and layout rules shared between the editor and the front end.
+Yes. The Theme includes editor styles, wide/full alignment support, block styles, and synchronized Theme typography/color presentation without overriding explicit block choices.
 
 = Can I use Elementor? =
 
-Yes. Elementor can be used on individual pages. The theme continues to control the global header, navigation, sidebars, and footer. On supported page/post documents, Elementor Gallery keeps any explicit widget or Global Color border choice; when no Gallery border color is saved, Lumen uses the Theme global border color as a visual fallback in both the front end and Elementor preview. Elementor Canvas remains isolated from these Theme content integrations.
+Yes. Elementor can be used on individual pages/posts. The Theme continues to control the global header, navigation, sidebars, and footer. Lumen mirrors its stable Theme colors into the active Elementor Kit as Global Colors and uses Theme values only as defaults/fallbacks; explicit Elementor choices keep priority. Elementor Canvas remains isolated from Theme content integrations.
 
 = Can I customize the blog listing cards? =
 
-Yes. Under Appearance > Customize > Design > Content and blog, you can edit the latest-posts heading and description, show or hide the category, choose Original, Landscape 16:9, or Square 1:1 featured-image ratios, and configure the read-more label, style, shape, and optional colors. Media-left and Compact list cards respect the selected image ratio and let titles and excerpts use the available text column.
+Yes. Under Appearance > Customize > Content and layout > Blog and archives, you can edit the listing heading/description, control visible card information, choose supported featured-image ratios, and configure read-more presentation. List-style cards use the available text column while grid layouts keep consistent image placement.
 
 = Can I customize submenu hover colors independently? =
 
-Yes. Under Appearance > Customize > Design > Header and navigation > Navigation, the submenu hover text and hover background can be set independently. The hover background also has a 0–100% opacity control. Leaving either hover color empty means Lumen does not force that property, so you can use text-only hover, background-only hover, both, or neither. On desktop, the optional submenu hover background spans the full row width.
+Yes. Under Appearance > Customize > Header and navigation > Submenus, hover text and hover background are independent. The optional hover background includes a 0–100% opacity control. Leaving a hover color empty means Lumen does not force that property.
 
-= How do the optional content colors interact with Gutenberg and Elementor? =
+= How do optional content colors interact with Gutenberg and Elementor? =
 
-The content color controls are opt-in. In Gutenberg, explicit block colors continue to override the Theme content token. With Elementor active, Lumen mirrors 16 stable Lumen-owned custom Global Colors into the active Elementor Kit: the 10-color base Theme palette plus six content-semantic colors. The picker keeps them together with Base/Content title prefixes, and Elementor Site Settings exposes the same colors in two compact Lumen sections. The Lumen Customizer remains the source of truth. Only configured content-semantic colors become inherited defaults for compatible Heading, Button, and Icon List widgets; choosing a local color or another Elementor Global Color overrides the Lumen default. Lumen does not rewrite page/post Elementor data. Lumen box colors remain opt-in through the Lumen box classes, and Elementor Canvas templates remain isolated from these rules.
+Content-specific colors are opt-in. Explicit Gutenberg block colors continue to override Theme defaults. With Elementor active, Lumen mirrors its Theme-owned Global Colors into the active Elementor Kit. Local Elementor colors or another selected Global Color override the Theme default. Lumen does not rewrite page/post Elementor data.
 
-= What does the Full width reading option change on individual posts? =
+= What does Full width change on individual posts? =
 
-Full width expands the single-post reading canvas when no sidebar is selected. The native entry header follows the same full canvas, while ordinary Gutenberg content remains constrained to a readable wide measure unless a block explicitly uses a full-width alignment. Elementor page/post content can use the available full canvas. Standard, Narrow, and Wide keep their existing behavior.
+When no sidebar is selected, Full width expands the single-post reading canvas and the native entry header follows the same full canvas. Ordinary Gutenberg content still uses a readable measure unless a block explicitly requests full alignment. Standard, Narrow, and Wide keep their existing behavior.
 
 = How do I add social network icons? =
 
-Use the native WordPress Social Icons block in Appearance > Widgets > Social networks · Header or Social networks · Footer. Then choose the content mode, placement and appearance from Appearance > Customize > Design > Social networks. Shared mode uses one block for both locations (Footer is the primary shared source, with Header as a backwards-compatible fallback). Independent mode lets Header and Footer use different Social Icons blocks. Lumen only styles and positions the WordPress core Social Icons block. It does not store social profile URLs in theme options and does not add social follow, like, share, feed, tracking, or API functionality. The links remain normal WordPress block/widget content, and the header and footer placements remain hidden by default.
+Use the native WordPress Social Icons block in Appearance > Widgets > Social networks · Header or Social networks · Footer. Then choose content mode, placement and appearance from Appearance > Customize > Footer and social networks > Social networks. Lumen only presents the WordPress core block; it does not store profile URLs, add social tracking, or implement follow/share APIs.
 
-= Does the theme import demo content? =
+= Does the Theme import demo content? =
 
-No. It does not import posts, pages, widgets, or remote content. Users create and manage their own content with WordPress.
+No. The Theme does not import posts, pages, menus, widgets, or remote demo content.
+
+= Does the Theme make remote requests by default? =
+
+No font or catalog request is made by default. Remote font access happens only after explicit administrator selection of Inter Local or a Google Fonts family, as documented above and in the Resources section.
 
 == Changelog ==
 
+= 1.4.110 =
+* Adds the human-readable source copy for the minified core stylesheet required for review while keeping the runtime bundle unchanged.
+* Keeps Lumen Lite onboarding optional and limited to native WordPress.org install/activate actions, without an external promotional link.
+* Refreshes public documentation and the bundled English translation metadata for this WordPress.org compliance release.
+
 = 1.4.109 =
-* Keeps the provider-neutral Messaging bridge from narrowing extension-provided button sizes and makes floating-action compatibility guidance extension-neutral.
-* Updates the optional extension bridge to provider-neutral Messaging API 1.6.0 while preserving the legacy WhatsApp compatibility projection; the Theme still does not configure or render Messaging on its own.
-* Adds a discreet Customizer support link under Design > Help and documentation for the voluntary support page for Lumen Theme and Lumen Lite; it adds no setting, automatic remote request, or premium gating.
-* Skips classic navigation and header-behavior JavaScript on the “Lumen: Landing sin cabecera” template, whose canvas markup intentionally has no Theme header or navigation.
-* Moves invariant Customizer frontend contracts from per-request inline CSS into the existing cacheable Theme stylesheet while keeping settings-dependent CSS inline and Gutenberg editor output unchanged.
-* Defers the classic navigation runtime in the document head while preserving the early navigation marker, localized strings, DOMContentLoaded initialization, and existing menu behavior.
-* Makes the keyboard skip link fully own its visible focus geometry so it remains centered and unclipped across theme/plugin screen-reader styles and narrow viewports.
-* Loads blog/archive/search, single-post, and comments presentation only on requests that use those native Theme contexts, reducing global frontend CSS without changing markup or visual contracts.
-* Keeps mobile full-width Hero templates content-sized when more sections follow, while preserving viewport-height behavior for true Hero-only layouts.
-* Keeps Gutenberg-only Section Base and Customizer preview selectors out of public frontend CSS while preserving the editor output and existing section contracts.
-* Loads Hero/template CSS conditionally, keeping Hero-specific contracts out of the global stylesheet on pages that do not use a Lumen Hero while preserving Gutenberg editor fallbacks.
-* Adds dedicated full-width and full-width Hero templates for single posts while preserving Lumen single-post metadata, featured-image, tags, navigation, comments, and sidebar contracts.
-* Restores Elementor Gallery border-color rendering in both the front end and visual editor: explicit widget/Global Colors keep priority, while galleries without a saved border color fall back to Lumen's global border color token.
-* Improves Lumen admin-notice contrast inside the Theme hub and keeps Previous/Next post navigation text aligned consistently, with equal-height mobile destination cards.
-* Balances lateral and compact blog cards by centering media and content on the same vertical axis while preserving the selected image ratio and reducing unnecessary vertical body padding.
-* Lets blog-card titles and excerpts use the full available card width on mobile before wrapping.
-* Fixes premature title/excerpt wrapping in lateral and compact blog cards so text uses the available content column before moving to a new line.
-* Fixes the custom read-more text color so it is no longer overridden by the global content-link color.
-* Makes Square 1:1, Landscape 16:9, and Original featured-image modes work in desktop Media left and Compact list cards instead of stretching those images to the full card height.
-* Adds editable latest-posts list title/description controls, with the description optionally empty and semantic H1 fallback when the separate blog intro is disabled.
-* Adds a category visibility toggle for archive cards and lets Media left/Compact card titles and excerpts use the full content column width.
-* Adds read-more style, shape, and optional background/text/border hover color controls while preserving the historical Lumen presentation as the default and keeping the existing show/hide switch.
-* Refines compact-menu submenu-toggle alignment by assigning explicit grid rows to parent links, toggles and submenus, stretching the toggle to the parent row, and optically centering the CSS chevron.
-* Centers compact-menu parent labels vertically against the submenu toggle without changing row width or toggle geometry.
-* Adds a 0–100% opacity control for the optional submenu hover background, so the selected color can range from transparent to solid without affecting the submenu hover text.
-* Aligns compact-menu parent separators as one continuous row divider across the link and submenu-toggle columns.
-* Adds independent optional submenu hover text/background colors; leaving either field empty preserves that property instead of inheriting the main-menu hover color.
-* Makes desktop submenu hover/focus backgrounds span the full row width while preserving the dropdown's vertical breathing room.
-* Gives footer Social Icons more balanced vertical breathing room across footer density presets, while keeping a small safe inset even when the footer uses No spacing.
-* Makes Header > Internal distribution visibly distinct between Left, Centered, and Separated, and adds a Full internal-width option for headers that should sit closer to the viewport edges.
-* Fixes Social Icons sizing so the control changes the rendered SVG/icon size instead of only affecting the surrounding block, vertically centers the social row, and adds an explicit shared/independent content mode for header and footer.
-* Fixes Social Icons presentation by removing stray list markers, makes empty optional color controls visibly show an unset state, and lets an enabled header/footer social region reuse the other Social Icons widget area when its own area is empty.
-* Adds native Social Icons presentation areas for the header and footer, using WordPress widget/block content for profile links while Lumen controls placement, size, spacing, optional colors, footer alignment, and compact-header visibility.
-* Keeps social data and functionality outside the theme: Lumen only presents the WordPress core Social Icons block and does not store profile URLs or add follow, like, share, feed, tracking, or API features.
-* Adds a “No spacing” footer density option that removes the footer’s top separation and the vertical padding from its widget area while leaving copyright spacing and existing footer densities unchanged.
-* Adds optional content-specific color controls for headings, buttons, Lumen boxes, and list bullets/icons.
-* Keeps the new content controls empty by default, so upgrading does not recolor existing Gutenberg patterns or Elementor pages.
-* Mirrors 16 stable Lumen-owned Global Colors into the active Elementor Kit: 10 base Theme colors plus six content-semantic colors, while preserving Elementor system colors and unrelated custom colors.
-* Orders Lumen Global Colors as Base then Content in the Elementor picker and adds two compact Lumen sections to Site Settings for easier palette inspection.
-* Uses configured Lumen heading, button background/hover/text, and Icon List colors as native inherited defaults for compatible Elementor widgets; a local color or another Elementor Global Color selected in the widget overrides the Lumen default.
-* Keeps the Lumen Customizer as the one-way source of truth for those mirrored colors, never writes Elementor color changes back to Theme settings, and clears Elementor generated CSS only when mirrored Theme colors change.
-* Keeps Elementor Canvas and Theme Builder documents isolated from Lumen content defaults, while Gutenberg explicit-color behavior remains unchanged.
-* Adds the cw-content-box and cw-content-box--filled class contract for reusable box accents without changing existing pattern markup.
-* Adds an opt-in “Full width” reading-width option for individual posts.
-* In Full mode, the native entry header aligns with the full reading canvas instead of the legacy 48rem editorial cap.
-* Keeps Standard, Narrow, Wide, sidebar behavior, page templates, and all existing defaults unchanged.
-* Lets explicit full-width Gutenberg blocks and Elementor content use the available single-post width while ordinary blocks remain bounded by the site wide measure.
+* Refines the compact/mobile navigation with optional text/icon open actions, reusable site identity, Social Icons support inside the drawer, full-row separators, and dedicated mobile colors.
+* Adds Classic and Editorial footer presentation options, a full-width footer row, five widget columns, and per-column Editorial fallback behavior that remains independent while editing in the Customizer.
+* Reorganizes the Customizer into clearer global design, header/navigation, content/layout, footer/social, accessibility, responsive, help, and support areas while preserving saved setting IDs.
+* Expands typography with system fonts, explicit opt-in Inter Local caching, and optional Google Fonts from a bundled local catalog; no font request occurs by default.
+* Keeps Inter cache metadata inside the existing single Theme settings option and migrates the former standalone cache key without changing the selected typography.
+* Adds post full-width and post Hero full-width templates while preserving existing post metadata, featured images, tags, navigation, comments, and sidebar behavior.
+* Improves blog/card presentation, submenu hover controls, header distribution, Social Icons rendering, responsive behavior, and accessible navigation states.
+* Keeps Gutenberg editor presentation synchronized with Theme typography/colors and improves Elementor Global Color/Gallery compatibility without rewriting Elementor page data.
+* Moves invariant frontend rules into cacheable Theme assets where appropriate while keeping settings-dependent output conditional.
+* Extends neutral compatibility bridges for optional breadcrumbs, registered sidebars, portable configuration, typography extensions, and provider-neutral messaging without requiring or bundling plugin functionality.
+* Updates documentation, resource licensing, template-name coverage, theme.json preset-name localization, and the bundled en_US translation catalog.
 
 = 1.4.108 =
 * Limits Gutenberg root block width rules to top-level blocks so nested pattern layouts keep their intended geometry.
@@ -150,12 +138,12 @@ No. It does not import posts, pages, widgets, or remote content. Users create an
 * Limits the Customizer return-target safeguard to the theme-upload flow owned by the theme.
 
 = 1.4.101 =
-* Reverts the rejected Theme-level Pro Hero geometry adapter introduced in 1.4.100.
-* Returns the internal layout ownership of premium Heroes to Lumen Pro while preserving the top-bar, header-height, pagination, Theme Unit Test, and WordPress.org preparation changes.
+* Reverts the rejected Theme-level extension Hero geometry adapter introduced in 1.4.100.
+* Returns internal layout ownership of extension-provided Hero variants to their owning extension while preserving the top-bar, header-height, pagination, Theme Unit Test, and WordPress.org preparation changes.
 
 = 1.4.100 =
-* Restores the structural stage reserve for the Pro split Hero with feature rail in the Hero full-width template, keeping CTA buttons visible above the rail.
-* Restores the approved lateral gutters and maximum width for the Pro mockup Hero in the Hero full-width template.
+* Restores the structural stage reserve for a compatible split Hero with feature rail in the Hero full-width template, keeping CTA buttons visible above the rail.
+* Restores the approved lateral gutters and maximum width for a compatible mockup Hero in the Hero full-width template.
 
 = 1.4.99 =
 * Balances the primary logo and navigation row when the optional top bar is present while preserving combined fixed-header measurements for Lumen Heroes.
@@ -183,19 +171,22 @@ No. It does not import posts, pages, widgets, or remote content. Users create an
 * Prepared the public WordPress.org distribution.
 * Uses the directory-safe public name CreceWeb Lumen.
 * Removes automatic sidebar widget creation and legacy theme-owned WhatsApp output.
-* Removes inactive premium promotion and external upgrade links from the theme administration.
+* Removes inactive extension promotion and external upgrade links from the theme administration.
 * Keeps compatibility bridges available only for extensions already installed by the user.
 * Cleans development documentation from the public package and updates licensing information.
 * Preserves layouts, headers, templates, Gutenberg styling, and saved theme settings.
 
 == Upgrade Notice ==
 
+= 1.4.110 =
+* WordPress.org compliance cleanup: includes the readable core CSS source and keeps the optional Lumen Lite onboarding neutral, with no frontend behavior changes.
+
 = 1.4.109 =
-* Updates the optional extension bridge for provider-neutral Messaging compatibility and includes the current blog/navigation, accessibility, performance, and Elementor refinements. The Theme still does not configure or render Messaging itself.
+* Refreshes mobile navigation, footer layouts, typography, editor/Elementor integration, and translation coverage while preserving existing settings and keeping remote font use opt-in.
 
 == Resources ==
 
-CreceWeb Lumen theme code and design
+CreceWeb Lumen Theme code and design
 Copyright 2026 CreceWeb.
 Source: https://creceweb.com.ar/lumen-theme
 License: GNU General Public License v2 or later
@@ -204,19 +195,50 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Theme screenshot and original illustration (screenshot.png)
 Copyright 2026 CreceWeb.
 Source: https://creceweb.com.ar/lumen-theme
-Note: Original CreceWeb asset created specifically for CreceWeb Lumen and included in this theme package.
+Note: Original CreceWeb asset created specifically for CreceWeb Lumen.
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+Lumen Lite compatibility logo (assets/images/lumen-lite-logo.webp)
+Copyright 2026 CreceWeb.
+Source: https://creceweb.com.ar/lumen-lite
+Note: Original CreceWeb asset used only in the Theme administration/onboarding interface.
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Inline SVG geometric icons
 Copyright 2026 CreceWeb.
 Source: https://creceweb.com.ar/lumen-theme
-Note: Original CreceWeb assets created specifically for CreceWeb Lumen and included inline in the theme PHP templates.
+Note: Original CreceWeb assets included inline in Theme PHP templates.
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Fonts
-No font files or remote font services are bundled or loaded. The theme uses system font stacks.
+By default the Theme uses system font stacks and loads no font files. Inter Local is optional: after explicit administrator selection, WordPress downloads one Latin variable WOFF2 file server-side from Google Fonts and stores it through the WordPress uploads API; visitors then receive that cached file from the site's own domain. Google Fonts are also optional and remote only after explicit administrator selection of a family. The bundled Google Fonts catalog is metadata only and does not contact Google when displayed.
+
+Inter
+Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter).
+Source: https://github.com/rsms/inter
+Local font source used after opt-in: https://fonts.gstatic.com/
+Bundled license text: assets/licenses/inter-OFL-1.1.txt
+License: SIL Open Font License 1.1
+License URI: https://openfontlicense.org/
+
+Google Fonts catalog metadata
+Source: https://fonts.google.com/
+File: assets/data/google-fonts-catalog.json
+Use: Bundled metadata only (family names, categories and available weights) for the Customizer selector. It contains no font binaries, CSS, or executable code and makes no external request when displayed.
+
+Google Fonts remote service
+Service: https://fonts.google.com/
+Stylesheet endpoint: https://fonts.googleapis.com/css2
+Font files: https://fonts.gstatic.com/
+Use: Optional and conditional on explicit administrator selection of a Google Fonts family. Showing the bundled catalog metadata does not contact Google.
+Terms: https://developers.google.com/fonts/terms
+Privacy: https://policies.google.com/privacy
+
+Theme CSS source mapping
+The runtime file assets/css/lumen-core.min.css has its human-readable source counterpart at assets/css/lumen-core.css. The Theme continues serving the minified runtime file; the source copy is included for review and redistribution requirements.
 
 Third-party libraries and assets
-No third-party JavaScript, CSS, fonts, images, icon libraries, or other third-party assets are bundled with this theme. WordPress core-provided dependencies such as jQuery and Dashicons are referenced through WordPress APIs and are not bundled.
+No third-party JavaScript, CSS, images, icon libraries, or font binaries are bundled with this Theme. WordPress core-provided dependencies such as jQuery and Dashicons are referenced through WordPress APIs and are not bundled.
