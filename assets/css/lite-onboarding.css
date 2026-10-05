@@ -1,0 +1,104 @@
+.notice.cw-lumen-lite-onboarding {
+	position: relative;
+	padding: 0;
+	border-left-color: #10b981;
+	background: #fff;
+	box-shadow: 0 4px 14px rgba(15, 23, 42, .06);
+	overflow: hidden;
+}
+
+.cw-lumen-lite-onboarding__inner {
+	display: grid;
+	grid-template-columns: 52px minmax(0, 1fr);
+	gap: 16px;
+	align-items: start;
+	padding: 20px 54px 20px 20px;
+}
+
+.cw-lumen-lite-onboarding__brand {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.cw-lumen-lite-onboarding__brand-image {
+	display: block;
+	width: 48px;
+	height: 48px;
+	border-radius: 12px;
+	box-shadow: 0 6px 18px rgba(15, 23, 42, .12);
+}
+
+.cw-lumen-lite-onboarding__content {
+	min-width: 0;
+}
+
+.cw-lumen-lite-onboarding__title {
+	margin: 0 0 6px;
+	color: #1d2327;
+	font-size: 16px;
+	line-height: 1.35;
+}
+
+.cw-lumen-lite-onboarding__description {
+	max-width: 860px;
+	margin: 0;
+	color: #50575e;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.cw-lumen-lite-onboarding__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 16px;
+	margin-top: 15px;
+}
+
+.cw-lumen-lite-onboarding__actions .button-primary {
+	min-height: 36px;
+	padding: 4px 16px;
+}
+
+.cw-lumen-lite-onboarding__actions .button-link {
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.cw-lumen-lite-onboarding__actions .button-link:hover,
+.cw-lumen-lite-onboarding__actions .button-link:focus {
+	text-decoration: underline;
+}
+
+.notice.cw-lumen-lite-onboarding .notice-dismiss {
+	top: 10px;
+	right: 10px;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.notice.cw-lumen-lite-onboarding .notice-dismiss:hover,
+.notice.cw-lumen-lite-onboarding .notice-dismiss:focus,
+.notice.cw-lumen-lite-onboarding .notice-dismiss:active {
+	text-decoration: none;
+	box-shadow: none;
+}
+
+@media (max-width: 782px) {
+	.cw-lumen-lite-onboarding__inner {
+		grid-template-columns: 44px minmax(0, 1fr);
+		gap: 12px;
+		padding: 17px 48px 17px 16px;
+	}
+
+	.cw-lumen-lite-onboarding__brand-image {
+		width: 42px;
+		height: 42px;
+		border-radius: 10px;
+	}
+
+	.cw-lumen-lite-onboarding__actions {
+		align-items: flex-start;
+	}
+}

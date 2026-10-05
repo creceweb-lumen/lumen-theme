@@ -211,7 +211,7 @@ body.cw-template--hero-only .cw-site-footer {
 	body.admin-bar.cw-template--hero-only { min-height: calc(100dvh - 46px) !important; }
 }
 
-/* 1.4.46 · Lumen Pro Library patterns in Hero ancho completo.
+/* 1.4.46 · Extension Library patterns in Hero ancho completo.
  * Library patterns are full-width groups that must remain in normal
  * document flow. Do not apply the viewport-filler flex model reserved for
  * native Cover hero-only pages. */
@@ -615,7 +615,7 @@ body.cw-lumen-pro-header-transparent.cw-template--default-lumen-hero-sidebar
 /* 1.4.53 · Hero compacto reutilizable dentro de una columna con sidebar.
  * El Theme activa .cw-lumen-hero-layout--compact y conserva la propiedad de
  * la estructura: ancho de columna, media primero, copy después y alturas auto.
- * Las variantes premium solo refinan sus componentes visuales en Pro. */
+ * Las variantes de extensiones solo refinan sus propios componentes visuales. */
 @media (min-width: 961px) {
 	body.cw-lumen-hero-layout--compact
 	.cw-template-main > .cw-content-wrap.cw-screen-layout:is(.cw-screen-layout--left, .cw-screen-layout--right)

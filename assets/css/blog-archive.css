@@ -188,6 +188,8 @@
 	border-bottom: 1px solid color-mix(in srgb, var(--cw-color-border) 72%, transparent);
 }
 
+.cw-archive-header > :first-child { margin-top: 0; }
+
 .cw-archive-header h1 {
 	max-width: 16ch;
 	margin: 0;
@@ -234,7 +236,7 @@
 	line-height: 1.7;
 }
 
-.cw-loop > .wp-block-post-template { gap: clamp(1.25rem, 2.8vw, 2rem); }
+.cw-loop > .wp-block-post-template { display: grid; gap: clamp(1.25rem, 2.8vw, 2rem); padding: 0; list-style: none; }
 
 .cw-card {
 	position: relative;
@@ -244,6 +246,7 @@
 	background: var(--cw-color-surface);
 	box-shadow: 0 1px 0 rgb(15 23 42 / 2%);
 	transition: border-color var(--cw-motion-fast) var(--cw-ease-standard), box-shadow var(--cw-motion-fast) var(--cw-ease-standard), transform var(--cw-motion-fast) var(--cw-ease-standard);
+	overflow: hidden;
 }
 
 .cw-card:focus-within {
@@ -259,13 +262,19 @@
 }
 
 .cw-card__media {
+	display: block;
 	margin: 1rem 1rem 0;
 	overflow: hidden;
 	border-radius: min(.9rem, var(--cw-radius-md));
 	background: color-mix(in srgb, var(--cw-color-accent) 10%, var(--cw-color-surface));
 }
 
-.cw-card__media img { transition: transform 420ms var(--cw-ease-standard); }
+.cw-card__media img { display: block; width: 100%; transition: transform 420ms var(--cw-ease-standard); }
+
+.cw-blog-image-ratio--landscape .cw-card__media { aspect-ratio: 16 / 9; }
+.cw-blog-image-ratio--square .cw-card__media { aspect-ratio: 1; }
+.cw-blog-image-ratio--landscape .cw-card__media img,
+.cw-blog-image-ratio--square .cw-card__media img { height: 100%; object-fit: cover; }
 @media (hover: hover) and (pointer: fine) { .cw-card:hover .cw-card__media img { transform: scale(1.025); } }
 
 .cw-card__body {
@@ -292,6 +301,7 @@
 .cw-card__body .entry-title a:hover { color: var(--cw-color-accent-strong); }
 
 .cw-card__meta {
+	color: var(--cw-color-text-muted);
 	font-size: .7rem;
 	font-weight: 680;
 	letter-spacing: .09em;
@@ -393,6 +403,17 @@
 .nav-links a, .nav-links span { min-width: 2.6rem; min-height: 2.6rem; display: inline-grid; place-items: center; padding: .45rem .7rem; border-color: color-mix(in srgb, var(--cw-color-border) 70%, transparent); border-radius: .55rem; background: var(--cw-color-surface); text-decoration: none; }
 .nav-links a:hover { border-color: var(--cw-color-accent); color: var(--cw-color-accent-strong); }
 .nav-links .current { border-color: var(--cw-color-primary); background: var(--cw-color-primary); color: #fff; }
+
+
+.cw-blog-layout--grid :where(.cw-loop) > .wp-block-post-template { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+@media (min-width: 782px) {
+	.cw-blog-layout--grid.cw-blog-columns--1 :where(.cw-loop) > .wp-block-post-template { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+	.cw-blog-layout--grid.cw-blog-columns--2 :where(.cw-loop) > .wp-block-post-template,
+	.cw-blog-layout--grid.cw-blog-columns--3 :where(.cw-loop) > .wp-block-post-template { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1025px) {
+	.cw-blog-layout--grid.cw-blog-columns--3 :where(.cw-loop) > .wp-block-post-template { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
 
 @media (min-width: 782px) {
 	.cw-loop--list .cw-card--layout-media-left,

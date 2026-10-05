@@ -109,6 +109,7 @@
 	};
 	var fontStacks = {
 		'system-sans': "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+		'inter-local': "'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 		'system-serif': "ui-serif, Georgia, Cambria, 'Times New Roman', serif",
 		'system-mono': 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
 	};

@@ -9,6 +9,15 @@
 	var initialConfig = window.crecewebCustomizerConfig || {};
 	var initialPrefix = initialConfig.settingPrefix || 'creceweb_lumen_settings[';
 
+	if (api.Section && api.sectionConstructor) {
+		api.sectionConstructor['creceweb-external-link'] = api.Section.extend({
+			attachEvents: function () {},
+			isContextuallyActive: function () {
+				return true;
+			}
+		});
+	}
+
 	function numberFrom(value, fallback) {
 		var parsed = parseFloat(value);
 		return isNaN(parsed) ? fallback : parsed;
@@ -131,23 +140,14 @@
 			return;
 		}
 
-		function isDetailedMode() {
-			var detailedSetting = api(initialPrefix + 'show_advanced_controls]');
-			return !!detailedSetting && String(detailedSetting.get()) === '1';
-		}
-
 		function syncMobileLogoWidthControl(value) {
 			var widthControl = api.control(initialPrefix + 'mobile_logo_width]');
 			if (widthControl && widthControl.container) {
-				widthControl.container.toggle(isDetailedMode() && String(value) === 'custom');
+				widthControl.container.toggle(String(value) === 'custom');
 			}
 		}
 
 		control.setting.bind(syncMobileLogoWidthControl);
-		var detailedSetting = api(initialPrefix + 'show_advanced_controls]');
-		if (detailedSetting) {
-			detailedSetting.bind(function () { syncMobileLogoWidthControl(control.setting.get()); });
-		}
 		syncMobileLogoWidthControl(control.setting.get());
 	}
 
@@ -197,7 +197,41 @@
 	}
 
 	/**
-	 * WordPress can open the Customizer from update.php?action=upload-theme.
+	 * Returns whether a URL points back to a theme/plugin upload endpoint.
+	 *
+	 * @param {string} value Candidate URL.
+	 * @return {boolean} Whether the target is unsafe for Customizer close.
+	 */
+	function isUnsafeCustomizerReturnUrl(value) {
+		var decoded = String(value || '').trim();
+		var attempt;
+
+		if (!decoded) {
+			return false;
+		}
+
+		for (attempt = 0; attempt < 3; attempt += 1) {
+			try {
+				var next = decodeURIComponent(decoded);
+				if (next === decoded) {
+					break;
+				}
+				decoded = next;
+			} catch (error) {
+				break;
+			}
+		}
+
+		try {
+			var parsed = new URL(decoded, window.location.origin);
+			return /(?:^|\/)update\.php$/.test(parsed.pathname) && ['upload-theme', 'upload-plugin'].indexOf(parsed.searchParams.get('action')) !== -1;
+		} catch (error) {
+			return false;
+		}
+	}
+
+	/**
+	 * WordPress can open the Customizer from a one-time theme/plugin upload endpoint.
 	 * Returning to that upload endpoint is unsafe because its original form has
 	 * a required file input. Keep native close actions non-submitting and point
 	 * them to the Themes screen when that return target persists.
@@ -213,15 +247,28 @@
 		var safeReturn = customizerConfig.safeCustomizerReturnUrl || '';
 		var query = new URLSearchParams(window.location.search || '');
 		var returnTarget = query.get('return') || '';
-		var unsafeReturn = /(?:^|\/)update\.php(?:\?|$)/.test(returnTarget) && /(?:\?|&)action=upload-theme(?:&|$)/.test(returnTarget);
+		var settingsReturn = window._wpCustomizeSettings && window._wpCustomizeSettings.url
+			? window._wpCustomizeSettings.url.return || ''
+			: '';
+
+		if (safeReturn && isUnsafeCustomizerReturnUrl(settingsReturn)) {
+			window._wpCustomizeSettings.url.return = safeReturn;
+		}
 
 		$(selectors).each(function () {
-			if (this.tagName && this.tagName.toLowerCase() === 'button') {
+			var tagName = this.tagName ? this.tagName.toLowerCase() : '';
+			var href = tagName === 'a' ? (this.getAttribute('href') || this.href || '') : '';
+
+			if (tagName === 'button') {
 				this.type = 'button';
 			}
 			this.setAttribute('formnovalidate', 'formnovalidate');
 
-			if (unsafeReturn && safeReturn && this.tagName && this.tagName.toLowerCase() === 'a') {
+			if (safeReturn && tagName === 'a' && (
+				isUnsafeCustomizerReturnUrl(href) ||
+				isUnsafeCustomizerReturnUrl(returnTarget) ||
+				isUnsafeCustomizerReturnUrl(settingsReturn)
+			)) {
 				this.setAttribute('href', safeReturn);
 			}
 		});
@@ -237,7 +284,7 @@
 	protectCustomizerCloseActions();
 }(wp.customize, jQuery));
 
-/* CreceWeb Lumen — guided presets and detailed controls. */
+/* CreceWeb Lumen — guided presets and contextual controls. */
 (function (api, $) {
 	'use strict';
 
@@ -250,15 +297,6 @@
 	var strings = config.strings || {};
 	var presets = config.presets || {};
 	var applyingPreset = false;
-	var advancedControls = [
-		'wide_width', 'button_radius', 'button_padding_y', 'button_padding_x', 'form_radius', 'link_decoration',
-		'header_width', 'header_sticky_shadow', 'header_divider', 'navigation_gap', 'navigation_weight', 'navigation_transform',
-		'top_bar_tone', 'top_bar_width', 'top_bar_alignment', 'top_bar_padding', 'top_bar_background_color', 'top_bar_text_color', 'top_bar_link_color',
-		'blog_surface', 'footer_padding', 'footer_widget_gap',
-		'mobile_logo_width_mode', 'mobile_logo_width', 'mobile_site_title_size', 'mobile_site_tagline_size', 'mobile_navigation_font_size',
-		'focus_color', 'motion_preference'
-	];
-	var detailedMode = false;
 
 	function setting(key) {
 		return api(prefix + key + ']');
@@ -271,33 +309,8 @@
 		}
 	}
 
-
-	function updateAdvanced(value) {
-		detailedMode = value === '1';
-		advancedControls.forEach(function (key) {
-			toggleControl(key, detailedMode);
-		});
-
-		var topBar = setting('top_bar_enabled');
-		if (topBar) {
-			updateTopBar(topBar.get());
-		}
-		var tone = setting('top_bar_tone');
-		if (tone) {
-			updateTopBarColors(detailedMode && (!topBar || topBar.get() === '1') && tone.get() === 'custom');
-		}
-		var headerBehavior = setting('header_behavior');
-		if (headerBehavior) {
-			updateSticky(headerBehavior.get());
-		}
-		var mobileLogoMode = setting('mobile_logo_width_mode');
-		if (mobileLogoMode) {
-			toggleControl('mobile_logo_width', detailedMode && mobileLogoMode.get() === 'custom');
-		}
-	}
-
 	function updateTopBar(value) {
-		var enabled = detailedMode && value === '1';
+		var enabled = value === '1';
 		[
 			'top_bar_tone',
 			'top_bar_width',
@@ -340,7 +353,7 @@
 	}
 
 	function updateSticky(value) {
-		toggleControl('header_sticky_shadow', detailedMode && (value === 'sticky' || value === 'fixed'));
+		toggleControl('header_sticky_shadow', value === 'sticky' || value === 'fixed');
 	}
 
 	function refreshPresetCards(value) {
@@ -354,11 +367,6 @@
 	}
 
 	function bindProgressiveDisclosure() {
-		var advanced = setting('show_advanced_controls');
-		if (advanced) {
-			updateAdvanced(advanced.get());
-			advanced.bind(updateAdvanced);
-		}
 		var topBar = setting('top_bar_enabled');
 		if (topBar) {
 			updateTopBar(topBar.get());
@@ -366,19 +374,19 @@
 		}
 		var tone = setting('top_bar_tone');
 		if (tone) {
-			updateTopBarColors(detailedMode && (!topBar || topBar.get() === '1') && tone.get() === 'custom');
+			updateTopBarColors((!topBar || topBar.get() === '1') && tone.get() === 'custom');
 			tone.bind(function (value) {
-				updateTopBarColors(detailedMode && (!topBar || topBar.get() === '1') && value === 'custom');
+				updateTopBarColors((!topBar || topBar.get() === '1') && value === 'custom');
 			});
 		}
 		var mobileLogoMode = setting('mobile_logo_width_mode');
 		if (mobileLogoMode) {
-			toggleControl('mobile_logo_width', detailedMode && mobileLogoMode.get() === 'custom');
+			toggleControl('mobile_logo_width', String(mobileLogoMode.get()) === 'custom');
 			mobileLogoMode.bind(function (value) {
-				toggleControl('mobile_logo_width', detailedMode && value === 'custom');
+				toggleControl('mobile_logo_width', String(value) === 'custom');
 			});
 		}
-		
+
 		var blogLayout = setting('blog_layout');
 		if (blogLayout) {
 			updateBlogLayout(blogLayout.get());
@@ -450,5 +458,207 @@
 	api.bind('ready', function () {
 		bindProgressiveDisclosure();
 		bindPresets();
+	});
+}(wp.customize, jQuery));
+
+/* CreceWeb Lumen — opt-in Google Fonts inside the unified family selectors. */
+(function (api, $) {
+	'use strict';
+
+	if (!api || !$) {
+		return;
+	}
+
+	var storageKey = 'crecewebLumenShowGoogleFonts';
+	var config = window.crecewebCustomizerConfig || {};
+	var strings = config.strings || {};
+
+	function familyFromPreset(value) {
+		var preset = String(value || '');
+		if (preset.indexOf('google:') === 0) {
+			return preset.slice(7).trim();
+		}
+		var legacy = {
+			'google-roboto': 'Roboto',
+			'google-open-sans': 'Open Sans',
+			'google-lato': 'Lato',
+			'google-montserrat': 'Montserrat',
+			'google-poppins': 'Poppins',
+			'google-nunito-sans': 'Nunito Sans',
+			'google-source-sans-3': 'Source Sans 3',
+			'google-raleway': 'Raleway',
+			'google-merriweather': 'Merriweather',
+			'google-playfair-display': 'Playfair Display'
+		};
+		return legacy[preset] || '';
+	}
+
+	function presetForFamily(family) {
+		return 'google:' + String(family || '').trim();
+	}
+
+	function getStoredVisibleState() {
+		try {
+			return window.localStorage && window.localStorage.getItem(storageKey) === '1';
+		} catch (e) {
+			return false;
+		}
+	}
+
+	function storeVisibleState(visible) {
+		try {
+			if (window.localStorage) {
+				window.localStorage.setItem(storageKey, visible ? '1' : '0');
+			}
+		} catch (e) {
+			// The catalog still works when browser storage is unavailable.
+		}
+	}
+
+	function bindGoogleCatalog(control) {
+		var $container = control && control.container;
+		if (!$container || !$container.length || $container.data('cwGoogleFontsBound')) {
+			return;
+		}
+
+		var $root = $container.find('.cw-google-fonts-toggle').first();
+		if (!$root.length) {
+			return;
+		}
+		$container.data('cwGoogleFontsBound', true);
+
+		var catalogUrl = $root.attr('data-cw-google-fonts-catalog') || '';
+		var bodySettingId = $root.attr('data-body-setting') || '';
+		var headingSettingId = $root.attr('data-heading-setting') || '';
+		var bodySetting = bodySettingId ? api(bodySettingId) : null;
+		var headingSetting = headingSettingId ? api(headingSettingId) : null;
+		var $toggle = $root.find('.cw-google-fonts-toggle__input').first();
+		var $status = $root.find('.cw-google-fonts-toggle__status').first();
+		var fonts = [];
+		var loaded = false;
+		var loading = false;
+
+		function familyExists(family) {
+			var target = String(family || '').toLocaleLowerCase();
+			return fonts.some(function (font) {
+				return String(font.family || '').toLocaleLowerCase() === target;
+			});
+		}
+
+		function updateSelect(controlId, setting, showCatalog) {
+			var fontControl = api.control(controlId);
+			if (!fontControl || !fontControl.container || !setting) {
+				return;
+			}
+
+			var $select = fontControl.container.find('[data-cw-font-family-select]').first();
+			if (!$select.length) {
+				return;
+			}
+
+			var current = String(setting.get() || '');
+			var currentFamily = familyFromPreset(current);
+			$select.find('[data-cw-google-current-group], [data-cw-google-catalog-group]').remove();
+
+			if (showCatalog && loaded) {
+				var $catalogGroup = $('<optgroup>', { label: 'Google Fonts', 'data-cw-google-catalog-group': '1' });
+				if (currentFamily && !familyExists(currentFamily)) {
+					$catalogGroup.append($('<option>', { value: current }).text(currentFamily));
+				}
+				fonts.forEach(function (font) {
+					var family = String(font.family || '').trim();
+					if (family) {
+						$catalogGroup.append($('<option>', { value: presetForFamily(family) }).text(family));
+					}
+				});
+				$select.append($catalogGroup);
+			} else if (currentFamily) {
+				var $currentGroup = $('<optgroup>', { label: 'Google Fonts', 'data-cw-google-current-group': '1' });
+				$currentGroup.append($('<option>', { value: current }).text(currentFamily + ' · ' + (strings.googleInUse || 'en uso')));
+				$select.append($currentGroup);
+			}
+
+			$select.val(current);
+		}
+
+		function syncSelects() {
+			var showCatalog = $toggle.prop('checked') && loaded;
+			updateSelect('creceweb_local_font_body', bodySetting, showCatalog);
+			updateSelect('creceweb_local_font_heading', headingSetting, showCatalog);
+		}
+
+		function loadCatalog() {
+			if (loaded) {
+				syncSelects();
+				return;
+			}
+			if (loading || !catalogUrl) {
+				return;
+			}
+
+			loading = true;
+			$status.text(strings.googleLoading || 'Cargando Google Fonts…');
+			fetch(catalogUrl, { credentials: 'same-origin', cache: 'force-cache' })
+				.then(function (response) {
+					if (!response.ok) {
+						throw new Error('catalog');
+					}
+					return response.json();
+				})
+				.then(function (data) {
+					fonts = data && Array.isArray(data.fonts) ? data.fonts : [];
+					loaded = true;
+					loading = false;
+					$status.text('');
+					syncSelects();
+				})
+				.catch(function () {
+					loading = false;
+					$toggle.prop('checked', false);
+					storeVisibleState(false);
+					$status.text(strings.googleLoadError || 'No pudimos mostrar Google Fonts. Volvé a intentarlo.');
+					syncSelects();
+				});
+		}
+
+		$toggle.on('change', function () {
+			var visible = $toggle.prop('checked');
+			storeVisibleState(visible);
+			if (visible) {
+				loadCatalog();
+			} else {
+				$status.text('');
+				syncSelects();
+			}
+		});
+
+		if (bodySetting) {
+			bodySetting.bind(syncSelects);
+		}
+		if (headingSetting) {
+			headingSetting.bind(syncSelects);
+		}
+
+		$toggle.prop('checked', getStoredVisibleState());
+		if ($toggle.prop('checked')) {
+			loadCatalog();
+		} else {
+			syncSelects();
+		}
+	}
+
+	function bindCatalogs() {
+		api.control.each(function (control) {
+			if (control && control.params && control.params.type === 'creceweb-google-font-catalog') {
+				bindGoogleCatalog(control);
+			}
+		});
+	}
+
+	api.bind('ready', bindCatalogs);
+	api.control.bind('add', function (control) {
+		if (control && control.params && control.params.type === 'creceweb-google-font-catalog') {
+			bindGoogleCatalog(control);
+		}
 	});
 }(wp.customize, jQuery));
