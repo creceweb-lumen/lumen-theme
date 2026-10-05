@@ -67,6 +67,19 @@ if ( ! in_array( 'cw-site-header', $cw_header_classes, true ) ) {
 		?>
 	</div>
 </header>
+<?php
+/**
+ * Fires immediately after the native site header and before other after-header
+ * extension output.
+ *
+ * Keeping contextual navigation outside .cw-site-header lets it remain in the
+ * document flow while sticky/fixed header behavior affects only the header.
+ * Extensions can coordinate transparent overlays without owning Theme templates.
+ */
+if ( empty( $GLOBALS['creceweb_lumen_breadcrumb_defer_after_hero'] ) ) {
+	\CreceWeb\Lumen\render_breadcrumb_area( 'after_header' );
+}
+?>
 <?php do_action( 'creceweb_after_header' ); ?>
 <?php $cw_hero_only_page = ! empty( $GLOBALS['creceweb_lumen_hero_only_page'] ); ?>
 <div class="cw-site-shell"<?php echo $cw_hero_only_page ? ' style="display:flex;flex:1 1 0;flex-direction:column;min-height:0"' : ''; ?>>

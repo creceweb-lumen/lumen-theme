@@ -439,40 +439,6 @@ function is_floating_action_active( \WP_Customize_Control $control ): bool {
 }
 
 /**
- * Checks whether the user enabled detailed controls.
- *
- * @param \WP_Customize_Control $control Control.
- * @return bool
- */
-function is_detailed_control_active( \WP_Customize_Control $control ): bool {
-	return '1' === get_customizer_value( $control->manager, 'show_advanced_controls' );
-}
-
-/**
- * Applies the detailed-mode condition without replacing existing dependencies.
- *
- * @param \WP_Customize_Manager $wp_customize Manager.
- * @param string[]                $keys Customization keys.
- * @return void
- */
-function mark_customizer_controls_as_detailed( \WP_Customize_Manager $wp_customize, array $keys ): void {
-	foreach ( $keys as $key ) {
-		$control = $wp_customize->get_control( get_customizer_setting_id( $key ) );
-		if ( ! $control ) {
-			continue;
-		}
-
-		$existing_callback = $control->active_callback;
-		$control->active_callback = static function ( \WP_Customize_Control $current_control ) use ( $existing_callback ): bool {
-			if ( ! is_detailed_control_active( $current_control ) ) {
-				return false;
-			}
-			return ! is_callable( $existing_callback ) || (bool) call_user_func( $existing_callback, $current_control );
-		};
-	}
-}
-
-/**
  * Normalizes control priorities after sections are merged.
  *
  * @param \WP_Customize_Manager          $wp_customize Manager.

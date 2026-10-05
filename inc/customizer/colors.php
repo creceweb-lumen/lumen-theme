@@ -37,21 +37,45 @@ function get_customizer_color_groups(): array {
 			),
 		),
 		'navigation' => array(
-			'title'       => __( 'Navegación', 'creceweb-lumen' ),
-			'description' => __( 'Colores de enlaces y estados del menú principal y de los submenús.', 'creceweb-lumen' ),
+			'title'       => __( 'Diseño', 'creceweb-lumen' ),
+			'description' => __( 'Colores del menú principal y sus estados.', 'creceweb-lumen' ),
 			'fields'      => array(
-				'navigation_color' => __( 'Menú: normal', 'creceweb-lumen' ),
-				'navigation_hover_color' => __( 'Menú: hover', 'creceweb-lumen' ),
-				'navigation_active_color' => __( 'Menú: enlace activo', 'creceweb-lumen' ),
-				'submenu_background_color' => __( 'Submenú: fondo', 'creceweb-lumen' ),
+				'navigation_color' => __( 'Normal', 'creceweb-lumen' ),
+				'navigation_hover_color' => __( 'Hover', 'creceweb-lumen' ),
+				'navigation_active_color' => __( 'Enlace activo', 'creceweb-lumen' ),
+			),
+		),
+		'submenu' => array(
+			'title'       => __( 'Diseño', 'creceweb-lumen' ),
+			'description' => __( 'Colores y estados del submenú.', 'creceweb-lumen' ),
+			'fields'      => array(
+				'submenu_background_color' => __( 'Fondo', 'creceweb-lumen' ),
 				'submenu_hover_text_color' => array(
-					'label' => __( 'Submenú: texto hover', 'creceweb-lumen' ),
+					'label' => __( 'Texto hover', 'creceweb-lumen' ),
 					'transport' => 'refresh',
 				),
 				'submenu_hover_background_color' => array(
-					'label' => __( 'Submenú: fondo hover', 'creceweb-lumen' ),
+					'label' => __( 'Fondo hover', 'creceweb-lumen' ),
 					'transport' => 'refresh',
 				),
+			),
+		),
+		'buttons' => array(
+			'title'       => __( 'Diseño', 'creceweb-lumen' ),
+			'description' => __( 'Colores globales para botones y acciones compatibles de Lumen.', 'creceweb-lumen' ),
+			'fields'      => array(
+				'button_background_color' => __( 'Fondo', 'creceweb-lumen' ),
+				'button_hover_color' => __( 'Fondo hover', 'creceweb-lumen' ),
+				'button_text_color' => __( 'Texto', 'creceweb-lumen' ),
+			),
+		),
+		'forms' => array(
+			'title'       => __( 'Diseño', 'creceweb-lumen' ),
+			'description' => __( 'Colores globales para campos, selects y controles compatibles de Lumen.', 'creceweb-lumen' ),
+			'fields'      => array(
+				'form_background_color' => __( 'Fondo', 'creceweb-lumen' ),
+				'form_border_color' => __( 'Borde', 'creceweb-lumen' ),
+				'form_focus_color' => __( 'Foco', 'creceweb-lumen' ),
 			),
 		),
 		'actions' => array(

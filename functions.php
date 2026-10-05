@@ -12,17 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Public theme identity.
  */
-define( 'CRECEWEB_LUMEN_VERSION', '1.4.109' );
-define( 'CRECEWEB_LUMEN_BRIDGE_API_VERSION', '1.6.0' );
+define( 'CRECEWEB_LUMEN_VERSION', '1.4.110' );
+define( 'CRECEWEB_LUMEN_BRIDGE_API_VERSION', '1.9.6' );
 define( 'CRECEWEB_LUMEN_MINIMUM_PRO_VERSION', '1.9.17' );
 define( 'CRECEWEB_LUMEN_DIR', get_template_directory() );
 define( 'CRECEWEB_LUMEN_URI', get_template_directory_uri() );
 
 $creceweb_lumen_includes = array(
 	'inc/helpers.php',
+	'inc/google-fonts.php',
 	'inc/customization.php',
+	'inc/local-inter.php',
 	'inc/pro-bridge.php',
 	'inc/extension-bridge.php',
+	'inc/config-transfer.php',
+	'inc/lite-onboarding.php',
 	'inc/appearance.php',
 	'inc/theme-details.php',
 	'inc/navigation.php',

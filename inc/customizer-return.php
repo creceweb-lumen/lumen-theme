@@ -69,7 +69,7 @@ function is_unsafe_customizer_return_url( string $url ): bool {
 		? sanitize_key( (string) $query['action'] )
 		: '';
 
-	return 'upload-theme' === $action;
+	return in_array( $action, array( 'upload-theme', 'upload-plugin' ), true );
 }
 
 /**
@@ -109,5 +109,23 @@ function enforce_safe_customizer_return_url( \WP_Customize_Manager $wp_customize
 	}
 }
 
+/**
+ * Revalidates the Customizer return URL at controls bootstrap time.
+ *
+ * `customize_controls_init` does not pass the manager as a callback argument,
+ * so resolve the active manager from the WordPress global before delegating to
+ * the typed normalizer used by `customize_register`.
+ *
+ * @return void
+ */
+function enforce_safe_customizer_return_url_on_controls_init(): void {
+	global $wp_customize;
+
+	if ( $wp_customize instanceof \WP_Customize_Manager ) {
+		enforce_safe_customizer_return_url( $wp_customize );
+	}
+}
+
 normalize_customizer_return_target();
 add_action( 'customize_register', __NAMESPACE__ . '\\enforce_safe_customizer_return_url', 1 );
+add_action( 'customize_controls_init', __NAMESPACE__ . '\\enforce_safe_customizer_return_url_on_controls_init', 1 );

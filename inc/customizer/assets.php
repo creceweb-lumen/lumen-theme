@@ -70,6 +70,9 @@ function enqueue_customizer_control_assets(): void {
 			'strings'                 => array(
 				'customConfiguration' => __( 'Configuración visual personalizada. Tus valores actuales se mantienen hasta que elijas un estilo.', 'creceweb-lumen' ),
 				'confirmPreset'       => __( 'Este estilo reemplazará los ajustes visuales globales de CreceWeb. No modificará contenido, páginas, menús ni widgets. ¿Querés aplicarlo?', 'creceweb-lumen' ),
+				'googleLoading'      => __( 'Cargando Google Fonts…', 'creceweb-lumen' ),
+				'googleLoadError'    => __( 'No pudimos mostrar Google Fonts. Volvé a intentarlo.', 'creceweb-lumen' ),
+				'googleInUse'        => __( 'en uso', 'creceweb-lumen' ),
 			),
 		)
 	);

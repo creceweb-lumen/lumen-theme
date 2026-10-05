@@ -88,6 +88,32 @@ function get_customizer_url(): string {
 
 
 /**
+ * Returns the Lumen Customizer panel that owns a section.
+ *
+ * @param string $section_id Customizer section ID.
+ * @return string
+ */
+function get_customizer_panel_for_section( string $section_id ): string {
+	$header_sections = array( 'creceweb_header_navigation', 'creceweb_navigation', 'creceweb_submenus', 'creceweb_top_bar' );
+	$content_sections = array( 'creceweb_screen_layout', 'creceweb_content_blog', 'creceweb_single_post' );
+	$footer_sections = array( 'creceweb_footer', 'creceweb_social' );
+
+	if ( in_array( $section_id, $header_sections, true ) ) {
+		return 'creceweb_header_panel';
+	}
+
+	if ( in_array( $section_id, $content_sections, true ) ) {
+		return 'creceweb_content_panel';
+	}
+
+	if ( in_array( $section_id, $footer_sections, true ) ) {
+		return 'creceweb_footer_panel';
+	}
+
+	return 'creceweb_design';
+}
+
+/**
  * Creates a Customizer URL focused on a specific section.
  *
  * @param string $section_id Customizer section ID.
@@ -97,7 +123,7 @@ function get_customizer_section_url( string $section_id ): string {
 	return add_query_arg(
 		array(
 			'return'                     => get_hub_url(),
-			'autofocus[panel]'           => 'creceweb_design',
+			'autofocus[panel]'           => get_customizer_panel_for_section( $section_id ),
 			'autofocus[section]'         => $section_id,
 		),
 		admin_url( 'customize.php' )
@@ -225,6 +251,8 @@ function render_appearance_page(): void {
 	$theme_metadata          = wp_get_theme( get_template() );
 	$theme_author_url        = (string) $theme_metadata->get( 'AuthorURI' );
 	$lite_active             = function_exists( 'cw_lumen_lite_is_theme_compatible' ) && cw_lumen_lite_is_theme_compatible();
+	$lite_onboarding         = get_lite_onboarding_state();
+	$lite_state              = (string) ( $lite_onboarding['status'] ?? 'missing' );
 	$lite_manage_url         = function_exists( 'cw_lumen_lite_library_url' ) ? cw_lumen_lite_library_url() : get_admin_section_url( 'lite-menu' );
 	$lite_status_url         = admin_url( 'plugins.php' );
 	$pro_status              = get_pro_status();
@@ -274,7 +302,7 @@ function render_appearance_page(): void {
 					<span class="cw-lumen-hub__step-number" aria-hidden="true">1</span>
 					<div>
 						<h3><?php esc_html_e( 'Definí la marca y el estilo', 'creceweb-lumen' ); ?></h3>
-						<p><?php esc_html_e( 'Cargá logo, nombre, colores y tipografías. Empezá por Marca del sitio y Estilo global para darle una base propia al sitio.', 'creceweb-lumen' ); ?></p>
+						<p><?php esc_html_e( 'Cargá logo, nombre, colores y tipografías. Empezá por Marca del sitio y Diseño global para darle una base propia al sitio.', 'creceweb-lumen' ); ?></p>
 						<p><a class="button button-primary" href="<?php echo esc_url( $brand_customizer_url ); ?>"><?php esc_html_e( 'Configurar marca', 'creceweb-lumen' ); ?></a></p>
 					</div>
 				</li>
@@ -372,30 +400,54 @@ function render_appearance_page(): void {
 		</section>
 
 
-		<?php if ( $is_pro || $is_pro_incompatible || $lite_active ) : ?>
-			<div class="cw-lumen-hub__pro">
-				<div>
-					<?php if ( $is_pro ) : ?>
-						<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión instalada', 'creceweb-lumen' ); ?></p>
-						<h2><?php esc_html_e( 'Lumen Pro está activo', 'creceweb-lumen' ); ?></h2>
-						<p><?php esc_html_e( 'La extensión instalada amplía CreceWeb Lumen y se administra desde su propia pantalla.', 'creceweb-lumen' ); ?></p>
-					<?php elseif ( $is_pro_incompatible ) : ?>
-						<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Revisión requerida', 'creceweb-lumen' ); ?></p>
-						<h2><?php esc_html_e( 'Revisá las extensiones instaladas', 'creceweb-lumen' ); ?></h2>
-						<p><?php esc_html_e( 'Una extensión instalada requiere versiones compatibles. Revisá su estado antes de habilitar sus módulos.', 'creceweb-lumen' ); ?></p>
-					<?php else : ?>
-						<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión instalada', 'creceweb-lumen' ); ?></p>
-						<h2><?php esc_html_e( 'Lumen Lite está activo', 'creceweb-lumen' ); ?></h2>
-						<p><?php esc_html_e( 'La extensión instalada agrega su biblioteca y herramientas desde esta misma pantalla.', 'creceweb-lumen' ); ?></p>
+		<div class="cw-lumen-hub__pro">
+			<div>
+				<?php if ( $is_pro ) : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión instalada', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Lumen Pro está activo', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'La extensión instalada amplía CreceWeb Lumen y se administra desde su propia pantalla.', 'creceweb-lumen' ); ?></p>
+				<?php elseif ( $is_pro_incompatible ) : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Revisión requerida', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Revisá las extensiones instaladas', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'Una extensión instalada requiere versiones compatibles. Revisá su estado antes de habilitar sus módulos.', 'creceweb-lumen' ); ?></p>
+				<?php elseif ( $lite_active ) : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión instalada', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Lumen Lite está activo', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'La extensión instalada agrega su biblioteca y herramientas desde esta misma pantalla.', 'creceweb-lumen' ); ?></p>
+				<?php elseif ( 'active' === $lite_state ) : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Revisión requerida', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Revisá Lumen Lite', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'Lumen Lite está activo, pero esta instalación requiere revisar su compatibilidad.', 'creceweb-lumen' ); ?></p>
+				<?php elseif ( 'installed' === $lite_state ) : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión instalada', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Lumen Lite ya está instalado', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'Lumen Lite es un complemento opcional para CreceWeb Lumen. Agrega una biblioteca de patrones y herramientas para contenido, menú, mensajería y rendimiento.', 'creceweb-lumen' ); ?></p>
+					<?php if ( empty( $lite_onboarding['activate_url'] ) ) : ?>
+						<p><?php esc_html_e( 'Tu usuario no tiene permisos para activar plugins.', 'creceweb-lumen' ); ?></p>
 					<?php endif; ?>
-				</div>
-				<?php
-				$ecosystem_url = $is_pro ? get_pro_manage_url() : ( $is_pro_incompatible ? $lite_status_url : $lite_manage_url );
-				$ecosystem_label = $is_pro ? __( 'Gestionar extensión', 'creceweb-lumen' ) : ( $is_pro_incompatible ? __( 'Revisar extensiones', 'creceweb-lumen' ) : __( 'Abrir Biblioteca Lumen', 'creceweb-lumen' ) );
-				?>
-				<a class="button button-primary" href="<?php echo esc_url( $ecosystem_url ); ?>"><?php echo esc_html( $ecosystem_label ); ?></a>
+				<?php else : ?>
+					<p class="cw-lumen-hub__eyebrow"><?php esc_html_e( 'Extensión opcional', 'creceweb-lumen' ); ?></p>
+					<h2><?php esc_html_e( 'Instalar Lumen Lite', 'creceweb-lumen' ); ?></h2>
+					<p><?php esc_html_e( 'Lumen Lite es un complemento opcional para CreceWeb Lumen. Agrega una biblioteca de patrones y herramientas para contenido, menú, mensajería y rendimiento.', 'creceweb-lumen' ); ?></p>
+					<?php if ( empty( $lite_onboarding['install_url'] ) ) : ?>
+						<p><?php esc_html_e( 'Tu usuario no tiene permisos para instalar plugins.', 'creceweb-lumen' ); ?></p>
+					<?php endif; ?>
+				<?php endif; ?>
 			</div>
-		<?php endif; ?>
+			<?php if ( $is_pro ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( get_pro_manage_url() ); ?>"><?php esc_html_e( 'Gestionar extensión', 'creceweb-lumen' ); ?></a>
+			<?php elseif ( $is_pro_incompatible ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( $lite_status_url ); ?>"><?php esc_html_e( 'Revisar extensiones', 'creceweb-lumen' ); ?></a>
+			<?php elseif ( $lite_active ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( $lite_manage_url ); ?>"><?php esc_html_e( 'Abrir Biblioteca Lumen', 'creceweb-lumen' ); ?></a>
+			<?php elseif ( 'active' === $lite_state ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( $lite_status_url ); ?>"><?php esc_html_e( 'Revisá Lumen Lite', 'creceweb-lumen' ); ?></a>
+			<?php elseif ( 'installed' === $lite_state && ! empty( $lite_onboarding['activate_url'] ) ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( (string) $lite_onboarding['activate_url'] ); ?>"><?php esc_html_e( 'Activar Lumen Lite', 'creceweb-lumen' ); ?></a>
+			<?php elseif ( 'missing' === $lite_state && ! empty( $lite_onboarding['install_url'] ) ) : ?>
+				<a class="button button-primary" href="<?php echo esc_url( (string) $lite_onboarding['install_url'] ); ?>"><?php esc_html_e( 'Instalar Lumen Lite', 'creceweb-lumen' ); ?></a>
+			<?php endif; ?>
+		</div>
 	</div>
 	<?php
 }

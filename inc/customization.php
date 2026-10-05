@@ -13,6 +13,9 @@ const CUSTOMIZATION_OPTION = 'creceweb_lumen_settings';
 // Previous option name retained only for one-time migration.
 const LEGACY_CUSTOMIZATION_OPTION = 'cw_lumen_settings';
 
+// Internal Theme metadata stored inside the same directory-safe settings option.
+const CUSTOMIZATION_INTERNAL_KEY = '_internal';
+
 /**
  * Returns the safe defaults for CreceWeb visual controls.
  *
@@ -123,8 +126,15 @@ function get_customization_defaults(): array {
 		'navigation_font_size'  => '15',
 		'navigation_weight'     => '650',
 		'navigation_transform'  => 'none',
-		'mobile_menu_style'     => 'overlay',
-		'mobile_menu_breakpoint'=> '781',
+		'mobile_menu_style'              => 'overlay',
+		'mobile_menu_identity_enabled'   => '0',
+		'mobile_menu_open_style'         => 'icon',
+		'mobile_menu_close_style'        => 'icon',
+		'mobile_menu_background_color'   => '',
+		'mobile_navigation_color'        => '',
+		'mobile_navigation_hover_color'  => '',
+		'mobile_navigation_active_color' => '',
+		'mobile_menu_breakpoint'         => '781',
 		'header_sticky_shadow'  => 'subtle',
 
 		// Social Icons placement. Hidden by default for backwards compatibility.
@@ -132,6 +142,8 @@ function get_customization_defaults(): array {
 		'social_content_mode'          => 'shared',
 		'social_header_position'       => 'hidden',
 		'social_header_mobile_enabled' => '0',
+		'social_mobile_menu_enabled'   => '0',
+		'social_mobile_menu_color'     => '',
 		'social_footer_position'       => 'hidden',
 		'social_footer_alignment'      => 'center',
 		'social_icon_size'             => '24',
@@ -194,6 +206,7 @@ function get_customization_defaults(): array {
 		'sidebar_width'              => 'standard',
 
 		'footer_tone'               => 'surface',
+		'footer_layout_preset'      => 'classic',
 		'footer_density'        => 'normal',
 		'footer_padding'        => '48',
 		'footer_widget_gap'     => '32',
@@ -212,8 +225,8 @@ function get_customization_defaults(): array {
  */
 function get_customization_choices(): array {
 	return array(
-		'font_preset'            => array( 'system-sans', 'system-serif', 'system-mono' ),
-		'heading_preset'         => array( 'inherit', 'system-sans', 'system-serif' ),
+		'font_preset'            => array( 'system-sans', 'inter-local', 'system-serif', 'system-mono' ),
+		'heading_preset'         => array( 'inherit', 'system-sans', 'inter-local', 'system-serif' ),
 		'font_scale'             => array( 'compact', 'standard', 'comfortable' ),
 		'heading_weight'         => array( '500', '600', '700', '800' ),
 		'spacing_density'        => array( 'compact', 'normal', 'spacious' ),
@@ -233,7 +246,9 @@ function get_customization_choices(): array {
 		'navigation_gap'         => array( 'compact', 'normal', 'spacious' ),
 		'navigation_weight'      => array( '400', '500', '600', '650', '700' ),
 		'navigation_transform'   => array( 'none', 'uppercase' ),
-		'mobile_menu_style'      => array( 'overlay', 'drawer' ),
+		'mobile_menu_style'       => array( 'overlay', 'drawer' ),
+		'mobile_menu_open_style'  => array( 'icon', 'label_icon' ),
+		'mobile_menu_close_style' => array( 'icon', 'label_icon' ),
 		'mobile_menu_breakpoint' => array( '781', '960', '1024' ),
 		'blog_surface'             => array( 'minimal', 'bordered', 'elevated' ),
 		'blog_layout'              => array( 'list', 'grid' ),
@@ -254,6 +269,7 @@ function get_customization_choices(): array {
 		'page_sidebar_layout'       => array( 'inherit', 'none', 'left', 'right' ),
 		'sidebar_width'             => array( 'narrow', 'standard', 'wide' ),
 		'footer_tone'              => array( 'surface', 'primary' ),
+		'footer_layout_preset'     => array( 'classic', 'editorial' ),
 		'footer_density'         => array( 'compact', 'normal', 'spacious', 'none' ),
 		'footer_widget_columns'  => array( 'auto', '1', '2', '3', '4', '5' ),
 		'motion_preference'      => array( 'system', 'reduce' ),
@@ -285,7 +301,7 @@ function get_design_presets(): array {
 			'values'      => array(
 				'font_preset' => 'system-sans', 'heading_preset' => 'system-sans', 'font_scale' => 'standard', 'heading_weight' => '700',
 				'shape' => 'soft', 'content_width' => '760px', 'wide_width' => '1160px',
-				'spacing_density' => 'normal', 'header_density' => 'normal', 'footer_density' => 'normal',
+				'spacing_density' => 'normal', 'header_density' => 'normal', 'footer_layout_preset' => 'classic', 'footer_density' => 'normal',
 				'button_style' => 'solid', 'button_radius' => '8', 'button_padding_y' => '13', 'button_padding_x' => '20', 'link_decoration' => 'hover',
 				'blog_surface' => 'bordered', 'blog_layout' => 'list', 'blog_card_layout' => 'vertical', 'blog_image_ratio' => 'landscape',
 				'header_tone' => 'surface', 'footer_tone' => 'primary',
@@ -303,7 +319,7 @@ function get_design_presets(): array {
 			'values'      => array(
 				'font_preset' => 'system-sans', 'heading_preset' => 'system-sans', 'font_scale' => 'comfortable', 'heading_weight' => '800',
 				'shape' => 'rounded', 'content_width' => '800px', 'wide_width' => '1320px',
-				'spacing_density' => 'spacious', 'header_density' => 'normal', 'footer_density' => 'spacious',
+				'spacing_density' => 'spacious', 'header_density' => 'normal', 'footer_layout_preset' => 'classic', 'footer_density' => 'spacious',
 				'button_style' => 'solid', 'button_radius' => '16', 'button_padding_y' => '15', 'button_padding_x' => '26', 'link_decoration' => 'hover',
 				'blog_surface' => 'elevated', 'blog_layout' => 'grid', 'blog_columns' => '3', 'blog_card_layout' => 'vertical', 'blog_image_ratio' => 'landscape',
 				'header_tone' => 'primary', 'footer_tone' => 'primary',
@@ -321,7 +337,7 @@ function get_design_presets(): array {
 			'values'      => array(
 				'font_preset' => 'system-serif', 'heading_preset' => 'system-serif', 'font_scale' => 'comfortable', 'heading_weight' => '700',
 				'shape' => 'square', 'content_width' => '700px', 'wide_width' => '1120px',
-				'spacing_density' => 'normal', 'header_density' => 'compact', 'footer_density' => 'normal',
+				'spacing_density' => 'normal', 'header_density' => 'compact', 'footer_layout_preset' => 'editorial', 'footer_density' => 'normal',
 				'button_style' => 'outline', 'button_radius' => '2', 'button_padding_y' => '12', 'button_padding_x' => '18', 'link_decoration' => 'underline',
 				'blog_surface' => 'minimal', 'blog_layout' => 'list', 'blog_card_layout' => 'vertical', 'blog_image_ratio' => 'landscape',
 				'header_tone' => 'surface', 'footer_tone' => 'surface',
@@ -376,6 +392,84 @@ function maybe_migrate_legacy_customization_option(): void {
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\maybe_migrate_legacy_customization_option', 20 );
 
 /**
+ * Sanitizes Theme-internal metadata stored alongside Customizer settings.
+ *
+ * Internal values are never exposed by get_customizations() or portable
+ * Config Transfer exports. Keeping them inside the same option preserves the
+ * Theme Directory single-option storage contract.
+ *
+ * @param mixed $input Raw internal metadata.
+ * @return array<string,string>
+ */
+function sanitize_customization_internal_data( $input ): array {
+	$input = is_array( $input ) ? $input : array();
+	$clean = array();
+
+	if ( isset( $input['inter_font_cache_file'] ) ) {
+		$file = sanitize_text_field( (string) $input['inter_font_cache_file'] );
+		if ( '' !== $file ) {
+			$clean['inter_font_cache_file'] = $file;
+		}
+	}
+
+	return $clean;
+}
+
+/**
+ * Returns sanitized internal metadata from the single Theme option.
+ *
+ * @return array<string,string>
+ */
+function get_customization_internal_data(): array {
+	maybe_migrate_legacy_customization_option();
+	$settings = get_option( CUSTOMIZATION_OPTION, array() );
+	if ( ! is_array( $settings ) ) {
+		return array();
+	}
+
+	return sanitize_customization_internal_data( $settings[ CUSTOMIZATION_INTERNAL_KEY ] ?? array() );
+}
+
+/**
+ * Returns one internal metadata value.
+ *
+ * @param string $key Internal metadata key.
+ * @return string
+ */
+function get_customization_internal_value( string $key ): string {
+	$internal = get_customization_internal_data();
+	return isset( $internal[ $key ] ) ? (string) $internal[ $key ] : '';
+}
+
+/**
+ * Stores one internal metadata value inside the single Theme option.
+ *
+ * @param string $key   Internal metadata key.
+ * @param string $value Internal metadata value; empty removes the key.
+ * @return bool
+ */
+function set_customization_internal_value( string $key, string $value ): bool {
+	$settings = get_option( CUSTOMIZATION_OPTION, array() );
+	$settings = is_array( $settings ) ? $settings : array();
+	$internal = sanitize_customization_internal_data( $settings[ CUSTOMIZATION_INTERNAL_KEY ] ?? array() );
+
+	if ( '' === $value ) {
+		unset( $internal[ $key ] );
+	} else {
+		$internal[ $key ] = sanitize_text_field( $value );
+	}
+
+	if ( empty( $internal ) ) {
+		unset( $settings[ CUSTOMIZATION_INTERNAL_KEY ] );
+	} else {
+		$settings[ CUSTOMIZATION_INTERNAL_KEY ] = $internal;
+	}
+
+	return update_option( CUSTOMIZATION_OPTION, $settings, true );
+}
+
+
+/**
  * Returns the current settings with safe defaults.
  *
  * @return array<string, string>
@@ -389,6 +483,7 @@ function get_customizations(): array {
 	}
 
 	$customizations = sanitize_customizations( wp_parse_args( $settings, get_customization_defaults() ) );
+	unset( $customizations[ CUSTOMIZATION_INTERNAL_KEY ] );
 
 	/**
 	 * Filters the final safe Lumen settings before front-end use.
@@ -399,8 +494,10 @@ function get_customizations(): array {
 	 * @param array<string, string> $customizations Safe Lumen settings.
 	 */
 	$filtered = apply_filters( 'creceweb_lumen_get_customizations', $customizations );
+	$resolved = is_array( $filtered ) ? sanitize_customizations( $filtered ) : $customizations;
+	unset( $resolved[ CUSTOMIZATION_INTERNAL_KEY ] );
 
-	return is_array( $filtered ) ? sanitize_customizations( $filtered ) : $customizations;
+	return $resolved;
 }
 
 /**
@@ -424,7 +521,7 @@ function sanitize_customization_value( string $key, $value ): string {
 		return $color ? strtolower( $color ) : $defaults[ $key ];
 	}
 
-	$boolean_keys = array( 'hide_site_title', 'hide_site_tagline', 'top_bar_enabled', 'social_header_mobile_enabled', 'hide_footer_widgets_on_mobile', 'show_copyright', 'show_advanced_controls', 'blog_show_featured_image', 'blog_show_category', 'blog_show_meta', 'blog_show_excerpt', 'blog_show_read_more', 'blog_intro_enabled', 'blog_intro_show_button' );
+	$boolean_keys = array( 'hide_site_title', 'hide_site_tagline', 'top_bar_enabled', 'social_header_mobile_enabled', 'social_mobile_menu_enabled', 'mobile_menu_identity_enabled', 'hide_footer_widgets_on_mobile', 'show_copyright', 'show_advanced_controls', 'blog_show_featured_image', 'blog_show_category', 'blog_show_meta', 'blog_show_excerpt', 'blog_show_read_more', 'blog_intro_enabled', 'blog_intro_show_button' );
 	if ( in_array( $key, $boolean_keys, true ) ) {
 		return '1' === (string) $value ? '1' : '0';
 	}
@@ -502,6 +599,32 @@ function sanitize_customization_value( string $key, $value ): string {
 
 	$value = sanitize_text_field( (string) $value );
 
+	if ( in_array( $key, array( 'font_preset', 'heading_preset' ), true ) ) {
+		/**
+		 * Lets an active extension validate one additional typography preset.
+		 *
+		 * The Theme still requires a conservative identifier so an extension
+		 * cannot turn this bridge into arbitrary CSS input.
+		 *
+		 * @param string $resolved Empty string or canonical preset identifier.
+		 * @param string $value    Raw sanitized preset value.
+		 * @param string $key      Lumen setting key.
+		 */
+		$extended_preset = apply_filters( 'creceweb_lumen_extended_font_preset', '', $value, $key );
+		if (
+			is_string( $extended_preset )
+			&& '' !== $extended_preset
+			&& 1 === preg_match( '/^[a-z0-9:_-]+$/', $extended_preset )
+		) {
+			return $extended_preset;
+		}
+
+		if ( is_google_font_preset( $value ) ) {
+			$family = get_google_font_family_from_preset( $value );
+			return '' !== $family ? get_google_font_preset_id( $family ) : $defaults[ $key ];
+		}
+	}
+
 	if ( isset( $choices[ $key ] ) && in_array( $value, $choices[ $key ], true ) ) {
 		return $value;
 	}
@@ -513,7 +636,7 @@ function sanitize_customization_value( string $key, $value ): string {
  * Sanitizes the full setting option.
  *
  * @param mixed $input Raw value.
- * @return array<string, string>
+ * @return array<string, mixed>
  */
 function sanitize_customizations( $input ): array {
 	$input    = is_array( $input ) ? $input : array();
@@ -522,6 +645,19 @@ function sanitize_customizations( $input ): array {
 
 	foreach ( $defaults as $key => $default ) {
 		$clean[ $key ] = sanitize_customization_value( $key, $input[ $key ] ?? $default );
+	}
+
+	$internal_input = $input[ CUSTOMIZATION_INTERNAL_KEY ] ?? null;
+	if ( null === $internal_input ) {
+		$current = get_option( CUSTOMIZATION_OPTION, array() );
+		if ( is_array( $current ) ) {
+			$internal_input = $current[ CUSTOMIZATION_INTERNAL_KEY ] ?? array();
+		}
+	}
+
+	$internal = sanitize_customization_internal_data( $internal_input );
+	if ( ! empty( $internal ) ) {
+		$clean[ CUSTOMIZATION_INTERNAL_KEY ] = $internal;
 	}
 
 	return $clean;
@@ -568,6 +704,10 @@ function add_customization_body_classes( array $classes ): array {
 		$classes[] = 'cw-' . str_replace( '_', '-', $key ) . '--' . $settings[ $key ];
 	}
 
+	if ( 'editorial' === (string) ( $settings['footer_layout_preset'] ?? 'classic' ) ) {
+		$classes[] = 'cw-footer-layout-preset--editorial';
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', __NAMESPACE__ . '\\add_customization_body_classes' );
@@ -581,11 +721,32 @@ add_filter( 'body_class', __NAMESPACE__ . '\\add_customization_body_classes' );
 function get_font_stack( string $preset ): string {
 	$presets = array(
 		'system-sans'  => "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+		'inter-local'  => "'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 		'system-serif' => "ui-serif, Georgia, Cambria, 'Times New Roman', serif",
 		'system-mono'  => 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
 	);
 
-	return $presets[ $preset ] ?? $presets['system-sans'];
+	if ( isset( $presets[ $preset ] ) ) {
+		return $presets[ $preset ];
+	}
+
+	/**
+	 * Filters a resolved extension-owned font stack.
+	 *
+	 * Returning an empty string leaves resolution to the Theme's Google/system
+	 * fallback. Extension output is trusted PHP code; user values must be
+	 * sanitized by the contributing extension before they reach this bridge.
+	 *
+	 * @param string $stack  Resolved CSS font-family stack or empty string.
+	 * @param string $preset Canonical preset identifier.
+	 */
+	$extended_stack = apply_filters( 'creceweb_lumen_font_stack', '', $preset );
+	if ( is_string( $extended_stack ) && '' !== trim( $extended_stack ) ) {
+		return $extended_stack;
+	}
+
+	$google_stack = get_google_font_stack( $preset );
+	return '' !== $google_stack ? $google_stack : $presets['system-sans'];
 }
 
 /**
@@ -783,12 +944,19 @@ function get_customization_css(
 		}
 	}
 	$variables[] = '--cw-submenu-hover-background-opacity:' . absint( $settings['submenu_hover_background_opacity'] ) . '%';
+	if ( ! empty( $settings['mobile_menu_background_color'] ) ) {
+		$variables[] = '--cw-mobile-menu-background:' . $settings['mobile_menu_background_color'];
+	}
+	foreach ( array( 'mobile_navigation_color' => '--cw-mobile-navigation-color', 'mobile_navigation_hover_color' => '--cw-mobile-navigation-hover-color', 'mobile_navigation_active_color' => '--cw-mobile-navigation-active-color' ) as $setting_key => $variable_name ) {
+		if ( ! empty( $settings[ $setting_key ] ) ) { $variables[] = $variable_name . ':' . $settings[ $setting_key ]; }
+	}
 
 	$optional_social_variables = array(
 		'social_header_color'       => '--cw-social-header-color',
 		'social_header_hover_color' => '--cw-social-header-hover-color',
 		'social_footer_color'       => '--cw-social-footer-color',
 		'social_footer_hover_color' => '--cw-social-footer-hover-color',
+		'social_mobile_menu_color'  => '--cw-social-mobile-menu-color',
 	);
 	foreach ( $optional_social_variables as $setting_key => $variable_name ) {
 		if ( ! empty( $settings[ $setting_key ] ) ) {
@@ -841,6 +1009,7 @@ function get_customization_css(
 		$css .= ':where(.cw-site-header){padding-block:0}:where(.cw-site-header)>.cw-site-header__inner{width:min(calc(100% - var(--cw-mobile-gutter) - var(--cw-mobile-gutter)),var(--cw-header-width));max-width:var(--cw-header-width);margin-inline:auto;padding-block:var(--cw-header-effective-padding);box-sizing:border-box;justify-content:var(--cw-header-alignment)}';
 		$css .= ':where(.cw-site-header,.cw-site-footer) :is(.wp-block-site-logo,.custom-logo-link){display:block;flex:0 0 auto;line-height:0}:where(.cw-site-header,.cw-site-footer) .wp-block-site-logo img{display:block;width:var(--cw-logo-width);max-width:min(var(--cw-logo-width),54vw);height:auto;object-fit:contain}.cw-site-identity{gap:.55rem}.cw-site-identity__text{gap:0;min-width:0}';
 		$css .= ':where(.cw-site-header,.cw-site-footer) :where(.wp-block-site-title,.wp-block-site-title a){font-size:var(--cw-site-title-size);line-height:1.15}:where(.cw-site-header,.cw-site-footer) .wp-block-site-tagline{margin:.16rem 0 0;color:var(--cw-color-text-muted);font-size:var(--cw-site-tagline-size);line-height:1.35}';
+		$css .= '.cw-header-tone--surface :where(.cw-site-header) :where(.wp-block-site-title,.wp-block-site-title a){color:var(--cw-color-heading)}.cw-header-tone--surface :where(.cw-site-header) .wp-block-site-tagline{color:var(--cw-color-text-muted)}';
 		$css .= '.cw-hide-site-title--1 .wp-block-site-title{display:none!important}.cw-hide-site-tagline--1 .wp-block-site-tagline{display:none!important}';
 		$css .= ':where(.cw-site-header) .cw-classic-navigation--primary{display:flex;flex:1 1 auto;min-width:0}:where(.cw-site-header) .cw-classic-navigation__menu-container{width:100%}:where(.cw-site-header) .cw-classic-navigation__menu{justify-content:var(--cw-navigation-alignment);gap:var(--cw-navigation-gap)}.cw-navigation-align--left :where(.cw-site-header) .cw-classic-navigation--primary{margin-left:0;margin-right:auto}.cw-navigation-align--center :where(.cw-site-header) .cw-classic-navigation--primary{margin-left:auto;margin-right:auto}.cw-navigation-align--right :where(.cw-site-header) .cw-classic-navigation--primary{margin-left:auto;margin-right:0}:where(.cw-site-header) .cw-classic-navigation__menu a{color:var(--cw-navigation-color);font-size:var(--cw-navigation-font-size);font-weight:var(--cw-navigation-weight);text-transform:var(--cw-navigation-transform,none)}:where(.cw-site-header) .cw-classic-navigation__menu>li>a:hover,:where(.cw-site-header) .cw-classic-navigation__menu>li>a:focus-visible{color:var(--cw-navigation-hover-color)}:where(.cw-site-header) .cw-classic-navigation__menu :is(.current-menu-item,.current_page_item)>a{color:var(--cw-navigation-active-color)}.cw-classic-navigation__menu .sub-menu{background:var(--cw-submenu-background)}';
 	}
@@ -872,6 +1041,11 @@ function get_customization_css(
 		$css .= ':where(.cw-top-bar-widgets){padding-block:var(--cw-topbar-padding)}:where(.cw-top-bar-widgets__inner){width:min(100%,var(--cw-topbar-width));max-width:var(--cw-topbar-width);justify-content:var(--cw-topbar-alignment)}.cw-top-bar-width--full :where(.cw-top-bar-widgets__inner){width:100%;max-width:none}.cw-top-bar-tone--inherit.cw-header-tone--surface :where(.cw-top-bar-widgets){background:var(--cw-color-surface);color:var(--cw-color-text);border-color:var(--cw-color-border)}.cw-top-bar-tone--inherit.cw-header-tone--surface :where(.cw-top-bar-widgets) :where(a,.widget-title,.cw-widget__title,.wp-block-heading){color:var(--cw-color-link)}.cw-top-bar-tone--inherit.cw-header-tone--primary :where(.cw-top-bar-widgets){background:var(--cw-color-primary);color:#fff;border-color:var(--cw-color-primary)}.cw-top-bar-tone--inherit.cw-header-tone--primary :where(.cw-top-bar-widgets) :where(a,.widget-title,.cw-widget__title,.wp-block-heading){color:#fff}.cw-top-bar-tone--surface :where(.cw-top-bar-widgets){background:var(--cw-color-surface);color:var(--cw-color-text);border-color:var(--cw-color-border)}.cw-top-bar-tone--surface :where(.cw-top-bar-widgets) :where(a,.widget-title,.cw-widget__title,.wp-block-heading){color:var(--cw-color-link)}.cw-top-bar-tone--primary :where(.cw-top-bar-widgets){background:var(--cw-color-primary);color:#fff;border-color:var(--cw-color-primary)}.cw-top-bar-tone--primary :where(.cw-top-bar-widgets) :where(a,.widget-title,.cw-widget__title,.wp-block-heading){color:#fff}.cw-top-bar-tone--custom :where(.cw-top-bar-widgets){background:var(--cw-topbar-background);color:var(--cw-topbar-text);border-color:var(--cw-topbar-background)}.cw-top-bar-tone--custom :where(.cw-top-bar-widgets) :where(a,.widget-title,.cw-widget__title,.wp-block-heading){color:var(--cw-topbar-link)}';
 	}
 
+	if ( 'editorial' === (string) ( $settings['footer_layout_preset'] ?? 'classic' ) ) {
+		/* Footer preset CSS is emitted only when selected: default/classic sites pay zero frontend bytes. */
+		$css .= '.cw-footer-layout-preset--editorial .cw-site-footer{margin-top:0;border-top:1px solid color-mix(in srgb,var(--cw-footer-text) 16%,transparent)}.cw-footer-layout-preset--editorial .cw-footer-widgets{border-bottom:0}.cw-footer-layout-preset--editorial .cw-footer-widgets__section+.cw-footer-widgets__section{margin-top:0;padding-top:clamp(1.5rem,3vw,2.5rem)}.cw-footer-layout-preset--editorial .cw-footer-widgets__inner--columns{grid-template-columns:minmax(0,1.7fr) repeat(2,minmax(9rem,.6fr));gap:clamp(2rem,5vw,5rem)}.cw-footer-layout-preset--editorial .cw-footer-widgets__column:first-child{padding-right:clamp(.5rem,3vw,2.5rem)}.cw-footer-layout-preset--editorial .cw-site-footer .cw-widget__title,.cw-footer-layout-preset--editorial .cw-site-footer .widget-title{font-size:.72rem;letter-spacing:.14em}.cw-footer-layout-preset--editorial .cw-footer-editorial__brand{margin:0 0 .8rem;font-family:var(--cw-font-heading);font-size:1.05rem;font-weight:800;letter-spacing:-.02em;line-height:1.15}.cw-footer-layout-preset--editorial .cw-footer-editorial__brand a{color:var(--cw-footer-text);text-decoration:none}.cw-footer-layout-preset--editorial .cw-footer-editorial__description{max-width:38rem;margin:0;color:color-mix(in srgb,var(--cw-footer-text) 76%,transparent);line-height:1.65}.cw-footer-layout-preset--editorial .cw-footer-editorial__menu{margin:0;padding:0;list-style:none}.cw-footer-layout-preset--editorial .cw-footer-editorial__menu li+li{margin-top:.55rem}.cw-footer-layout-preset--editorial .cw-footer-editorial__menu a{color:color-mix(in srgb,var(--cw-footer-text) 82%,transparent)}.cw-footer-layout-preset--editorial .cw-social-region--footer{border-top:1px solid color-mix(in srgb,var(--cw-footer-text) 12%,transparent);padding-top:1rem;padding-bottom:1rem}.cw-footer-layout-preset--editorial .cw-site-copyright__inner,.cw-footer-layout-preset--editorial .cw-site-copyright__text{text-align:left}@media(max-width:781px){.cw-footer-layout-preset--editorial .cw-footer-widgets__inner--columns{grid-template-columns:1fr;gap:1.75rem}.cw-footer-layout-preset--editorial .cw-footer-widgets__column:first-child{padding-right:0}.cw-footer-layout-preset--editorial .cw-footer-widgets--editorial-fallback .cw-footer-widgets__inner--columns{grid-template-columns:repeat(2,minmax(0,1fr))}.cw-footer-layout-preset--editorial .cw-footer-widgets--editorial-fallback .cw-footer-widgets__column:first-child{grid-column:1/-1}.cw-footer-layout-preset--editorial .cw-site-copyright__inner,.cw-footer-layout-preset--editorial .cw-site-copyright__text{text-align:center}}';
+	}
+
 	if ( $include_frontend_static ) {
 		/* Native Social Icons integration. Content stays in dedicated WordPress widget areas; Lumen owns only placement and presentation. */
 		$css .= '.cw-social-region{box-sizing:border-box}.cw-social-region .cw-social-widget{display:flex;align-items:center;margin:0}.cw-social-region .wp-block-social-links{display:flex;flex-wrap:wrap;align-items:center;gap:var(--cw-social-icon-gap);margin:0!important;padding:0;list-style:none!important;font-size:var(--cw-social-icon-size)!important;line-height:1}.cw-social-region .wp-block-social-links>li::marker{content:""!important}.cw-social-region .wp-block-social-links .wp-social-link{display:flex;align-items:center;justify-content:center;margin:0!important;padding:0;font-size:var(--cw-social-icon-size)!important;line-height:1}.cw-social-region .wp-block-social-links .wp-social-link a{display:flex;align-items:center;justify-content:center;font-size:inherit!important;line-height:1}.cw-social-region .wp-block-social-links .wp-social-link svg{display:block;width:1em!important;height:1em!important;flex:0 0 1em}.cw-social-region--header{display:flex;flex:0 0 auto;align-items:center}.cw-social-region--header-before{margin-left:auto}.cw-social-region--header-before + .cw-classic-navigation{margin-left:0}.cw-social-region--header-after{margin-left:var(--cw-space-3)}.cw-social-region--footer{display:flex;align-items:center;justify-content:var(--cw-social-footer-alignment);width:min(calc(100% - 2rem),var(--cw-layout-wide,1120px));margin-inline:auto;padding-block:1.25rem}.cw-social-region--footer .cw-social-widget{align-items:center}.cw-footer-density--compact .cw-social-region--footer{padding-block:1rem}.cw-footer-density--normal .cw-social-region--footer{padding-block:1.25rem}.cw-footer-density--spacious .cw-social-region--footer{padding-block:1.5rem}.cw-footer-density--none .cw-social-region--footer{padding-block:.875rem}.cw-social-region--footer .wp-block-social-links{align-items:center;justify-content:var(--cw-social-footer-alignment)}';
@@ -891,9 +1065,28 @@ function get_customization_css(
 	if ( ! empty( $settings['social_footer_hover_color'] ) ) {
 		$css .= '.cw-social-region--footer .wp-block-social-links:not(.is-style-logos-only) .wp-social-link:hover,.cw-social-region--footer .wp-block-social-links:not(.is-style-logos-only) .wp-social-link:focus-within{background-color:var(--cw-social-footer-hover-color)!important}.cw-social-region--footer .wp-block-social-links.is-style-logos-only .wp-social-link a:hover,.cw-social-region--footer .wp-block-social-links.is-style-logos-only .wp-social-link a:focus-visible{color:var(--cw-social-footer-hover-color)!important}';
 	}
+	$compact_breakpoint = absint( $settings['mobile_menu_breakpoint'] );
+	$css .= '.cw-classic-navigation__mobile-identity,.cw-classic-navigation__mobile-utilities{display:none}';
+	$css .= '@media(max-width:' . $compact_breakpoint . 'px){.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__mobile-identity{display:flex;position:absolute;top:max(1rem,env(safe-area-inset-top));left:1.5rem;z-index:2;align-items:center;gap:.7rem;max-width:calc(100% - 8rem);min-width:0}.cw-classic-navigation__mobile-identity .custom-logo-link,.cw-classic-navigation__mobile-identity .wp-block-site-logo{flex:0 0 auto;line-height:0}.cw-classic-navigation__mobile-identity img{display:block;width:auto;max-width:2.25rem;max-height:2.25rem;object-fit:contain}.cw-classic-navigation__mobile-identity-name{min-width:0;overflow:hidden;color:var(--cw-mobile-navigation-color,var(--cw-navigation-color));font-size:1rem;font-weight:700;line-height:1.2;text-decoration:none;text-overflow:ellipsis;white-space:nowrap}.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu a{color:var(--cw-mobile-navigation-color,var(--cw-navigation-color))}.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li>a:hover,.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li>a:focus-visible{color:var(--cw-mobile-navigation-hover-color,var(--cw-navigation-hover-color))}.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu :is(.current-menu-item,.current_page_item)>a{color:var(--cw-mobile-navigation-active-color,var(--cw-navigation-active-color))}.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__mobile-utilities{display:flex;align-items:center;justify-content:flex-start;margin-top:1.5rem;padding-top:1rem;border-top:1px solid color-mix(in srgb,var(--cw-mobile-navigation-color,var(--cw-navigation-color)) 14%,transparent);color:var(--cw-mobile-navigation-color,var(--cw-navigation-color))}body:is(.cw-mobile-menu-style--drawer,.cw-mobile-menu-style--overlay) .cw-classic-navigation--primary.cw-compact-navigation-active .cw-classic-navigation__toggle--label-icon{display:inline-flex;width:auto;min-width:2.75rem;padding-inline:.85rem;gap:.55rem;font-size:1rem}.cw-classic-navigation__toggle-label{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}.cw-classic-navigation__toggle-glyph{font-size:1rem;line-height:1}body:is(.cw-mobile-menu-style--drawer,.cw-mobile-menu-style--overlay) .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__close--label-icon{display:inline-flex;width:auto;min-width:2.75rem;padding-inline:.85rem;gap:.45rem;font-size:1rem}.cw-classic-navigation__close-label{font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}}';
+	$css .= '@media(max-width:' . $compact_breakpoint . 'px){.cw-site-header .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li{width:100%}.cw-site-header .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li>a::after{display:none}.cw-site-header .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li:not(.menu-item-has-children)>a{display:flex;width:100%}}';
+	if ( ! empty( $settings['mobile_menu_background_color'] ) ) {
+		$css .= '@media(max-width:' . $compact_breakpoint . 'px){body.cw-mobile-menu-style--drawer .cw-classic-navigation--primary.cw-compact-navigation-active .cw-classic-navigation__menu-container,body.cw-mobile-menu-style--overlay .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu-container{background:var(--cw-mobile-menu-background)}}';
+	}
+	if ( ! empty( $settings['mobile_navigation_color'] ) ) {
+		$css .= '@media(max-width:' . $compact_breakpoint . 'px){.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-classic-navigation__menu>li:not(.menu-item-has-children)>a{box-shadow:inset 0 -1px color-mix(in srgb,var(--cw-mobile-navigation-color) 14%,transparent)}html.cw-navigation-js .cw-classic-navigation--primary.cw-compact-navigation-active.is-open .menu-item-has-children::after{background:color-mix(in srgb,var(--cw-mobile-navigation-color) 14%,transparent)}}';
+	}
+
 	if ( '1' !== (string) $settings['social_header_mobile_enabled'] ) {
 		$compact_breakpoint = absint( $settings['mobile_menu_breakpoint'] );
 		$css .= '@media(max-width:' . $compact_breakpoint . 'px){.cw-social-region--header{display:none!important}}';
+	}
+	if ( '1' === (string) ( $settings['social_mobile_menu_enabled'] ?? '0' ) ) {
+		$compact_breakpoint = absint( $settings['mobile_menu_breakpoint'] );
+		$css .= '.cw-social-region--mobile-menu{display:none}';
+		$css .= '@media(max-width:' . $compact_breakpoint . 'px){.cw-classic-navigation--primary.cw-compact-navigation-active.is-open .cw-social-region--mobile-menu{display:flex;flex-direction:column;align-items:center;gap:.75rem;margin-top:1.5rem;padding-top:1rem;border-top:1px solid color-mix(in srgb,var(--cw-color-text) 14%,transparent);text-align:center}.cw-social-region--mobile-menu__label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}.cw-social-region--mobile-menu .wp-block-social-links{justify-content:center}}';
+	}
+	if ( ! empty( $settings['social_mobile_menu_color'] ) ) {
+		$css .= '.cw-social-region--mobile-menu .wp-block-social-links .wp-social-link{background-color:transparent!important}.cw-social-region--mobile-menu .wp-block-social-links .wp-social-link a{color:var(--cw-social-mobile-menu-color)!important}.cw-social-region--mobile-menu .wp-block-social-links .wp-social-link svg{fill:currentColor}.cw-social-region--mobile-menu .wp-block-social-links .wp-social-link a:hover,.cw-social-region--mobile-menu .wp-block-social-links .wp-social-link a:focus-visible{color:var(--cw-navigation-hover-color)!important}';
 	}
 
 	if ( $include_frontend_static ) {

@@ -130,6 +130,76 @@ class External_Link_Control extends \WP_Customize_Control {
 }
 
 /**
+ * Root-level Customizer section that behaves as a user-initiated external link.
+ *
+ * The section never expands and does not create a setting. It is suitable for
+ * high-level resources that should remain visible on the Customizer home screen
+ * without triggering any external request until the user follows the link.
+ */
+class External_Link_Section extends \WP_Customize_Section {
+	/**
+	 * Section type consumed by the controls-side Customizer constructor.
+	 *
+	 * @var string
+	 */
+	public $type = 'creceweb-external-link';
+
+	/**
+	 * Destination URL.
+	 *
+	 * @var string
+	 */
+	public $url = '';
+
+	/**
+	 * Accessible label for the destination.
+	 *
+	 * @var string
+	 */
+	public $link_label = '';
+
+	/**
+	 * Dashicon class shown beside the link title.
+	 *
+	 * @var string
+	 */
+	public $icon = 'dashicons-external';
+
+	/**
+	 * Exposes only the data required by the link template.
+	 *
+	 * @return array<string,mixed>
+	 */
+	public function json() {
+		$json               = parent::json();
+		$json['url']        = esc_url( $this->url );
+		$json['link_label'] = (string) $this->link_label;
+		$json['icon']       = sanitize_html_class( (string) $this->icon );
+
+		return $json;
+	}
+
+	/**
+	 * Renders a native-looking Customizer row that opens the resource directly.
+	 *
+	 * @return void
+	 */
+	protected function render_template() {
+		?>
+		<li id="accordion-section-{{ data.id }}" class="cw-customizer-external-section control-section-{{ data.type }} cannot-expand accordion-section">
+			<h3 class="cw-customizer-external-section__heading">
+				<a class="cw-customizer-external-section__link" href="{{{ data.url }}}" target="_blank" rel="noopener noreferrer" title="{{ data.link_label }}">
+					<span class="dashicons {{ data.icon }}" aria-hidden="true"></span>
+					<span class="cw-customizer-external-section__text">{{ data.title }}</span>
+					<span class="screen-reader-text"><?php esc_html_e( ' (abre en una nueva pestaña)', 'creceweb-lumen' ); ?></span>
+				</a>
+			</h3>
+		</li>
+		<?php
+	}
+}
+
+/**
  * Reusable slider with an explicit numeric readout.
  */
 class Range_Control extends \WP_Customize_Control {
@@ -437,6 +507,100 @@ class Design_Preset_Control extends \WP_Customize_Control {
 			</div>
 			<p class="cw-design-presets__status" aria-live="polite"></p>
 			<p class="cw-design-presets__note"><?php esc_html_e( 'Aplicar un estilo reemplaza los valores visuales globales de CreceWeb. No modifica páginas, bloques, menús, widgets ni estilos de constructores visuales.', 'creceweb-lumen' ); ?></p>
+		</div>
+		<?php
+	}
+}
+
+/**
+ * Local/system typography selector that remains readable when Google Fonts is active.
+ */
+class Font_Source_Select_Control extends \WP_Customize_Control {
+	/**
+	 * Control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'creceweb-font-source-select';
+
+	/**
+	 * Renders a native select plus the current Google source when applicable.
+	 *
+	 * @return void
+	 */
+	public function render_content(): void {
+		$current       = (string) $this->value();
+		$google_family = get_google_font_family_from_preset( $current );
+		?>
+		<label class="cw-font-source-select">
+			<?php if ( $this->label ) : ?>
+				<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
+			<?php endif; ?>
+			<select <?php $this->link(); ?> data-cw-font-family-select="1">
+				<?php if ( '' !== $google_family ) : ?>
+					<optgroup label="<?php echo esc_attr__( 'Google Fonts', 'creceweb-lumen' ); ?>" data-cw-google-current-group="1">
+						<option value="<?php echo esc_attr( $current ); ?>" selected><?php echo esc_html( $google_family ); ?></option>
+					</optgroup>
+				<?php endif; ?>
+				<?php foreach ( $this->choices as $group ) : ?>
+					<?php if ( ! is_array( $group ) || empty( $group['choices'] ) ) { continue; } ?>
+					<optgroup label="<?php echo esc_attr( (string) ( $group['label'] ?? '' ) ); ?>">
+						<?php foreach ( $group['choices'] as $value => $label ) : ?>
+							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $current, (string) $value ); ?>><?php echo esc_html( $label ); ?></option>
+						<?php endforeach; ?>
+					</optgroup>
+				<?php endforeach; ?>
+			</select>
+			<?php if ( $this->description ) : ?>
+				<span class="description customize-control-description"><?php echo esc_html( $this->description ); ?></span>
+			<?php endif; ?>
+		</label>
+		<?php
+	}
+}
+
+/**
+ * Opt-in Google Fonts catalog control.
+ *
+ * The bundled catalog is loaded from the Theme only after the administrator
+ * asks to see Google Fonts. Selecting a Google family remains the action that
+ * enables the remote font on the site preview/frontend.
+ */
+class Google_Font_Catalog_Control extends \WP_Customize_Control {
+	/**
+	 * Control type.
+	 *
+	 * @var string
+	 */
+	public $type = 'creceweb-google-font-catalog';
+
+	/**
+	 * Same-origin URL of the bundled metadata catalog.
+	 *
+	 * @var string
+	 */
+	public $catalog_url = '';
+
+	/**
+	 * Renders a native-looking opt-in checkbox.
+	 *
+	 * @return void
+	 */
+	public function render_content(): void {
+		$body_setting    = $this->settings['body'] ?? null;
+		$heading_setting = $this->settings['heading'] ?? null;
+		if ( ! $body_setting || ! $heading_setting ) {
+			return;
+		}
+		?>
+		<div class="cw-google-fonts-toggle" data-cw-google-fonts-catalog="<?php echo esc_url( $this->catalog_url ); ?>" data-body-setting="<?php echo esc_attr( $body_setting->id ); ?>" data-heading-setting="<?php echo esc_attr( $heading_setting->id ); ?>">
+			<label class="cw-google-fonts-toggle__label">
+				<input type="checkbox" class="cw-google-fonts-toggle__input" value="1" />
+				<span><?php esc_html_e( 'Mostrar Google Fonts', 'creceweb-lumen' ); ?></span>
+			</label>
+			<p class="description customize-control-description"><?php esc_html_e( 'Activá esta opción para sumar Google Fonts a los selectores de texto y títulos. La lista se carga desde Lumen y no conecta con Google.', 'creceweb-lumen' ); ?></p>
+			<p class="description customize-control-description"><?php esc_html_e( 'Google se usa únicamente cuando elegís una de sus familias para el sitio.', 'creceweb-lumen' ); ?></p>
+			<p class="cw-google-fonts-toggle__status" aria-live="polite"></p>
 		</div>
 		<?php
 	}

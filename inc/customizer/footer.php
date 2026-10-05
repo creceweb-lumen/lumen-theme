@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function register_footer_controls( \WP_Customize_Manager $wp_customize ): void {
 	// Diseño > Pie de página. El contenido se construye solo con las áreas de widgets.
 	add_customizer_note( $wp_customize, 'creceweb_footer_widgets_note', 'creceweb_footer', __( '1. Widgets del pie', 'creceweb-lumen' ), __( 'Armá el pie desde Apariencia > Widgets. La fila completa sirve para logo, navegación, datos de contacto o una llamada a la acción; las columnas se usan para información secundaria.', 'creceweb-lumen' ), 10, 'step' );
+	add_customizer_select( $wp_customize, 'footer_layout_preset', 'creceweb_footer', __( 'Diseño del pie', 'creceweb-lumen' ), array( 'classic' => __( 'Clásico', 'creceweb-lumen' ), 'editorial' => __( 'Editorial en columnas', 'creceweb-lumen' ) ), 15, __( 'El diseño Editorial da más ancho a la primera columna. Sus tres primeras columnas mantienen contenido automático hasta que agregás widgets en esa misma columna; las demás no se modifican.', 'creceweb-lumen' ) );
 	add_customizer_choice_cards( $wp_customize, 'footer_widget_columns', 'creceweb_footer', __( 'Columnas de widgets', 'creceweb-lumen' ), array( 'auto' => __( 'Automáticas', 'creceweb-lumen' ), '1' => __( '1 columna', 'creceweb-lumen' ), '2' => __( '2 columnas', 'creceweb-lumen' ), '3' => __( '3 columnas', 'creceweb-lumen' ), '4' => __( '4 columnas', 'creceweb-lumen' ), '5' => __( '5 columnas', 'creceweb-lumen' ) ), 20, 'columns', __( 'Define la distribución de las áreas Widget del pie de página 1 a 5 que tengan contenido.', 'creceweb-lumen' ) );
 	add_customizer_range( $wp_customize, 'footer_widget_gap', 'creceweb_footer', __( 'Separación entre widgets', 'creceweb-lumen' ), 30, 12, 72, 2, 'px' );
 
@@ -38,3 +39,31 @@ function register_footer_controls( \WP_Customize_Manager $wp_customize ): void {
 
 	register_customizer_color_group( $wp_customize, 'footer', 'creceweb_footer', 200 );
 }
+
+/**
+ * Forces a full Customizer preview refresh when footer widget placement changes.
+ *
+ * WordPress uses postMessage for sidebars_widgets whenever the theme supports
+ * selective refresh. The Editorial footer derives automatic columns from the
+ * combined state of several footer sidebars, so adding/removing/moving a widget
+ * must refresh the complete preview to recompute neighbouring fallback columns.
+ * Widget instance edits keep their native transport; only footer sidebar
+ * assignment settings are changed here.
+ *
+ * @param array<string,mixed> $args       Customizer setting arguments.
+ * @param string              $setting_id Customizer setting ID.
+ * @return array<string,mixed>
+ */
+function filter_footer_widget_customizer_setting_args( array $args, string $setting_id ): array {
+	$footer_sidebar_ids = array_merge( array( CRECEWEB_FOOTER_BAR_WIDGET_AREA ), CRECEWEB_FOOTER_WIDGET_COLUMNS );
+
+	foreach ( $footer_sidebar_ids as $sidebar_id ) {
+		if ( sprintf( 'sidebars_widgets[%s]', $sidebar_id ) === $setting_id ) {
+			$args['transport'] = 'refresh';
+			break;
+		}
+	}
+
+	return $args;
+}
+add_filter( 'widget_customizer_setting_args', __NAMESPACE__ . '\\filter_footer_widget_customizer_setting_args', 10, 2 );
